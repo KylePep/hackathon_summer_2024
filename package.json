@@ -1,0 +1,13 @@
+
+  {
+    "name": "tower",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "npm run setup:server",
+      "setup:app": "npm run setup:server && npm run setup:client",
+      "setup:client": "cd Tower.client && npm i",
+      "setup:server": "cd Tower && npm i",
+      "start": "node Tower/index.js"
+    }
+  }
+  

@@ -1,0 +1,59 @@
+
+{
+  "folders": [
+    {
+      "path": "WorldWarDragon.client",
+      "name": "client"
+    },
+    {
+      "path": "WorldWarDragon",
+      "name": "server"
+    }
+  ],
+  "settings": {
+    "editor.suggestSelection": "first",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "files.exclude": {
+      "**/.nyc_*": true,
+      "**/coverage": true,
+      "**/node_modules": true
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "explorer.confirmDragAndDrop": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#c81809",
+      "activityBar.background": "#c81809",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#033d07",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#c81809",
+      "statusBar.background": "#971207",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#c81809",
+      "statusBarItem.remoteBackground": "#971207",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#971207",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#97120799",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#971207"
+  }
+}
