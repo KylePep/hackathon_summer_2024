@@ -18,3 +18,12 @@ When the WED is destroyed another just takes it's place.
 
 # Random events
 The playing field gets turned on it's head with random events that effect the player or effect the entire battle field.
+
+## MVP
+- Players will be able to login, do a simple clicker challenge, then see their results lower the global count of -Dragons -Big Dragon HP. Then send help anonymously to other players. 
+
+## IDEAl 
+- Everything looks pretty. Some story added, Characters and NPC's.
+
+## FEATURE RICH
+- The app on a global scale will be effected by events.
