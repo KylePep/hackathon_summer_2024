@@ -71,21 +71,33 @@ const currentScene = (scene) => {
 </script>
 
 <template>
-  <div class="d-flex">
-    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
-    <div>
-      <div>
-        <button class="button" @click="changeScene">Change Scene</button>
+  <div class="container-fluid ">
+    <div class="row ">
+      <div class="game-window col-12 col-md-9">
+        <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
       </div>
-      <div>
-        <button :disabled="canMoveSprite" class="button" @click="moveSprite">Toggle Movement</button>
-      </div>
-      <div class="spritePosition">Sprite Position:
-        <pre>{{ spritePosition }}</pre>
-      </div>
-      <div>
-        <button class="button" @click="addSprite">Add New Sprite</button>
+      <div
+        class="col-12 col-md-3 bg-primary rounded  d-flex flex-row flex-md-column justify-content-center align-items-center">
+        <div>
+          <button class="btn btn-dark" @click="changeScene">Change Scene</button>
+        </div>
+        <div>
+          <button :disabled="canMoveSprite" class="btn btn-dark" @click="moveSprite">Toggle Movement</button>
+        </div>
+        <div class="spritePosition text-light">Sprite Position:
+          <pre>{{ spritePosition }}</pre>
+        </div>
+        <div>
+          <button class="btn btn-dark" @click="addSprite">Add New Sprite</button>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
+
+<style>
+.game-window {
+  max-height: calc(100vh - 96px);
+}
+</style>
