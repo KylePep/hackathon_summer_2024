@@ -1,7 +1,7 @@
 export function registerGlobalComponents(root) {
   // https://webpack.js.org/guides/dependency-management/#require-context
   // @ts-ignore
-  const components = import.meta.globEager('./components/*.vue')
+  const components = import.meta.glob('./components/*.vue', { eager: true })
   Object.entries(components).forEach(([fileName, component]) => {
     const componentName = component.name || fileName
       .substring(fileName.lastIndexOf('/') + 1)

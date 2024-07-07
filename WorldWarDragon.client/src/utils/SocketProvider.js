@@ -3,7 +3,7 @@ import { SocketHandler } from "../utils/SocketHandler.js"
 function registerSocketHandlers() {
   // https://webpack.js.org/guides/dependency-management/#require-context
   // @ts-ignore
-  const handlers = import.meta.globEager('../handlers/**/*.js')
+  const handlers = import.meta.glob('../handlers/**/*.js', { eager: true })
   Object.entries(handlers).forEach(([fileName, handler]) => {
     const handlerName = fileName
       .substring(fileName.lastIndexOf('/') + 1)

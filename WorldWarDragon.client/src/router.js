@@ -23,11 +23,11 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/events/:eventId',
-    name: 'Events',
-    component: loadPage('TowerEventDetailsPage'),
-    beforeEnter: authSettled
-  }
+    path: '/game',
+    name: 'Game',
+    component: loadPage('GamePage'),
+    beforeEnter: authGuard
+  },
 ]
 
 export const router = createRouter({
