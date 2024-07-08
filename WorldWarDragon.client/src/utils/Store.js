@@ -1,6 +1,6 @@
 import Pop from "./Pop.js"
 
-const APP_NAME = "Tower.client"
+const APP_NAME = "WorldWarDragon.client"
 
 export function saveState(key, value) {
   try {
@@ -22,7 +22,7 @@ export function saveState(key, value) {
 export function loadState(key, instanceType) {
   try {
     const keyName = `${APP_NAME}_${key}`
-    if(!instanceType){
+    if (!instanceType) {
       return window.localStorage.getItem(keyName)
     }
     const keyType = Array.isArray(instanceType) ? '[]' : '{}'
