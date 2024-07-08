@@ -7,7 +7,7 @@ import NavBar from './components/Navbar.vue'
     <header>
         <NavBar />
     </header>
-    <main class="container-fluid p-0 m-0">
+    <main class="container-fluid ">
         <RouterView />
     </main>
 
@@ -24,9 +24,9 @@ footer {
     height: 32px;
 }
 
-main {
-    display: flex;
-}
+// main {
+//     display: flex;
+// }
 
 :root {
     --main-height: calc(100vh - 32px - 64px);

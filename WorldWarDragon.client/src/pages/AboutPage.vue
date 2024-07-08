@@ -1,7 +1,14 @@
 <template>
-  <div class="about">
-    <h1>This is the about page</h1>
-  </div>
+  <section class="row">
+    <div class="col-12 fs-1">
+      About Page
+    </div>
+  </section>
+  <section class="row">
+    <div class="col-12">
+      This spot is for testing things
+    </div>
+  </section>
 </template>
 
 <script>
