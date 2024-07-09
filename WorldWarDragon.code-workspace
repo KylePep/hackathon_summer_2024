@@ -54,6 +54,9 @@
       "titleBar.inactiveBackground": "#97120799",
       "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#971207"
+    "peacock.color": "#971207",
+    "cSpell.words": [
+      "assistances"
+    ]
   }
 }

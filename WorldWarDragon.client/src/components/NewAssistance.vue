@@ -1,13 +1,13 @@
 <template>
-  <form @submit.prevent="createMessage()" class="d-flex">
+  <form @submit.prevent="createAssistance()" class="d-flex">
     <textarea v-model="editable.body" name="body" id="body"></textarea>
-    <button type="submit" class="btn btn-success">Create Message</button>
+    <button type="submit" class="btn btn-success">Create Assistance</button>
   </form>
 </template>
 
 
 <script>
-import { messagesService } from "../services/MessagesService.js";
+import { assistancesService } from "../services/AssistancesService.js";
 import Pop from "../utils/Pop.js";
 import { ref } from 'vue'
 export default {
@@ -18,10 +18,10 @@ export default {
     return {
       editable,
 
-      async createMessage() {
+      async createAssistance() {
         try {
-          const messageData = editable.value
-          await messagesService.createMessage(messageData)
+          const assistanceData = editable.value
+          await assistancesService.createAssistance(assistanceData)
           editable.value = {}
           editable.value.roomId = 1
         } catch (error) {

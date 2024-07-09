@@ -1,11 +1,12 @@
-import { AppState } from "@/AppState.js"
-import { Message } from "@/models/Message.js"
-import { logger } from "@/utils/Logger.js"
+import { AppState } from "../AppState.js"
+import { Message } from "../models/Message.js"
+import { logger } from "../utils/Logger.js"
+import { api } from "./AxiosService.js"
 
 class MessagesService {
 
   async getMessages() {
-    const res = api.get('api/messages')
+    const res = await api.get('api/messages')
     logger.log('[MESSAGES]', res.data)
     AppState.messages = res.data.map(m => new Message(m))
   }

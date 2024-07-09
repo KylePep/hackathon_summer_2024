@@ -16,7 +16,7 @@
     </div>
     <div class="col-12">
       <p>For testing creating messages</p>
-
+      <NewMessage />
       <p>Messages will be made with a preselected vocab or emotes</p>
       <p>Players can also delete a message, no sense in editing.</p>
       <p>Other players can favorite a message</p>
@@ -24,12 +24,16 @@
 
     <div class="col-12">
       Here is where the messages will go
-      <div class="bg-light text-dark rounded">Good Job! +10 Gold!</div>
+      <div class="bg-light text-dark rounded">
+        <div v-for="message in messages" :key="message.id">
+          Message: {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
+        </div>
+      </div>
     </div>
 
     <div class="col-12">
       <p>For testing creating aid</p>
-      <button class="btn btn-primary">Create Aid</button>
+      <NewAssistance />
       <p>Aid is in the form of an extra item from their inventory, weapons, armor.</p>
       <p> Aid can be deleted</p>
       <p>Aid can only be claimed once</p>
@@ -40,7 +44,11 @@
 
     <div class="col-12">
       Here is where the aid will go
-      <div class="bg-light text-dark rounded">*Left behind old sword* - aider: +10HP</div>
+      <div class="bg-light text-dark rounded">
+        <div v-for="assistance in assistances" :key="assistance.id">
+          Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}
+        </div>
+      </div>
     </div>
 
   </section>
@@ -48,9 +56,12 @@
 
 
 <script>
-import { messagesService } from "@/services/MessagesService.js";
-import Pop from "@/utils/Pop.js";
-import { onMounted } from "vue";
+import { assistancesService } from "../services/AssistancesService.js";
+import { AppState } from "../AppState.js";
+import NewMessage from "../components/NewMessage.vue";
+import { messagesService } from "../services/MessagesService.js";
+import Pop from "../utils/Pop.js";
+import { computed, onMounted } from "vue";
 
 export default {
   setup() {
@@ -63,11 +74,24 @@ export default {
       }
     }
 
+    async function getAssistances() {
+      try {
+        await assistancesService.getAssistances()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
     onMounted(() => {
       getMessages()
+      getAssistances()
     })
 
-    return {}
+    return {
+      messages: computed(() => AppState.messages),
+      assistances: computed(() => AppState.assistances)
+
+    }
   }
 }
 </script>
