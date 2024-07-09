@@ -8,6 +8,7 @@ class BossService {
     const res = await api.get('api/boss')
     logger.log('[BOSS]', res.data)
     AppState.bosses = res.data.map(b => new Boss(b))
+    AppState.activeBoss = AppState.bosses.find((b) => b.active = true)
   }
 
   async getBossById(bossId) {

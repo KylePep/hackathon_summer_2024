@@ -3,10 +3,10 @@ import { BossDamage } from "@/models/BossDamage.js"
 
 class BossDamageService {
 
-  async createBossDamage(bossDamageData) {
+  async createOrIncreaseBossDamage(bossDamageData) {
     const res = await api.post('api/bossDamage', bossDamageData)
-    const bossDamage = new BossDamage(res.data)
-    AppState.boss.hp -= bossDamage.dmg
+    // const bossDamage = new BossDamage(res.data)
+    AppState.boss.hp -= bossDamageData.dmg
     return bossDamage
   }
 

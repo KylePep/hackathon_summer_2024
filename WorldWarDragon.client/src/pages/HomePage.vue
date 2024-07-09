@@ -16,11 +16,15 @@
     </div>
 
     <div class="col-12">
-      <h1>BOSS HP: 1,000,000</h1>
       <img :src="activeBoss.image" class="img-fluid" alt="">
       <h1>{{ activeBoss.name }}</h1>
       <h2>{{ activeBoss.hp }}</h2>
+      <DamageActiveBoss />
       <NewBoss />
+      <p>A list of all bosses</p>
+      <div v-for="boss in bosses" :key="boss.id">
+        boss: {{ boss.name }} | {{ boss.hp }}
+      </div>
     </div>
     <div class="col-12">
       <p>For testing creating messages</p>
@@ -72,6 +76,7 @@ import NewMessage from "../components/NewMessage.vue";
 import { messagesService } from "../services/MessagesService.js";
 import Pop from "../utils/Pop.js";
 import { computed, onMounted } from "vue";
+import { bossService } from "../services/BossService.js";
 
 export default {
   setup() {
@@ -94,9 +99,18 @@ export default {
       }
     }
 
+    async function getBosses() {
+      try {
+        await bossService.getBosses()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
     onMounted(() => {
       getMessages()
       getAssistances()
+      getBosses()
     })
 
     return {
@@ -124,7 +138,8 @@ export default {
       },
       messages: computed(() => AppState.messages),
       assistances: computed(() => AppState.assistances),
-      activeBoss: computed(() => AppState.activeBoss)
+      activeBoss: computed(() => AppState.activeBoss),
+      bosses: computed(() => AppState.bosses)
 
     }
   }
