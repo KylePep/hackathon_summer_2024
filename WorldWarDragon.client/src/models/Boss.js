@@ -5,5 +5,6 @@ export class Boss {
     this.image = data.image
     this.id = data.id
     this.active = data.active
+    this.damages = data.damages
   }
 }

@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext.js";
 import { BadRequest, Forbidden } from "../utils/Errors.js";
+import { bossDamageService } from "./BossDamageService.js";
 
 class BossService {
   async getBosses() {
@@ -14,10 +15,12 @@ class BossService {
   }
 
   async getBossById(bossId) {
-    const boss = await dbContext.Boss.findById(bossId)
+    const boss = await dbContext.Boss.findById({ id: bossId })
     if (!boss) {
       throw new BadRequest(`No boss found with id:${bossId}`)
     }
+    // const bossDamages = bossDamageService.getBossDamagesByBossId(bossId)
+    // boss.damages = (await bossDamages).valueOf()
     return boss
   }
 

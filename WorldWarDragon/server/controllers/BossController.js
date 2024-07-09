@@ -7,6 +7,7 @@ export class BossController extends BaseController {
     super('api/boss')
     this.router
       .get('', this.getBosses)
+      .get('/:bossId', this.getBossById)
 
 
       .use(Auth0Provider.getAuthorizedUserInfo)
@@ -18,6 +19,16 @@ export class BossController extends BaseController {
     try {
       const bosses = await bossService.getBosses()
       return res.send(bosses)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getBossById(req, res, next) {
+    try {
+      const bossId = req.params.bossId
+      const boss = await bossService.getBossById(bossId)
+      return res.send(boss)
     } catch (error) {
       next(error);
     }

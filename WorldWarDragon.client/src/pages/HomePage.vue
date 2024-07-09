@@ -18,8 +18,8 @@
     <div class="col-12">
       <img :src="activeBoss.image" class="img-fluid" alt="">
       <h1>{{ activeBoss.name }}</h1>
-      <h2>{{ activeBoss.hp }}</h2>
-      <DamageActiveBoss />
+      <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
+      <DamageActiveboss />
       <NewBoss />
       <p>A list of all bosses</p>
       <div v-for="boss in bosses" :key="boss.id">
@@ -75,8 +75,10 @@ import { AppState } from "../AppState.js";
 import NewMessage from "../components/NewMessage.vue";
 import { messagesService } from "../services/MessagesService.js";
 import Pop from "../utils/Pop.js";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watchEffect } from "vue";
 import { bossService } from "../services/BossService.js";
+import { logger } from "../utils/Logger.js";
+import { bossDamageService } from "../services/BossDamageService.js";
 
 export default {
   setup() {
@@ -107,11 +109,24 @@ export default {
       }
     }
 
+    async function getBossDamageByBossId() {
+      try {
+        if (AppState.activeBoss.id != null) {
+          logger.log('[ActiveBossId]', AppState.activeBoss.id)
+          await bossDamageService.getBossDamageByBossId(AppState.activeBoss.id)
+        }
+      } catch (error) {
+        Pop.error(error.message, '[]')
+      }
+    }
+
     onMounted(() => {
       getMessages()
       getAssistances()
       getBosses()
+      getBossDamageByBossId()
     })
+
 
     return {
       async deleteMessage(messageId) {
