@@ -5,7 +5,7 @@ import { Scene } from 'phaser';
 export class Game extends Scene {
     constructor() {
         super('Game');
-        this.clickCount = 0;
+        this.updateBossHP = updateBossHP;
     }
 
     create() {
@@ -17,9 +17,20 @@ export class Game extends Scene {
 
         this.scale.on('resize', this.resize, this);
 
-        this.dragon = this.add.sprite(512, 380, 'dragon_1').setOrigin(0.5, 0.5).setScale(4, 4).setInteractive().on('pointerdown', this.onDragonClick, this);
+        this.dragon = this.add.sprite(512, 380, 'dragon_1').setOrigin(0.5, 0.5).setScale(4, 4)
+        this.dragonHP = 100;
+        this.bossDamage = 10; // Amount of damage to report to the boss
 
-        this.clickText = this.add.text(16, 16, 'Clicks: 0', {
+        this.dragon.setInteractive()
+        this.dragon.on('pointerdown', () => {
+            this.dragonHP -= 10
+            if (this.dragonHP <= 0) {
+                this.updateBossHP(this.bossDamage)
+                this.dragonHP = 100;
+            }
+        });
+
+        this.clickText = this.add.text(16, 16, `HP: ${dragonHP}`, {
             fontSize: `32px`,
             fill: '#000'
         })
@@ -27,10 +38,10 @@ export class Game extends Scene {
         EventBus.emit('current-scene-ready', this);
     }
 
-    onDragonClick() {
-        this.clickCount++
-        this.clickText.setText('CLicks: ' + this.clickCount)
-    }
+    // onDragonClick() {
+    //     this.clickCount++
+    //     this.clickText.setText('CLicks: ' + this.clickCount)
+    // }
     resize(gameSize, baseSize, displaySize, resolution) {
         const width = gameSize.width;
         const height = gameSize.height;

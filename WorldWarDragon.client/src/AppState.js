@@ -9,4 +9,8 @@ export const AppState = reactive({
   messages: [],
   /** @type {import('./models/Assistance.js').Assistance.js} */
   assistances: [],
+  /** @type {import('./models/Boss.js').Boss.js} */
+  activeBoss: {},
+  /** @type {import('./models/Boss.js').Boss.js} */
+  bosses: [],
 })

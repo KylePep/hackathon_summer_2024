@@ -14,6 +14,14 @@
       <i>Maybe the messages are required to come with a bonus of some kind. Like extra currency. But the aid will grow
         to be something more direct like a power up or a left behind weapon.</i>
     </div>
+
+    <div class="col-12">
+      <h1>BOSS HP: 1,000,000</h1>
+      <img :src="activeBoss.image" class="img-fluid" alt="">
+      <h1>{{ activeBoss.name }}</h1>
+      <h2>{{ activeBoss.hp }}</h2>
+      <NewBoss />
+    </div>
     <div class="col-12">
       <p>For testing creating messages</p>
       <NewMessage />
@@ -115,7 +123,8 @@ export default {
         }
       },
       messages: computed(() => AppState.messages),
-      assistances: computed(() => AppState.assistances)
+      assistances: computed(() => AppState.assistances),
+      activeBoss: computed(() => AppState.activeBoss)
 
     }
   }
