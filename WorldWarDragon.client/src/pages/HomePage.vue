@@ -27,6 +27,7 @@
       <div class="bg-light text-dark rounded">
         <div v-for="message in messages" :key="message.id">
           Message: {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
+          <button class="btn btn-danger" @click="deleteMessage(message.id)">delete</button>
         </div>
       </div>
     </div>
@@ -46,7 +47,8 @@
       Here is where the aid will go
       <div class="bg-light text-dark rounded">
         <div v-for="assistance in assistances" :key="assistance.id">
-          Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}
+          Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
+            class="btn btn-danger" @click="deleteAssistance(assistance.id)">delete</button>
         </div>
       </div>
     </div>
@@ -74,6 +76,8 @@ export default {
       }
     }
 
+
+
     async function getAssistances() {
       try {
         await assistancesService.getAssistances()
@@ -88,6 +92,28 @@ export default {
     })
 
     return {
+      async deleteMessage(messageId) {
+        try {
+          const confirmDelete = await Pop.confirm('Delete?')
+          if (!confirmDelete) {
+            return
+          }
+          await messagesService.deleteMessage(messageId)
+        } catch (error) {
+          Pop.error(error.message, '[]')
+        }
+      },
+      async deleteAssistance(assistanceId) {
+        try {
+          const confirmDelete = await Pop.confirm('Delete?')
+          if (!confirmDelete) {
+            return
+          }
+          await assistancesService.deleteAssistance(assistanceId)
+        } catch (error) {
+          Pop.error(error.message, '[]')
+        }
+      },
       messages: computed(() => AppState.messages),
       assistances: computed(() => AppState.assistances)
 

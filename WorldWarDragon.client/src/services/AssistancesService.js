@@ -18,5 +18,11 @@ class AssistancesService {
     return assistance
   }
 
+  async deleteAssistance(assistanceId) {
+    const res = await api.delete(`api/assistances/${assistanceId}`)
+    logger.log('[Deleted Assitance]', res.data)
+    AppState.assistances = AppState.assistances.filter(a => a.id != assistanceId)
+  }
+
 }
 export const assistancesService = new AssistancesService()

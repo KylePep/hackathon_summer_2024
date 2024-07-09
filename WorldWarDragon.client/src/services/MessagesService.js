@@ -18,5 +18,11 @@ class MessagesService {
     return message
   }
 
+  async deleteMessage(messageId) {
+    const res = await api.delete(`api/messages/${messageId}`)
+    logger.log('[Deleted Assitance]', res.data)
+    AppState.messages = AppState.messages.filter(a => a.id != messageId)
+  }
+
 }
 export const messagesService = new MessagesService()

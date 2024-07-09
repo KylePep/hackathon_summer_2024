@@ -1,6 +1,5 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
-import { messagesService } from "../services/MessagesServices.js";
 import { assistancesService } from "../services/AssistancesService.js";
 
 export class AssistancesController extends BaseController {
@@ -12,6 +11,7 @@ export class AssistancesController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createAssistance)
+      .delete('/:assistanceId', this.removeAssistanceById)
   }
 
   async getAssistances(req, res, next) {
@@ -28,6 +28,17 @@ export class AssistancesController extends BaseController {
       const assistanceData = req.body
       assistanceData.creatorId = req.userInfo.id
       const assistance = await assistancesService.createAssistance(assistanceData)
+      return res.send(assistance)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async removeAssistanceById(req, res, next) {
+    try {
+      const assistanceId = req.params.assistanceId
+      const userId = req.userInfo.id
+      const assistance = await assistancesService.removeAssistanceById(assistanceId, userId)
       return res.send(assistance)
     } catch (error) {
       next(error);

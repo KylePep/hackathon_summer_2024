@@ -11,6 +11,7 @@ export class MessagesController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createMessage)
+      .delete('/:messageId', this.removeMessageById)
   }
 
   async getMessages(req, res, next) {
@@ -28,6 +29,16 @@ export class MessagesController extends BaseController {
       messageData.creatorId = req.userInfo.id
       const message = await messagesService.createMessage(messageData)
       return res.send(message)
+    } catch (error) {
+      next(error);
+    }
+  }
+  async removeMessageById(req, res, next) {
+    try {
+      const messageId = req.params.messageId
+      const userId = req.userInfo.id
+      const assistance = await messagesService.removeMessageById(messageId, userId)
+      return res.send(assistance)
     } catch (error) {
       next(error);
     }
