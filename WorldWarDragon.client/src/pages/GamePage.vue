@@ -73,10 +73,10 @@ const currentScene = (scene) => {
 <template>
   <div class="container-fluid ">
     <div class="row ">
-      <div class="game-window col-12 col-md-9">
+      <div class="game-window col-12 ">
         <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
       </div>
-      <div
+      <!-- <div
         class="col-12 col-md-3 bg-primary rounded  d-flex flex-row flex-md-column justify-content-center align-items-center">
         <div>
           <button class="btn btn-dark" @click="changeScene">Change Scene</button>
@@ -90,7 +90,7 @@ const currentScene = (scene) => {
         <div>
           <button class="btn btn-dark" @click="addSprite">Add New Sprite</button>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </div>
