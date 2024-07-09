@@ -16,7 +16,7 @@
     </div>
     <div class="col-12">
       <p>For testing creating messages</p>
-      <button class="btn btn-success">Create Message</button>
+
       <p>Messages will be made with a preselected vocab or emotes</p>
       <p>Players can also delete a message, no sense in editing.</p>
       <p>Other players can favorite a message</p>
@@ -48,8 +48,25 @@
 
 
 <script>
+import { messagesService } from "@/services/MessagesService.js";
+import Pop from "@/utils/Pop.js";
+import { onMounted } from "vue";
+
 export default {
   setup() {
+
+    async function getMessages() {
+      try {
+        await messagesService.getMessages()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
+    onMounted(() => {
+      getMessages()
+    })
+
     return {}
   }
 }
