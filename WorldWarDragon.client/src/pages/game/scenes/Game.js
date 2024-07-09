@@ -5,7 +5,7 @@ import { Scene } from 'phaser';
 export class Game extends Scene {
     constructor() {
         super('Game');
-        this.updateBossHP = updateBossHP;
+        // this.updateBossHP = updateBossHP;
     }
 
     create() {
@@ -24,13 +24,15 @@ export class Game extends Scene {
         this.dragon.setInteractive()
         this.dragon.on('pointerdown', () => {
             this.dragonHP -= 10
+            this.clickText.setText(`HP: ${this.dragonHP}`)
+            console.log(this.dragonHP)
             if (this.dragonHP <= 0) {
-                this.updateBossHP(this.bossDamage)
+                // this.updateBossHP(this.bossDamage)
                 this.dragonHP = 100;
             }
         });
 
-        this.clickText = this.add.text(16, 16, `HP: ${dragonHP}`, {
+        this.clickText = this.add.text(16, 16, `HP: ${this.dragonHP}`, {
             fontSize: `32px`,
             fill: '#000'
         })
@@ -38,10 +40,6 @@ export class Game extends Scene {
         EventBus.emit('current-scene-ready', this);
     }
 
-    // onDragonClick() {
-    //     this.clickCount++
-    //     this.clickText.setText('CLicks: ' + this.clickCount)
-    // }
     resize(gameSize, baseSize, displaySize, resolution) {
         const width = gameSize.width;
         const height = gameSize.height;
