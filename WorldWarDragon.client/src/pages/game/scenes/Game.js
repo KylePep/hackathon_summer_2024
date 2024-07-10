@@ -10,9 +10,16 @@ export class Game extends Scene {
     constructor() {
         super('Game');
         this.router = useRouter()
+
     }
 
     create() {
+
+        const dragonImages = ['dragon_1', 'dragon_2', 'dragon_3', 'dragon_4', 'dragon_5'];
+        const dragonSounds = ['swish_2', 'swish_3', 'swish_4'];
+        const randomIndex = Math.floor(Math.random() * dragonImages.length);
+        const selectedDragonImage = dragonImages[randomIndex];
+
         this.cameras.main.setBackgroundColor(0xFFA500);
 
         this.background = this.add.image(0, 0, 'forestBackground')
@@ -24,12 +31,17 @@ export class Game extends Scene {
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
-        this.dragon = this.add.sprite(centerX, centerY, 'dragon_1').setOrigin(0.5, 0.5).setScale(4, 4)
+        this.dragon = this.add.sprite(centerX, centerY, selectedDragonImage).setOrigin(0.5, 0.5).setScale(4, 4)
         this.dragonHP = 100;
         this.bossDamage = 10; // Amount of damage to report to the boss
 
         this.dragon.setInteractive()
         this.dragon.on('pointerdown', () => {
+            const randomSoundIndex = Math.floor(Math.random() * dragonSounds.length);
+            const selectedSound = dragonSounds[randomSoundIndex];
+            const sound = this.sound.add(selectedSound)
+            sound.play();
+            sound.volume = 0.2;
 
             this.dragonHP -= 10
             this.clickText.setText(`HP: ${this.dragonHP}`)

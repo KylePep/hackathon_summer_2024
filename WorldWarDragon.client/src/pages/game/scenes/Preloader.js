@@ -28,6 +28,10 @@ export class Preloader extends Scene {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
+        this.load.audio('swish_2', 'sound/swish_2.wav');
+        this.load.audio('swish_3', 'sound/swish_3.wav');
+        this.load.audio('swish_4', 'sound/swish_4.wav');
+
         this.load.image('logo', 'logo.png');
         this.load.image('star', 'star.png');
 
@@ -38,7 +42,13 @@ export class Preloader extends Scene {
         this.load.image('forest-middle', 'parallax_forest_pack/layers/parallax-forest-middle-trees.png');
         this.load.image('forest-front', 'parallax_forest_pack/layers/parallax-forest-front-trees.png');
 
-        this.load.image('dragon_1', 'dragon_2.png');
+        this.load.image('dragon', 'dragon_2.png');
+
+        this.load.image('dragon_1', 'dragon/dragon_1.gif');
+        this.load.image('dragon_2', 'dragon/dragon_2.png');
+        this.load.image('dragon_3', 'dragon/dragon_3.png');
+        this.load.image('dragon_4', 'dragon/dragon_4.png');
+        this.load.image('dragon_5', 'dragon/dragon_5.png');
     }
 
     create() {
