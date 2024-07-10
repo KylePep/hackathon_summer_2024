@@ -1,3 +1,5 @@
+import { AppState } from "../../../AppState.js";
+import { bossDamageService } from "../../../services/BossDamageService.js";
 import { logger } from "../../../utils/Logger.js";
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
@@ -5,7 +7,8 @@ import { Scene } from 'phaser';
 export class Game extends Scene {
     constructor() {
         super('Game');
-        // this.updateBossHP = updateBossHP;
+
+        this.updateBossHP = bossDamageService.createOrIncreaseBossDamage
     }
 
     create() {
@@ -27,7 +30,10 @@ export class Game extends Scene {
             this.clickText.setText(`HP: ${this.dragonHP}`)
             console.log(this.dragonHP)
             if (this.dragonHP <= 0) {
-                // this.updateBossHP(this.bossDamage)
+                this.updateBossHP({
+                    dmg: this.bossDamage,
+                    bossId: AppState.activeBoss.id
+                })
                 this.dragonHP = 100;
             }
         });

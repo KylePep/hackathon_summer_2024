@@ -16,7 +16,7 @@ class BossDamageService {
     const res = await api.get(`api/bossDamage/${bossId}/boss`)
     logger.log('[DAMAGES]', res.data)
     // const bossDamage = new BossDamage(res.data)
-    AppState.activeBoss.damages += res.data.totalDamage
+    AppState.activeBoss.damages = res.data.totalDamage
     return res.data
   }
 
