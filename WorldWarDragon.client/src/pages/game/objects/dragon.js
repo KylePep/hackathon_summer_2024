@@ -5,13 +5,19 @@ import { bossDamageService } from "../../../services/BossDamageService.js";
 export class Dragon {
   constructor(scene, x, y) {
     this.scene = scene;
-    this.dragonHP = 100;
-    this.bossDamage = 10;
+    this.dragonHP = this.getRandomDragonHP();
+    this.bossDamage = 10 * (this.dragonHP * .01);
 
     this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5).setScale(4, 4)
     this.dragon.setInteractive()
     this.addInteractions()
     this.setupEventListeners();
+  }
+
+  getRandomDragonHP() {
+    const minHP = 10; // 100 / 10
+    const maxHP = 100; // 1000 / 10
+    return Phaser.Math.Between(minHP, maxHP) * 10;
   }
 
   getRandomDragonSprite() {
@@ -59,10 +65,14 @@ export class Dragon {
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     if (this.dragonHP <= 0) {
+      logger.log('1dmg: ', this.bossDamage,
+        'bossId: ', AppState.activeBoss.id)
       this.updateBossHP({
         dmg: this.bossDamage,
         bossId: AppState.activeBoss.id
       })
+      logger.log('2dmg: ', this.bossDamage,
+        'bossId: ', AppState.activeBoss.id)
       this.dragonHP = 100;
       this.scene.scene.start('GameResults')
     }

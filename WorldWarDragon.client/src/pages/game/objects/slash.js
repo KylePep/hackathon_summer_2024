@@ -41,22 +41,7 @@ export class Slash {
       if (this.entryState == 'enter') {
         this.entryState = 'exit'
 
-        this.scene.dragon.dragonHP -= 10
-        const selectedSound = this.getRandomDragonSound()
-        const sound = this.scene.sound.add(selectedSound)
-        sound.play();
-        sound.volume = 0.2;
-        console.log(this.scene.dragon.dragonHP)
-        this.scene.clickText.setText(`HP: ${this.scene.dragon.dragonHP}`)
-
-        if (this.scene.dragon.dragonHP <= 0) {
-          this.scene.dragon.updateBossHP({
-            dmg: this.bossDamage,
-            bossId: AppState.activeBoss.id
-          })
-          this.scene.dragon.dragonHP = 100;
-          this.scene.scene.start('GameResults')
-        }
+        this.scene.events.emit('dragon:hit', pointer);
       }
 
     })
