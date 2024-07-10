@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-12 d-flex justify-content-center">
-      <button class="btn btn-primary p-3 fs-1 fw-bold">JOIN THE FIGHT!</button>
+      <router-link :to="{ name: 'Game' }" class="btn btn-primary p-3 fs-1 fw-bold">JOIN THE FIGHT!</router-link>
     </div>
 
     <div class="col-12 text-center fs-5">

@@ -38,6 +38,7 @@ export class Game extends Scene {
                     bossId: AppState.activeBoss.id
                 })
                 this.dragonHP = 100;
+                this.scene.start('GameResults')
             }
 
         });
