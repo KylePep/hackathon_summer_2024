@@ -12,9 +12,9 @@ const config = {
     type: Phaser.AUTO,
     scale: {
         mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH,
+        autoCenter: Phaser.Scale.NO_CENTER,
         width: window.innerWidth,
-        height: (window.innerHeight - 96),
+        height: (window.innerHeight - 16),
     },
 
     // autoCenter: 2,

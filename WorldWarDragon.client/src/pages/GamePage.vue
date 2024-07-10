@@ -72,7 +72,7 @@ const currentScene = (scene) => {
 
 <template>
   <div class="container-fluid ">
-    <div class="row ">
+    <div class="row pt-3">
       <div class="game-window col-12 ">
         <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
       </div>
@@ -98,6 +98,7 @@ const currentScene = (scene) => {
 
 <style>
 .game-window {
-  max-height: calc(100vh - 96px);
+  padding: 0;
+  /* max-height: calc(100vh - 96px); */
 }
 </style>

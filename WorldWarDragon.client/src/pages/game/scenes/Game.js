@@ -59,14 +59,14 @@ export class Game extends Scene {
             this.input.setDefaultCursor('default');
         });
 
-        this.clickText = this.add.text(64, 16, `HP: ${this.dragonHP}`, {
+        this.clickText = this.add.text(128, 16, `HP: ${this.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
 
         // Adding the 'RETREAT...' text at the bottom left
-        const bottomLeftX = 64; // Offset from the left edge
+        const bottomLeftX = 128; // Offset from the left edge
         const bottomLeftY = this.cameras.main.height - 96; // Offset from the bottom edge
         this.return = this.add.text(bottomLeftX, bottomLeftY, 'RETREAT...', {
             fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
@@ -108,7 +108,7 @@ export class Game extends Scene {
         this.dragon.setPosition(centerX, centerY);
 
         // Reposition the 'RETREAT...' text at the bottom left on resize
-        const bottomLeftX = 64; // Offset from the left edge
+        const bottomLeftX = 128; // Offset from the left edge
         const bottomLeftY = height - 96; // Offset from the bottom edge
         this.return.setPosition(bottomLeftX, bottomLeftY);
     }
