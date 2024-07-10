@@ -6,10 +6,17 @@
         <LoginSmall />
       </div>
 
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
 
         <div class="offcanvas-header mb-5">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">World War Dragon</h5>
+          <router-link :to="{ name: 'Home' }" class="offcanvas-title fs-4 selectable fw-semibold text-light"
+            id="offcanvasNavbarLabel">World War
+            Dragon</router-link>
+          <button class="btn text-light" @click="toggleTheme"
+            :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
+            <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
+          </button>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
@@ -26,6 +33,12 @@
               </router-link>
             </li>
 
+
+            <li class="nav-item">
+              <router-link :to="{ name: 'Score' }" class="btn text-success lighten-30 selectable text-uppercase">
+                SCORE
+              </router-link>
+            </li>
 
             <li class="nav-item">
               <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">

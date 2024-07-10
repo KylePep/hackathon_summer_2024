@@ -5,7 +5,7 @@
   </button>
   <div v-else>
 
-    <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="offcanvas"
+    <div type="button" class=" border-0 selectable no-select" data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 
       <div v-if="account.picture || user.picture">

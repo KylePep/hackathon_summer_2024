@@ -23,7 +23,7 @@ import OffBar from './components/OffBar.vue'
 @import "./assets/scss/main.scss";
 
 footer {
-    height: 32px;
+    // height: 32px;
 }
 
 // main {
