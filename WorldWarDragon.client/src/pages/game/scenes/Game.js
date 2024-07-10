@@ -1,3 +1,4 @@
+import { computed } from "vue";
 import { AppState } from "../../../AppState.js";
 import { bossDamageService } from "../../../services/BossDamageService.js";
 import { logger } from "../../../utils/Logger.js";
@@ -9,6 +10,7 @@ export class Game extends Scene {
         super('Game');
 
         this.updateBossHP = bossDamageService.createOrIncreaseBossDamage
+        // this.bossHp = AppState.activeBoss.hp
     }
 
     create() {
@@ -26,9 +28,10 @@ export class Game extends Scene {
 
         this.dragon.setInteractive()
         this.dragon.on('pointerdown', () => {
+
             this.dragonHP -= 10
             this.clickText.setText(`HP: ${this.dragonHP}`)
-            console.log(this.dragonHP)
+
             if (this.dragonHP <= 0) {
                 this.updateBossHP({
                     dmg: this.bossDamage,
@@ -36,10 +39,11 @@ export class Game extends Scene {
                 })
                 this.dragonHP = 100;
             }
+
         });
 
         this.clickText = this.add.text(16, 16, `HP: ${this.dragonHP}`, {
-            fontSize: `32px`,
+            fontSize: `64px`,
             fill: '#000'
         })
 

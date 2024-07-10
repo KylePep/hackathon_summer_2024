@@ -1,69 +1,29 @@
 <template>
   <section class="row">
-    <div class="col-12 fs-1">
-      Home Page
+    <div class="col-12  text-center ">
+      <h1 class="hero-title">WORLD WAR <br> DRAGON</h1>
     </div>
   </section>
   <section class="row g-3">
-    <div class="col-12">
-      <p class="fw-bold">
-        This game will rely on players abilities to help each other out in an indirect kind of way.
-      </p>
-      <p class="fw-semibold">This will be represented in 'aid' and 'messages'</p>
-      <i>Should they be the same thing? </i>
-      <i>Maybe the messages are required to come with a bonus of some kind. Like extra currency. But the aid will grow
-        to be something more direct like a power up or a left behind weapon.</i>
-    </div>
 
-    <div class="col-12">
-      <img :src="activeBoss.image" class="img-fluid" alt="">
+
+    <div class="col-12 text-center">
       <h1>{{ activeBoss.name }}</h1>
-      <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
-      <DamageActiveboss />
-      <NewBoss />
-      <p>A list of all bosses</p>
-      <div v-for="boss in bosses" :key="boss.id">
-        boss: {{ boss.name }} | {{ boss.hp }}
-      </div>
-    </div>
-    <div class="col-12">
-      <p>For testing creating messages</p>
-      <NewMessage />
-      <p>Messages will be made with a preselected vocab or emotes</p>
-      <p>Players can also delete a message, no sense in editing.</p>
-      <p>Other players can favorite a message</p>
+      <h2 class="">{{ activeBoss.hp - activeBoss.damages }}</h2>
+      <img :src="activeBoss.image" class="img-fluid" alt="">
     </div>
 
-    <div class="col-12">
-      Here is where the messages will go
-      <div class="bg-light text-dark rounded">
-        <div v-for="message in messages" :key="message.id">
-          Message: {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
-          <button class="btn btn-danger" @click="deleteMessage(message.id)">delete</button>
-        </div>
-      </div>
+    <div class="col-12 d-flex justify-content-center">
+      <button class="btn btn-primary p-3 fs-1 fw-bold">JOIN THE FIGHT!</button>
     </div>
 
-    <div class="col-12">
-      <p>For testing creating aid</p>
-      <NewAssistance />
-      <p>Aid is in the form of an extra item from their inventory, weapons, armor.</p>
-      <p> Aid can be deleted</p>
-      <p>Aid can only be claimed once</p>
-      <p>Both parties benefit from aid</p>
-      <p>The receiving player can add a tip ( ex: +10 Gold )</p>
+    <div class="col-12 text-center fs-5">
+      <p>The dragons have invaded planet earth! No one knows where they came from but they must be stopped!</p>
+      <p> The largest dragon of them all, {{ activeBoss.name }}, blocks out the sun! It must be taken down at all costs!
+      </p>
     </div>
 
 
-    <div class="col-12">
-      Here is where the aid will go
-      <div class="bg-light text-dark rounded">
-        <div v-for="assistance in assistances" :key="assistance.id">
-          Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
-            class="btn btn-danger" @click="deleteAssistance(assistance.id)">delete</button>
-        </div>
-      </div>
-    </div>
 
   </section>
 </template>
@@ -72,7 +32,6 @@
 <script>
 import { assistancesService } from "../services/AssistancesService.js";
 import { AppState } from "../AppState.js";
-import NewMessage from "../components/NewMessage.vue";
 import { messagesService } from "../services/MessagesService.js";
 import Pop from "../utils/Pop.js";
 import { computed, onMounted, watchEffect } from "vue";
@@ -129,28 +88,6 @@ export default {
 
 
     return {
-      async deleteMessage(messageId) {
-        try {
-          const confirmDelete = await Pop.confirm('Delete?')
-          if (!confirmDelete) {
-            return
-          }
-          await messagesService.deleteMessage(messageId)
-        } catch (error) {
-          Pop.error(error.message, '[]')
-        }
-      },
-      async deleteAssistance(assistanceId) {
-        try {
-          const confirmDelete = await Pop.confirm('Delete?')
-          if (!confirmDelete) {
-            return
-          }
-          await assistancesService.deleteAssistance(assistanceId)
-        } catch (error) {
-          Pop.error(error.message, '[]')
-        }
-      },
       messages: computed(() => AppState.messages),
       assistances: computed(() => AppState.assistances),
       activeBoss: computed(() => AppState.activeBoss),
@@ -163,8 +100,8 @@ export default {
 
 
 <style lang="scss" scoped>
-p {
-  padding: 0;
-  margin: 0;
+.hero-title {
+  font-size: 96px;
+  margin: 4rem 0rem 4rem 0rem;
 }
 </style>
