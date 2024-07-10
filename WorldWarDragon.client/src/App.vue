@@ -1,11 +1,13 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import NavBar from './components/Navbar.vue'
+import OffBar from './components/OffBar.vue'
 </script>
 
 <template>
     <header>
-        <NavBar />
+        <!-- <NavBar /> -->
+        <OffBar />
     </header>
     <main class="container-fluid ">
         <RouterView />

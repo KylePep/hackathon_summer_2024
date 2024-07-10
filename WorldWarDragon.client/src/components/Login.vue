@@ -5,24 +5,26 @@
       Login
     </button>
     <div v-else>
-      <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
-          aria-expanded="false">
+      <div class=" my-2 my-lg-0 d-flex flex-column justify-content-center align-items-center">
+        <router-link :to="{ name: 'Account' }" class=" border-0 selectable no-select">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
+            <img :src="account.picture || user.picture" alt="account photo" height="40"
+              class="login-icon rounded selectable no-select" />
+          </div>
+        </router-link>
+        <!-- <router-link :to="{ name: 'Account' }">
+          <div class="btn text-success lighten-30 selectable text-uppercase">
+            Manage Account
+          </div>
+        </router-link> -->
+        <div>
+          <div class="text-danger btn lighten-30 selectable text-uppercase" @click="logout">
+            <i class="mdi mdi-logout "></i>
+            logout
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
+        <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0 w-100" aria-labelledby="authDropdown">
           <div class="list-group">
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Manage Account
-              </div>
-            </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
-              <i class="mdi mdi-logout"></i>
-              logout
-            </div>
           </div>
         </div>
       </div>
@@ -50,4 +52,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login-icon {
+  width: auto;
+  height: 256px;
+}
+</style>
