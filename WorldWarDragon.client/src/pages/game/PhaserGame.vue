@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import { EventBus } from './EventBus';
 import StartGame from './main';
+import { router } from "../../router.js";
 
 // Save the current scene instance
 const scene = ref();
@@ -21,16 +22,19 @@ onMounted(() => {
 
     });
 
+    EventBus.on('navigate-home', () => {
+        router.push('/');
+    });
+
 });
 
 onUnmounted(() => {
 
-    if (game.value)
-    {
+    if (game.value) {
         game.value.destroy(true);
         game.value = null;
     }
-    
+
 });
 
 defineExpose({ scene, game });

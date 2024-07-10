@@ -41,6 +41,15 @@ export class GameResults extends Scene {
             this.scene.start('Game')
         })
 
+        this.fight.on('pointerover', () => {
+            this.fight.setColor('red')
+            this.input.setDefaultCursor('pointer');
+        })
+        this.fight.on('pointerout', () => {
+            this.fight.setColor('#ffffff')
+            this.input.setDefaultCursor('default');
+        })
+
         this.return = this.add.text(512, 500, 'RETREAT...', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
@@ -48,7 +57,15 @@ export class GameResults extends Scene {
         }).setOrigin(0.5).setDepth(100).setInteractive()
 
         this.return.on('pointerdown', () => {
-            router.push('/')
+            EventBus.emit('navigate-home');
+        });
+        this.return.on('pointerover', () => {
+            this.return.setColor('white')
+            this.input.setDefaultCursor('pointer');
+        })
+        this.return.on('pointerout', () => {
+            this.return.setColor('gray')
+            this.input.setDefaultCursor('default');
         })
 
         EventBus.emit('current-scene-ready', this);

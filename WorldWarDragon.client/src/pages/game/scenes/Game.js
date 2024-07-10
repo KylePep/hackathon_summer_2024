@@ -4,10 +4,12 @@ import { bossDamageService } from "../../../services/BossDamageService.js";
 import { logger } from "../../../utils/Logger.js";
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
+import { useRouter } from "vue-router";
 
 export class Game extends Scene {
     constructor() {
         super('Game');
+        this.router = useRouter()
     }
 
     create() {
@@ -40,10 +42,41 @@ export class Game extends Scene {
 
         });
 
+        this.dragon.on('pointerover', () => {
+            this.dragon.setTint(0x00ff00);
+            this.dragon.setScale(4.2);
+            this.dragon.y -= 8;
+            this.input.setDefaultCursor('pointer');
+        });
+
+        this.dragon.on('pointerout', () => {
+            this.dragon.clearTint();
+            this.dragon.setScale(4);
+            this.dragon.y += 8;
+            this.input.setDefaultCursor('default');
+        });
+
         this.clickText = this.add.text(16, 16, `HP: ${this.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
+        })
+
+        this.return = this.add.text(16, 600, 'RETREAT...', {
+            fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
+            stroke: '#000000', strokeThickness: 8, align: 'left'
+        }).setDepth(100).setInteractive()
+
+        this.return.on('pointerdown', () => {
+            EventBus.emit('navigate-home');
+        });
+        this.return.on('pointerover', () => {
+            this.return.setColor('white')
+            this.input.setDefaultCursor('pointer');
+        })
+        this.return.on('pointerout', () => {
+            this.return.setColor('gray')
+            this.input.setDefaultCursor('default');
         })
 
         EventBus.emit('current-scene-ready', this);
