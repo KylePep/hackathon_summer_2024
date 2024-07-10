@@ -5,6 +5,9 @@ import { logger } from "../../../utils/Logger.js";
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 import { useRouter } from "vue-router";
+import { DRAGON_NAMES } from '../../../../../shared/constants/index.js'
+import { DRAGON_TITLES } from '../../../../../shared/constants/index.js'
+import { Dragon } from "../objects/dragon.js";
 
 export class Game extends Scene {
     constructor() {
@@ -15,10 +18,13 @@ export class Game extends Scene {
 
     create() {
 
-        const dragonImages = ['dragon_1', 'dragon_2', 'dragon_3', 'dragon_4', 'dragon_5'];
-        const dragonSounds = ['swish_2', 'swish_3', 'swish_4'];
-        const randomIndex = Math.floor(Math.random() * dragonImages.length);
-        const selectedDragonImage = dragonImages[randomIndex];
+        const dragonNames = DRAGON_NAMES
+        const dragonTitles = DRAGON_TITLES
+
+
+        // Randomly select a name and title
+        const randomName = Phaser.Math.RND.pick(dragonNames);
+        const randomTitle = Phaser.Math.RND.pick(dragonTitles);
 
         this.cameras.main.setBackgroundColor(0xFFA500);
 
@@ -31,51 +37,22 @@ export class Game extends Scene {
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
-        this.dragon = this.add.sprite(centerX, centerY, selectedDragonImage).setOrigin(0.5, 0.5).setScale(4, 4)
-        this.dragonHP = 100;
-        this.bossDamage = 10; // Amount of damage to report to the boss
+        this.dragon = new Dragon(this, centerX, centerY)
+        console.log(this.dragon.dragonHP)
 
-        this.dragon.setInteractive()
-        this.dragon.on('pointerdown', () => {
-            const randomSoundIndex = Math.floor(Math.random() * dragonSounds.length);
-            const selectedSound = dragonSounds[randomSoundIndex];
-            const sound = this.sound.add(selectedSound)
-            sound.play();
-            sound.volume = 0.2;
-
-            this.dragonHP -= 10
-            this.clickText.setText(`HP: ${this.dragonHP}`)
-
-            if (this.dragonHP <= 0) {
-                this.updateBossHP({
-                    dmg: this.bossDamage,
-                    bossId: AppState.activeBoss.id
-                })
-                this.dragonHP = 100;
-                this.scene.start('GameResults')
-            }
-
-        });
-
-        this.dragon.on('pointerover', () => {
-            this.dragon.setTint(0x00ff00);
-            this.dragon.setScale(4.2);
-            this.dragon.y -= 8;
-            this.input.setDefaultCursor('pointer');
-        });
-
-        this.dragon.on('pointerout', () => {
-            this.dragon.clearTint();
-            this.dragon.setScale(4);
-            this.dragon.y += 8;
-            this.input.setDefaultCursor('default');
-        });
-
-        this.clickText = this.add.text(128, 16, `HP: ${this.dragonHP}`, {
+        this.clickText = this.add.text(128, 16, `HP: ${this.dragon.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
+
+        // Adding the 'NAME' text at the top right
+        const topRightX = this.cameras.main.width - 32; // Offset from the left edge
+        const topRightY = 16; // Offset from the bottom edge
+        this.name = this.add.text(topRightX, topRightY, `${randomName} ${randomTitle}`, {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8
+        }).setDepth(100).setOrigin(1, 0)
 
         // Adding the 'RETREAT...' text at the bottom left
         const bottomLeftX = 128; // Offset from the left edge
@@ -100,12 +77,6 @@ export class Game extends Scene {
         EventBus.emit('current-scene-ready', this);
     }
 
-    updateBossHP(bossDamageData) {
-        AppState.bossDamage = this.bossDamage
-        logger.log('BossDamage', AppState.bossDamage)
-        bossDamageService.createOrIncreaseBossDamage(bossDamageData)
-    }
-
     resize(gameSize, baseSize, displaySize, resolution) {
         const width = gameSize.width;
         const height = gameSize.height;
@@ -123,6 +94,10 @@ export class Game extends Scene {
         const bottomLeftX = 128; // Offset from the left edge
         const bottomLeftY = height - 96; // Offset from the bottom edge
         this.return.setPosition(bottomLeftX, bottomLeftY);
+
+        const topRightX = this.cameras.main.width - 400; // Offset from the left edge
+        const topRightY = 96; // Offset from the bottom edge
+        this.name.setPosition(topRightX, topRightY);
     }
 
     changeScene() {

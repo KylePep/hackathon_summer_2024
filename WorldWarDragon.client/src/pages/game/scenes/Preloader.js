@@ -7,7 +7,11 @@ export class Preloader extends Scene {
 
     init() {
         //  We loaded this image in our Boot Scene, so we can display it here
-        this.add.image(512, 384, 'background');
+        // this.background = this.add.image(0, 0, 'background')
+        //     .setOrigin(0, 0)
+        //     .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
+
+        // this.scale.on('resize', this.resize, this);
 
         //  A simple progress bar. This is the outline of the bar.
         this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
@@ -58,4 +62,14 @@ export class Preloader extends Scene {
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
         this.scene.start('Game');
     }
+
+    // resize(gameSize, baseSize, displaySize, resolution) {
+    //     const width = gameSize.width;
+    //     const height = gameSize.height;
+
+    //     this.cameras.resize(width, height);
+
+    //     this.background.setDisplaySize(width, height);
+
+    // }
 }

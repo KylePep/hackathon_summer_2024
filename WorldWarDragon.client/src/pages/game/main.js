@@ -20,7 +20,7 @@ const config = {
     // autoCenter: 2,
     // mode: Phaser.Scale.FIT,
     parent: 'game-container',
-    backgroundColor: '#028af8',
+    backgroundColor: '#000000',
     scene: [
         Boot,
         Preloader,
