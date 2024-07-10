@@ -10,7 +10,7 @@
       "name": "server"
     },
     {
-      "path": "src/shared",
+      "path": "shared",
       "name": "shared"
     },
   ],
