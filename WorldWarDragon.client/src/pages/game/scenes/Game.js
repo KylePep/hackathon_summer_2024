@@ -21,7 +21,10 @@ export class Game extends Scene {
 
         this.scale.on('resize', this.resize, this);
 
-        this.dragon = this.add.sprite(512, 380, 'dragon_1').setOrigin(0.5, 0.5).setScale(4, 4)
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+
+        this.dragon = this.add.sprite(centerX, centerY, 'dragon_1').setOrigin(0.5, 0.5).setScale(4, 4)
         this.dragonHP = 100;
         this.bossDamage = 10; // Amount of damage to report to the boss
 
@@ -56,13 +59,16 @@ export class Game extends Scene {
             this.input.setDefaultCursor('default');
         });
 
-        this.clickText = this.add.text(16, 16, `HP: ${this.dragonHP}`, {
+        this.clickText = this.add.text(64, 16, `HP: ${this.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         })
 
-        this.return = this.add.text(16, 600, 'RETREAT...', {
+        // Adding the 'RETREAT...' text at the bottom left
+        const bottomLeftX = 64; // Offset from the left edge
+        const bottomLeftY = this.cameras.main.height - 96; // Offset from the bottom edge
+        this.return = this.add.text(bottomLeftX, bottomLeftY, 'RETREAT...', {
             fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
             stroke: '#000000', strokeThickness: 8, align: 'left'
         }).setDepth(100).setInteractive()
@@ -95,6 +101,16 @@ export class Game extends Scene {
         this.cameras.resize(width, height);
 
         this.background.setDisplaySize(width, height);
+
+        // Re-center the dragon sprite on resize
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+        this.dragon.setPosition(centerX, centerY);
+
+        // Reposition the 'RETREAT...' text at the bottom left on resize
+        const bottomLeftX = 64; // Offset from the left edge
+        const bottomLeftY = height - 96; // Offset from the bottom edge
+        this.return.setPosition(bottomLeftX, bottomLeftY);
     }
 
     changeScene() {

@@ -22,6 +22,10 @@ import OffBar from './components/OffBar.vue'
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
+section:first-child {
+    margin-top: 4rem;
+}
+
 footer {
     // height: 32px;
 }

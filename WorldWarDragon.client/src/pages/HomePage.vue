@@ -102,7 +102,6 @@ export default {
 <style lang="scss" scoped>
 .hero-title {
   font-size: 96px;
-  margin: 4rem 0rem 4rem 0rem;
   color: #ff4500
 }
 </style>

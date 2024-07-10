@@ -14,9 +14,14 @@ export class GameResults extends Scene {
         this.getBossData()
         this.cameras.main.setBackgroundColor(0xff4500);
 
-        // this.add.image(512, 384, 'background').setAlpha(0.5);
+        this.background = this.add.image(0, 0, 'background')
+            .setOrigin(0, 0)
+            .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
-        this.add.text(512, 200, 'Game Results', {
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+
+        this.title = this.add.text(centerX, centerY - 100, 'Game Results', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -24,14 +29,14 @@ export class GameResults extends Scene {
 
         const newBossHp = AppState.activeBoss.hp - AppState.activeBoss.damages - AppState.bossDamage;
 
-        this.add.text(512, 300, `Boss Dragon HP ${newBossHp}`, {
+        this.bossHp = this.add.text(centerX, centerY, `Boss Dragon HP ${newBossHp}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
 
-        this.fight = this.add.text(512, 400, 'FIGHT!', {
+        this.fight = this.add.text(centerX, centerY + 100, 'FIGHT!', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -50,7 +55,7 @@ export class GameResults extends Scene {
             this.input.setDefaultCursor('default');
         })
 
-        this.return = this.add.text(512, 500, 'RETREAT...', {
+        this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -69,6 +74,28 @@ export class GameResults extends Scene {
         })
 
         EventBus.emit('current-scene-ready', this);
+    }
+
+    resize(gameSize, baseSize, displaySize, resolution) {
+        const width = gameSize.width;
+        const height = gameSize.height;
+
+        this.cameras.resize(width, height);
+
+        this.background.setDisplaySize(width, height);
+
+        // Re-center the dragon sprite on resize
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+        this.title.setPosition(centerX, centerY - 100)
+        this.bossHp.setPosition(centerX, centerY)
+        this.fight.setPosition(centerX, centerY + 100)
+        this.return.setPosition(centerX, centerY + 200)
+
+        // // Reposition the 'RETREAT...' text at the bottom left on resize
+        // const bottomLeftX = 64; // Offset from the left edge
+        // const bottomLeftY = height - 96; // Offset from the bottom edge
+        // this.return.setPosition(bottomLeftX, bottomLeftY);
     }
 
     getBossData() {
