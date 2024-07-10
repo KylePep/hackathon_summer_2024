@@ -11,6 +11,7 @@ export class Dragon {
     this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5).setScale(4, 4)
     this.dragon.setInteractive()
     this.addInteractions()
+    this.setupEventListeners();
   }
 
   getRandomDragonSprite() {
@@ -28,51 +29,69 @@ export class Dragon {
 
 
     this.dragon.on('pointerdown', () => {
-      const selectedSound = this.getRandomDragonSound()
-      const sound = this.scene.sound.add(selectedSound)
-      sound.play();
-      sound.volume = 0.2;
-
-      this.dragonHP -= 10
-      console.log(this.dragonHP)
-      this.scene.clickText.setText(`HP: ${this.dragonHP}`)
-
-      // Shake effect
-      this.scene.tweens.add({
-        targets: this.dragon,
-        duration: 100, // Duration of the shake in milliseconds
-        ease: 'Power1',
-        x: this.dragon.x + Phaser.Math.RND.between(-16, 16), // Random X offset
-        y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
-        angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
-        yoyo: true, // Yoyo back to original position
-        repeat: 0 // Number of times to repeat (0 means no repeat, just once)
-      });
-
-      if (this.dragonHP <= 0) {
-        this.updateBossHP({
-          dmg: this.bossDamage,
-          bossId: AppState.activeBoss.id
-        })
-        this.dragonHP = 100;
-        this.scene.scene.start('GameResults')
-      }
+      this.onDragonHit()
 
     });
 
     this.dragon.on('pointerover', () => {
-      this.dragon.setTint(0xD62E0B);
-      this.dragon.setScale(4.1);
-      this.dragon.y -= 6;
-      this.scene.input.setDefaultCursor('pointer');
+      this.onPointerOver()
     });
 
     this.dragon.on('pointerout', () => {
-      this.dragon.clearTint();
-      this.dragon.setScale(4);
-      this.dragon.y += 6;
-      this.scene.input.setDefaultCursor('default');
+      this.onPointerOut()
     });
+  }
+
+  setupEventListeners() {
+    this.scene.events.on('dragon:hit', this.onDragonHit, this);
+    this.scene.events.on('dragon:over', this.onPointerOver, this);
+    this.scene.events.on('dragon:out', this.onPointerOut, this);
+  }
+
+  onDragonHit() {
+    const selectedSound = this.getRandomDragonSound()
+    const sound = this.scene.sound.add(selectedSound)
+    sound.play();
+    sound.volume = 0.2;
+
+    this.dragonHP -= 10
+    console.log(this.dragonHP)
+    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+
+    if (this.dragonHP <= 0) {
+      this.updateBossHP({
+        dmg: this.bossDamage,
+        bossId: AppState.activeBoss.id
+      })
+      this.dragonHP = 100;
+      this.scene.scene.start('GameResults')
+    }
+
+    // Shake effect
+    this.scene.tweens.add({
+      targets: this.dragon,
+      duration: 100, // Duration of the shake in milliseconds
+      ease: 'Power1',
+      x: this.dragon.x + Phaser.Math.RND.between(-16, 16), // Random X offset
+      y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
+      angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
+      yoyo: true, // Yoyo back to original position
+      repeat: 0 // Number of times to repeat (0 means no repeat, just once)
+    });
+  }
+
+  onPointerOver() {
+    this.dragon.setTint(0xD62E0B);
+    this.dragon.setScale(4.2);
+    this.dragon.y -= 8;
+    this.scene.input.setDefaultCursor('pointer');
+  }
+
+  onPointerOut() {
+    this.dragon.clearTint();
+    this.dragon.setScale(4);
+    this.dragon.y += 8;
+    this.scene.input.setDefaultCursor('default');
   }
 
   updateBossHP(bossDamageData) {

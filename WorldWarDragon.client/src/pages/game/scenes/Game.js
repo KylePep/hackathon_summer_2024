@@ -8,6 +8,7 @@ import { useRouter } from "vue-router";
 import { DRAGON_NAMES } from '../../../../../shared/constants/index.js'
 import { DRAGON_TITLES } from '../../../../../shared/constants/index.js'
 import { Dragon } from "../objects/dragon.js";
+import { Slash } from "../objects/slash.js";
 
 export class Game extends Scene {
     constructor() {
@@ -38,7 +39,8 @@ export class Game extends Scene {
         const centerY = this.cameras.main.centerY;
 
         this.dragon = new Dragon(this, centerX, centerY)
-        console.log(this.dragon.dragonHP)
+
+        this.slash = new Slash(this, centerX, centerY)
 
         this.clickText = this.add.text(128, 16, `HP: ${this.dragon.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
