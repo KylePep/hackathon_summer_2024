@@ -8,7 +8,11 @@
     {
       "path": "WorldWarDragon",
       "name": "server"
-    }
+    },
+    {
+      "path": "src/shared",
+      "name": "shared"
+    },
   ],
   "settings": {
     "editor.suggestSelection": "first",
