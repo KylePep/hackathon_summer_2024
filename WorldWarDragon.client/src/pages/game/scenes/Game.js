@@ -76,6 +76,12 @@ export class Game extends Scene {
             this.input.setDefaultCursor('default');
         })
 
+
+
+        // // Listen for shutdown and destroy events to clean up
+        // this.events.on('shutdown', this.shutdown, this);
+        // this.events.on('destroy', this.shutdown, this);
+
         EventBus.emit('current-scene-ready', this);
     }
 
@@ -101,6 +107,25 @@ export class Game extends Scene {
         const topRightY = 96; // Offset from the bottom edge
         this.name.setPosition(topRightX, topRightY);
     }
+
+    leaveRoom() {
+
+        this.scene.start('GameResults')
+    }
+
+    // shutdown() {
+    //     logger.log('shutdown - game')
+    //     if (this.dragon) {
+    //         logger.log('shutdown - game - dragon', this.dragon)
+    //         this.dragon.destroy();
+    //         this.dragon = null;
+    //     }
+    //     if (this.slash) {
+    //         logger.log('shutdown - game - slash', this.slash)
+    //         this.slash.destroy();
+    //         this.slash = null;
+    //     }
+    // }
 
     changeScene() {
         this.scene.start('GameOver');

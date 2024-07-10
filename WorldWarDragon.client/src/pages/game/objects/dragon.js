@@ -65,16 +65,17 @@ export class Dragon {
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     if (this.dragonHP <= 0) {
-      logger.log('1dmg: ', this.bossDamage,
-        'bossId: ', AppState.activeBoss.id)
+
       this.updateBossHP({
         dmg: this.bossDamage,
         bossId: AppState.activeBoss.id
       })
-      logger.log('2dmg: ', this.bossDamage,
-        'bossId: ', AppState.activeBoss.id)
-      this.dragonHP = 100;
-      this.scene.scene.start('GameResults')
+      this.scene.events.off('dragon:hit')
+      this.scene.events.off('dragon:over')
+      this.scene.events.off('dragon:out')
+      logger.log(this.scene.events.off('dragon:hit'))
+      this.scene.leaveRoom()
+
     }
 
     // Shake effect
@@ -103,6 +104,17 @@ export class Dragon {
     this.dragon.y += 8;
     this.scene.input.setDefaultCursor('default');
   }
+
+  // destroy() {
+  //   logger.log('destroy - dragon')
+  //   // Remove event listeners
+  //   this.dragon.removeListener('dragon:hit');
+  //   this.dragon.off('dragon:over');
+  //   this.dragon.off('dragon:out');
+
+  //   // Remove from the scene
+  //   this.dragon.destroy();
+  // }
 
   updateBossHP(bossDamageData) {
     AppState.bossDamage = this.bossDamage

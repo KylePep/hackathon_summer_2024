@@ -47,4 +47,11 @@ export class Slash {
     })
 
   }
+  destroy() {
+    logger.log('destroy - slash')
+
+    // Remove from the scene
+    this.slash.destroy();
+  }
+
 }
