@@ -8,9 +8,6 @@ import { Scene } from 'phaser';
 export class Game extends Scene {
     constructor() {
         super('Game');
-
-        this.updateBossHP = bossDamageService.createOrIncreaseBossDamage
-        // this.bossHp = AppState.activeBoss.hp
     }
 
     create() {
@@ -44,11 +41,18 @@ export class Game extends Scene {
         });
 
         this.clickText = this.add.text(16, 16, `HP: ${this.dragonHP}`, {
-            fontSize: `64px`,
-            fill: '#000'
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
         })
 
         EventBus.emit('current-scene-ready', this);
+    }
+
+    updateBossHP(bossDamageData) {
+        AppState.bossDamage = this.bossDamage
+        logger.log('BossDamage', AppState.bossDamage)
+        bossDamageService.createOrIncreaseBossDamage(bossDamageData)
     }
 
     resize(gameSize, baseSize, displaySize, resolution) {
