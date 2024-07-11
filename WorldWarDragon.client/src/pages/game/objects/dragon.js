@@ -8,10 +8,24 @@ export class Dragon {
     this.dragonHP = this.getRandomDragonHP();
     this.bossDamage = 10 * (this.dragonHP * .01);
 
-    this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5).setScale(4, 4)
+    this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5)
+    this.setScaleToFitWindow(0);
+    this.scene.scale.on('resize', this.setScaleToFitWindow, this)
     this.dragon.setInteractive()
     this.addInteractions()
     this.setupEventListeners();
+  }
+
+  setScaleToFitWindow(modifier) {
+    const { width, height } = this.scene.cameras.main
+    const dragonWidth = this.dragon.width
+    const dragonHeight = this.dragon.height
+
+    const scaleX = width / dragonWidth
+    const scaleY = height / dragonHeight
+
+    const scale = Math.min(scaleX, scaleY) * 0.5 + modifier;
+    this.dragon.setScale(scale)
   }
 
   getRandomDragonHP() {
@@ -93,14 +107,14 @@ export class Dragon {
 
   onPointerOver() {
     this.dragon.setTint(0xD62E0B);
-    this.dragon.setScale(4.2);
+    this.setScaleToFitWindow(.2)
     this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }
 
   onPointerOut() {
     this.dragon.clearTint();
-    this.dragon.setScale(4);
+    this.setScaleToFitWindow(0)
     this.dragon.y += 8;
     this.scene.input.setDefaultCursor('default');
   }
