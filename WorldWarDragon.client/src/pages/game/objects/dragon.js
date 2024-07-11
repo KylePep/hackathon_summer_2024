@@ -11,6 +11,11 @@ export class Dragon {
     this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5)
     this.setScaleToFitWindow(0);
     this.scene.scale.on('resize', this.setScaleToFitWindow, this)
+
+    this.originalX = this.dragon.x;
+    this.originalY = this.dragon.y;
+    this.originalAngle = 0;
+
     this.dragon.setInteractive()
     this.addInteractions()
     this.setupEventListeners();
@@ -92,6 +97,8 @@ export class Dragon {
 
     }
 
+
+
     // Shake effect
     this.scene.tweens.add({
       targets: this.dragon,
@@ -101,7 +108,13 @@ export class Dragon {
       y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
       angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
       yoyo: true, // Yoyo back to original position
-      repeat: 0 // Number of times to repeat (0 means no repeat, just once)
+      repeat: 0, // Number of times to repeat (0 means no repeat, just once)
+      onComplete: () => {
+        // Reset to original values
+        this.dragon.x = this.originalX;
+        this.dragon.y = this.originalY;
+        this.dragon.angle = this.originalAngle;
+      }
     });
   }
 
@@ -118,17 +131,6 @@ export class Dragon {
     this.dragon.y += 8;
     this.scene.input.setDefaultCursor('default');
   }
-
-  // destroy() {
-  //   logger.log('destroy - dragon')
-  //   // Remove event listeners
-  //   this.dragon.removeListener('dragon:hit');
-  //   this.dragon.off('dragon:over');
-  //   this.dragon.off('dragon:out');
-
-  //   // Remove from the scene
-  //   this.dragon.destroy();
-  // }
 
   updateBossHP(bossDamageData) {
     AppState.bossDamage = this.bossDamage
