@@ -40,6 +40,8 @@ export class Preloader extends Scene {
         this.load.image('star', 'star.png');
 
         this.load.image('forestBackground', 'bg_1.png');
+        this.load.image('castleGroundBG', 'castleGrounds.jpeg');
+        this.load.image('darkDragonBG', 'darkDragon.jpeg');
 
         this.load.image('forest-back', 'parallax_forest_pack/layers/parallax-forest-back-trees.png');
         this.load.image('forest-lights', 'parallax_forest_pack/layers/parallax-forest-lights.png');

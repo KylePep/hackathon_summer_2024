@@ -30,7 +30,7 @@ export class Game extends Scene {
 
         this.cameras.main.setBackgroundColor(0xFFA500);
 
-        this.background = this.add.image(0, 0, 'forestBackground')
+        this.background = this.add.image(0, 0, 'castleGroundBG')
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 

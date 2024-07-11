@@ -15,7 +15,7 @@ export class GameResults extends Scene {
         this.getBossData()
         this.cameras.main.setBackgroundColor(0xff4500);
 
-        this.background = this.add.image(0, 0, 'background')
+        this.background = this.add.image(0, 0, 'darkDragonBG')
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
