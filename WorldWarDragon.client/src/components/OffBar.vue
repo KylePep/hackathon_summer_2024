@@ -2,9 +2,11 @@
   <nav class="navbar  fixed-top">
     <div class="container-fluid">
 
-      <div class="px-3 pt-3">
+      <div class=" px-3 pt-3">
         <LoginSmall />
       </div>
+      <BossDragon />
+
 
       <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel">
