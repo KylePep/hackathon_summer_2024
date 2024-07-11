@@ -15,6 +15,7 @@ export class Game extends Scene {
         super('Game');
         this.router = useRouter()
 
+
     }
 
     create() {
@@ -76,11 +77,7 @@ export class Game extends Scene {
             this.input.setDefaultCursor('default');
         })
 
-
-
-        // // Listen for shutdown and destroy events to clean up
-        // this.events.on('shutdown', this.shutdown, this);
-        // this.events.on('destroy', this.shutdown, this);
+        this.adjustTextSize()
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -106,6 +103,8 @@ export class Game extends Scene {
         const topRightX = this.cameras.main.width - 400; // Offset from the left edge
         const topRightY = 96; // Offset from the bottom edge
         this.name.setPosition(topRightX, topRightY);
+
+        this.adjustTextSize();
     }
 
     leaveRoom() {
@@ -113,19 +112,19 @@ export class Game extends Scene {
         this.scene.start('GameResults')
     }
 
-    // shutdown() {
-    //     logger.log('shutdown - game')
-    //     if (this.dragon) {
-    //         logger.log('shutdown - game - dragon', this.dragon)
-    //         this.dragon.destroy();
-    //         this.dragon = null;
-    //     }
-    //     if (this.slash) {
-    //         logger.log('shutdown - game - slash', this.slash)
-    //         this.slash.destroy();
-    //         this.slash = null;
-    //     }
-    // }
+    setFontToFitWindow() {
+        const { width, height } = this.cameras.main;
+        const baseFontSize = 64;
+        const scaleFactor = Math.min(width / 1600, height / 1200);
+        return baseFontSize * scaleFactor;
+    }
+    adjustTextSize() {
+        const newFontSize = `${this.setFontToFitWindow()}px`;
+
+        this.clickText.setStyle({ fontSize: newFontSize });
+        this.name.setStyle({ fontSize: newFontSize });
+        this.return.setStyle({ fontSize: newFontSize });
+    }
 
     changeScene() {
         this.scene.start('GameOver');

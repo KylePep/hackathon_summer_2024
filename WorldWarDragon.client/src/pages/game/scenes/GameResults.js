@@ -74,6 +74,9 @@ export class GameResults extends Scene {
             this.input.setDefaultCursor('default');
         })
 
+
+        this.adjustTextSize();
+
         EventBus.emit('current-scene-ready', this);
     }
 
@@ -93,10 +96,23 @@ export class GameResults extends Scene {
         this.fight.setPosition(centerX, centerY + 100)
         this.return.setPosition(centerX, centerY + 200)
 
-        // // Reposition the 'RETREAT...' text at the bottom left on resize
-        // const bottomLeftX = 64; // Offset from the left edge
-        // const bottomLeftY = height - 96; // Offset from the bottom edge
-        // this.return.setPosition(bottomLeftX, bottomLeftY);
+        this.adjustTextSize();
+
+    }
+
+    setFontToFitWindow() {
+        const { width, height } = this.cameras.main;
+        const baseFontSize = 64;
+        const scaleFactor = Math.min(width / 1600, height / 1200);
+        return baseFontSize * scaleFactor;
+    }
+    adjustTextSize() {
+        const newFontSize = `${this.setFontToFitWindow()}px`;
+
+        this.title.setStyle({ fontSize: newFontSize });
+        this.bossHp.setStyle({ fontSize: newFontSize });
+        this.fight.setStyle({ fontSize: newFontSize });
+        this.return.setStyle({ fontSize: newFontSize });
     }
 
     getBossData() {
