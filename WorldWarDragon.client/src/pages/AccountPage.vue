@@ -19,7 +19,7 @@ export default {
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
       if (mainElement) {
-        let bgImg = '../public/assets/dragonCave2.jpeg';
+        let bgImg = '../public/assets/scales.jpeg';
         mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
     }

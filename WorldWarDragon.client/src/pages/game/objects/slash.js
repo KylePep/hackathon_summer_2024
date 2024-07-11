@@ -40,7 +40,7 @@ export class Slash {
 
     this.slash.on('pointerover', (pointer) => {
       this.entryState = 'enter'
-      this.slash.setTint(0xD60B0B)
+      // this.slash.setTint(0xD60B0B)
       this.slash.setAlpha(0.4)
       this.setScaleToFitWindow(.2)
 
@@ -50,7 +50,7 @@ export class Slash {
     })
 
     this.slash.on('pointerout', (pointer) => {
-      this.slash.setTint()
+      // this.slash.setTint()
       this.slash.setAlpha(0.2)
       this.setScaleToFitWindow(0)
       this.slash.setAngle(Phaser.Math.RND.between(0, 180))

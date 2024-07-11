@@ -98,9 +98,13 @@ export class Dragon {
     }
 
 
+    // this.canAnimate = true
 
-    // Shake effect
+    // if (this.canAnimate != false) {
+
     this.scene.tweens.add({
+
+      // Shake effect
       targets: this.dragon,
       duration: 100, // Duration of the shake in milliseconds
       ease: 'Power1',
@@ -109,26 +113,31 @@ export class Dragon {
       angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
       yoyo: true, // Yoyo back to original position
       repeat: 0, // Number of times to repeat (0 means no repeat, just once)
+      // onStart: () => {
+      //   this.canAnimate = false
+      // },
       onComplete: () => {
         // Reset to original values
         this.dragon.x = this.originalX;
         this.dragon.y = this.originalY;
         this.dragon.angle = this.originalAngle;
+        // this.canAnimate = true
       }
     });
+    // }
   }
 
   onPointerOver() {
-    this.dragon.setTint(0xD62E0B);
+    // this.dragon.setTint(0xD62E0B);
     this.setScaleToFitWindow(.2)
     this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }
 
   onPointerOut() {
-    this.dragon.clearTint();
+    // this.dragon.clearTint();
     this.setScaleToFitWindow(0)
-    this.dragon.y += 8;
+    this.dragon.y = this.originalY;
     this.scene.input.setDefaultCursor('default');
   }
 
