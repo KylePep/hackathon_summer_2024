@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { EventBus } from './EventBus';
 import StartGame from './main';
 import { router } from "../../router.js";
+import { logger } from "../../utils/Logger.js";
 
 // Save the current scene instance
 const scene = ref();
@@ -23,6 +24,7 @@ onMounted(() => {
     });
 
     EventBus.on('navigate-home', () => {
+        logger.log('go Home')
         router.push('/');
     });
 

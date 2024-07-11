@@ -8,8 +8,21 @@
 
 
 <script>
+import { onMounted } from "vue";
+
 export default {
   setup() {
+    onMounted(() => {
+      setBgImg();
+    });
+
+    const setBgImg = () => {
+      const mainElement = document.querySelector('main');
+      if (mainElement) {
+        let bgImg = '../public/assets/dragonCave2.jpeg';
+        mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
+      }
+    }
     return {}
   }
 }

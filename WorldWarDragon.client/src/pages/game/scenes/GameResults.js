@@ -2,8 +2,6 @@ import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 import { bossService } from "../../../services/BossService.js";
 import { AppState } from "../../../AppState.js";
-import { router } from "../../../router.js";
-import { logger } from "../../../utils/Logger.js";
 
 export class GameResults extends Scene {
     constructor() {

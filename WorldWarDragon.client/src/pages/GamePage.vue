@@ -1,7 +1,19 @@
 <script setup>
 import Phaser from 'phaser';
-import { ref, toRaw } from 'vue';
+import { onMounted, ref, toRaw } from 'vue';
 import PhaserGame from './game/PhaserGame.vue';
+
+onMounted(() => {
+  setBgImg();
+});
+
+const setBgImg = () => {
+  const mainElement = document.querySelector('main');
+  if (mainElement) {
+    let bgImg = '../public/assets/castleGrounds.jpeg';
+    mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
+  }
+}
 
 // The sprite can only be moved in the MainMenu Scene
 const canMoveSprite = ref();
