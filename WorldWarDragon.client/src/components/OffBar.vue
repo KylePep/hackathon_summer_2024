@@ -1,11 +1,16 @@
 <template>
-  <nav class="navbar  fixed-top">
-    <div class="container-fluid">
+  <nav class="navbar  fixed-top pt-0">
+    <div class="container-fluid px-0">
 
-      <div class=" px-3 pt-3">
-        <LoginSmall />
-      </div>
-      <BossDragon />
+      <section class="row w-100 mt-0  mt-0">
+        <div class="col-4  ps-3 pt-1">
+          <LoginSmall />
+        </div>
+        <div class="col-4 d-flex justify-content-center ">
+          <BossDragon />
+        </div>
+      </section>
+
 
 
       <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
@@ -86,6 +91,7 @@ a:hover {
 li {
   padding-bottom: 32px;
 }
+
 
 .nav-link {
   text-transform: uppercase;

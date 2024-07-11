@@ -6,10 +6,9 @@ import OffBar from './components/OffBar.vue'
 
 <template>
     <header>
-        <!-- <NavBar /> -->
         <OffBar />
     </header>
-    <main class="container-fluid ">
+    <main class="container-fluid">
         <RouterView />
     </main>
 
@@ -22,8 +21,20 @@ import OffBar from './components/OffBar.vue'
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
+main {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(https://img.freepik.com/free-photo/close-up-pattern-scales_23-2151365720.jpg?t=st=1720719961~exp=1720723561~hmac=1a603e1badaac615e7cd66a28b67d84cfefeb8f17eb21d18ee0347d58092fcc8&w=740);
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 section:first-child {
     margin-top: 4rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 footer {

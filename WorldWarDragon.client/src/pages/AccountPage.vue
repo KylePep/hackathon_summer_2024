@@ -1,5 +1,9 @@
 <template>
-  AccountPage
+  <section class="row">
+    <div class="col-12 fs-1 fw-bold text-center">
+      ACCOUNT PAGE
+    </div>
+  </section>
 </template>
 
 
