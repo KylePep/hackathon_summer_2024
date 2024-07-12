@@ -9,7 +9,9 @@
       </h1>
     </div>
   </section>
-  <section v-if="!activeRoom.name || activeRoom.name == 0" class="row map mx-3">
+  <section v-if="!activeRoom.name || activeRoom.id == 0" class="row position-relative map mx-3">
+    <div @click="setActiveRoom(5)" class="position-absolute top-50 start-50 translate-middle map-section map-center">
+      Centeria</div>
     <div @click="setActiveRoom(1)" class="col-6 map-section">Toleftios</div>
     <div @click="setActiveRoom(2)" class="col-6 map-section">Rysto</div>
     <div @click="setActiveRoom(3)" class="col-6 map-section">Lendbom</div>
@@ -17,9 +19,22 @@
   </section>
   <section v-else class="row d-flex justify-content-center  text-center">
     <button @click="setActiveRoom(0)" class="btn btn-primary">Back</button>
-    {{ messages }}
-
-    {{ assistances }}
+    <div v-if="activeRoom.id != 5">
+      Messages
+      <div v-for="message in messages" :key="message.id">
+        {{ message.body }}
+        {{ message.roomId }}
+        {{ message?.creator?.name }}
+      </div>
+    </div>
+    <div v-else>
+      Assistances
+      <div v-for="assistance in assistances" :key="assistance.id">
+        {{ assistance.body }}
+        {{ assistance.roomId }}
+        {{ assistance?.creator?.name }}
+      </div>
+    </div>
   </section>
 
 </template>
@@ -32,6 +47,7 @@ import { MAP_DATA } from '../../../shared/constants/index.js'
 import Pop from "../utils/Pop.js";
 import { assistancesService } from "../services/AssistancesService.js";
 import { messagesService } from "../services/MessagesService.js";
+import { logger } from "../utils/Logger.js";
 
 
 export default {
@@ -68,14 +84,17 @@ export default {
       }
 
     }
-    function setActiveRoom(roomID) {
-      if (roomID != 0) {
-        AppState.activeRoom = MAP_DATA.find((m) => m.id == roomID);
+    function setActiveRoom(roomId) {
+      if (roomId != 0) {
+        AppState.activeRoom = MAP_DATA.find((m) => m.id == roomId);
       }
-      else AppState.activeRoom = { id: 0 }
+      else {
+        AppState.activeRoom = { id: 0 }
+        logger.log('clicked', AppState.activeRoom)
+      }
     }
     return {
-      messages: computed(() => AppState.messages),
+      messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id)),
       assistances: computed(() => AppState.assistances),
       activeRoom: computed(() => AppState.activeRoom),
 
@@ -101,7 +120,12 @@ export default {
 
 }
 
+.map-center {
+  width: 50%;
+}
+
 .map-section {
+  cursor: pointer;
   text-align: center;
   font-weight: bolder;
   color: white;

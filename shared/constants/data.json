@@ -22,6 +22,11 @@
       "id": 4,
       "name": "Boghir",
       "bgImage": "public/assets/scales.jpeg"
+    },
+    {
+      "id": 5,
+      "name": "Centeria",
+      "bgImage": "public/assets/scales.jpeg"
     }
   ],
   "DRAGON_NAMES": [
