@@ -9,7 +9,12 @@ class BossService {
     const res = await api.get('api/boss')
     logger.log('[BOSS]', res.data)
     AppState.bosses = res.data.map(b => new Boss(b))
-    AppState.activeBoss = AppState.bosses.find((b) => b.active = true)
+    const findActiveBoss = AppState.bosses.find((b) => b.active == true)
+    AppState.activeBoss = findActiveBoss
+    if (findActiveBoss.image.length < 2) {
+      AppState.activeBoss.image = `public/assets/boss/bossDragon${findActiveBoss.image}.jpeg`
+    }
+
     bossDamageService.getBossDamageByBossId(AppState.activeBoss.id)
   }
 
@@ -29,6 +34,13 @@ class BossService {
     const res = await api.put(`api/boss/${bossData.id}`, bossData)
     const boss = new Boss(res.data)
     AppState.activeBoss = boss
+  }
+
+  async setBossActivity(bossId) {
+    const res = await api.put(`api/boss/${bossId}/activity`)
+    const boss = AppState.bosses.find((b) => b.id == bossId)
+    boss.active = !boss.active
+    logger.log(res.data)
   }
 
 }

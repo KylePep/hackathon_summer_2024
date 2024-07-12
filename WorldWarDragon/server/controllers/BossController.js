@@ -13,6 +13,7 @@ export class BossController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBoss)
       .put('/:bossId', this.updateBossById)
+      .put('/:id/activity', this.setBossActivity)
   }
 
   async getBosses(req, res, next) {
@@ -49,6 +50,16 @@ export class BossController extends BaseController {
       const bossId = req.params.bossId
       const userId = req.userInfo.id
       const boss = await bossService.updateBossById(bossId, userId)
+      return res.send(boss)
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async setBossActivity(req, res, next) {
+    try {
+      const bossId = req.params.id
+      const boss = await bossService.setBossActivity(bossId)
       return res.send(boss)
     } catch (error) {
       next(error);

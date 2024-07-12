@@ -1,6 +1,6 @@
 <template>
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center text-light">
+    <div class="col-12 fs-1 fw-bold text-center text-light mb-5">
       <h1 v-if="!activeRoom.name || activeRoom.id == 0" class="fs-1 fw-bold text-center text-light">
         Select an area
       </h1>

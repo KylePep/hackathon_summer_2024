@@ -15,7 +15,7 @@ class BossService {
   }
 
   async getBossById(bossId) {
-    const boss = await dbContext.Boss.findById({ id: bossId })
+    const boss = await dbContext.Boss.findById(bossId)
     if (!boss) {
       throw new BadRequest(`No boss found with id:${bossId}`)
     }
@@ -33,6 +33,13 @@ class BossService {
 
     await bossToUpdate.save()
 
+    return bossToUpdate
+  }
+  async setBossActivity(bossId) {
+    const bossToUpdate = await this.getBossById(bossId)
+    bossToUpdate.active = !bossToUpdate.active
+
+    await bossToUpdate.save()
     return bossToUpdate
   }
 }

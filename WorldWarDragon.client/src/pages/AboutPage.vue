@@ -17,13 +17,15 @@
 
     <div class="col-12">
       <img :src="activeBoss.image" class="img-fluid" alt="">
+      {{ activeBoss.image }}
       <h1>{{ activeBoss.name }}</h1>
       <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
       <DamageActiveboss />
       <NewBoss />
       <p>A list of all bosses</p>
       <div v-for="boss in bosses" :key="boss.id">
-        boss: {{ boss.name }} | {{ boss.hp }}
+        boss: {{ boss.name }} | {{ boss.hp }} <button @click="setBossActivity(boss.id)"
+          class="btn btn-secondary">activate: {{ boss.active }}</button>
       </div>
     </div>
     <div class="col-12">
@@ -131,6 +133,14 @@ export default {
       }
     }
 
+    async function setBossActivity(bossId) {
+      try {
+        await bossService.setBossActivity(bossId)
+      } catch (error) {
+        Pop.error(error.message, '[]')
+      }
+    }
+
     onMounted(() => {
       getMessages()
       getAssistances()
@@ -165,7 +175,8 @@ export default {
       messages: computed(() => AppState.messages),
       assistances: computed(() => AppState.assistances),
       activeBoss: computed(() => AppState.activeBoss),
-      bosses: computed(() => AppState.bosses)
+      bosses: computed(() => AppState.bosses),
+      setBossActivity
 
     }
   }
@@ -179,3 +190,14 @@ p {
   margin: 0;
 }
 </style>
+
+<!-- Zarathos the Devourer
+Nerathul the Doombringer
+Thrakadon the Eternal Flame
+Xandros the Night Terror
+Gorgathor the Annihilator
+Vorgoth the Voidcaller
+Mordrath the Desolation
+Balroth the Infernal
+Draconis the Shadowbane
+Azarok the Unyielding -->
