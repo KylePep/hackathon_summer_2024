@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar  fixed-top pt-0">
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0 disable-click">
 
-      <section class="row w-100 mt-0  mt-0">
+      <section class="can-click row w-100 mt-0  mt-0">
         <div class="col-4  ps-3 pt-1">
           <LoginSmall />
         </div>
@@ -11,7 +11,7 @@
         </div>
       </section>
 
-      <section class="row ps-2 text-light">
+      <section class="row ps-2 d-flex text-light disable-click">
         <div>
           VALOR: 0
         </div>
@@ -29,7 +29,7 @@
 
 
 
-      <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
+      <div class="can-click offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel">
 
         <div class="offcanvas-header mb-5">
@@ -114,6 +114,13 @@ li {
   padding-bottom: 32px;
 }
 
+.disable-click {
+  pointer-events: none;
+
+  >.can-click {
+    pointer-events: all;
+  }
+}
 
 .nav-link {
   text-transform: uppercase;

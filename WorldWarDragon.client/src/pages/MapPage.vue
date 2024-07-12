@@ -1,7 +1,7 @@
 <template>
   <section class="row">
     <div class="col-12 fs-1 fw-bold text-center text-light">
-      <h1 v-if="!activeRoom.name" class="fs-1 fw-bold text-center text-light">
+      <h1 v-if="!activeRoom.name || activeRoom.id == 0" class="fs-1 fw-bold text-center text-light">
         Select an area
       </h1>
       <h1 v-else class="fs-1 fw-bold text-center text-light">
@@ -9,12 +9,19 @@
       </h1>
     </div>
   </section>
-  <section class="row map mx-3">
+  <section v-if="!activeRoom.name || activeRoom.name == 0" class="row map mx-3">
     <div @click="setActiveRoom(1)" class="col-6 map-section">Toleftios</div>
     <div @click="setActiveRoom(2)" class="col-6 map-section">Rysto</div>
     <div @click="setActiveRoom(3)" class="col-6 map-section">Lendbom</div>
     <div @click="setActiveRoom(4)" class="col-6 map-section">Boghir</div>
   </section>
+  <section v-else class="row d-flex justify-content-center  text-center">
+    <button @click="setActiveRoom(0)" class="btn btn-primary">Back</button>
+    {{ messages }}
+
+    {{ assistances }}
+  </section>
+
 </template>
 
 
@@ -22,11 +29,34 @@
 import { AppState } from "../AppState.js";
 import { computed, onMounted } from "vue";
 import { MAP_DATA } from '../../../shared/constants/index.js'
+import Pop from "../utils/Pop.js";
+import { assistancesService } from "../services/AssistancesService.js";
+import { messagesService } from "../services/MessagesService.js";
 
 
 export default {
   setup() {
+    async function getMessages() {
+      try {
+        await messagesService.getMessages()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
+
+
+    async function getAssistances() {
+      try {
+        await assistancesService.getAssistances()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
     onMounted(() => {
+      getMessages()
+      getAssistances()
       setBgImg();
     });
 
@@ -39,7 +69,10 @@ export default {
 
     }
     function setActiveRoom(roomID) {
-      AppState.activeRoom = MAP_DATA.find((m) => m.id == roomID);
+      if (roomID != 0) {
+        AppState.activeRoom = MAP_DATA.find((m) => m.id == roomID);
+      }
+      else AppState.activeRoom = { id: 0 }
     }
     return {
       messages: computed(() => AppState.messages),

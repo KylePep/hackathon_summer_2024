@@ -59,23 +59,7 @@ export default {
       }
     }
 
-    async function getMessages() {
-      try {
-        await messagesService.getMessages()
-      } catch (error) {
-        Pop.error(error.message)
-      }
-    }
 
-
-
-    async function getAssistances() {
-      try {
-        await assistancesService.getAssistances()
-      } catch (error) {
-        Pop.error(error.message)
-      }
-    }
 
     async function getBosses() {
       try {
@@ -97,16 +81,14 @@ export default {
     }
 
     onMounted(() => {
-      getMessages()
-      getAssistances()
+
       getBosses()
       getBossDamageByBossId()
     })
 
 
     return {
-      messages: computed(() => AppState.messages),
-      assistances: computed(() => AppState.assistances),
+
       activeBoss: computed(() => AppState.activeBoss),
       bosses: computed(() => AppState.bosses)
 
