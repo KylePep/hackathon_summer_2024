@@ -2,6 +2,10 @@ import { dbContext } from "../db/DbContext.js";
 import { BadRequest, Forbidden } from "../utils/Errors.js";
 
 class BossDamageService {
+  async getBossDamages() {
+    const bossDamages = await dbContext.BossDamage.find().populate('creator', 'name picture')
+    return bossDamages
+  }
 
 
   async createOrIncreaseBossDamage(bossDamageData) {

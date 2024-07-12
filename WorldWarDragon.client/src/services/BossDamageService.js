@@ -5,6 +5,12 @@ import { BossDamage } from "../models/BossDamage.js"
 
 class BossDamageService {
 
+  async getBossDamages() {
+    const res = await api.get('api/bossDamage')
+    logger.log('[BOSS DAMAGGES]', res.data)
+    AppState.bossDamages = res.data.map(b => new BossDamage(b))
+  }
+
   async createOrIncreaseBossDamage(bossDamageData) {
     const res = await api.post('api/bossDamage', bossDamageData)
     const bossDamage = new BossDamage(res.data)

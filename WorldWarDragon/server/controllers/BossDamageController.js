@@ -6,12 +6,21 @@ export class BossDamageController extends BaseController {
   constructor() {
     super('api/bossDamage')
     this.router
+      .get('/', this.getBossDamages)
       .get('/:bossId/boss', this.getBossDamageByBossId)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createOrIncreaseBossDamage)
   }
 
+  async getBossDamages(req, res, next) {
+    try {
+      const damages = await bossDamageService.getBossDamages()
+      return res.send(damages)
+    } catch (error) {
+      next(error);
+    }
+  }
   async getBossDamageByBossId(req, res, next) {
     try {
       const bossId = req.params.bossId

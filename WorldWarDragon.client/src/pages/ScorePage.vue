@@ -4,17 +4,34 @@
       SCORE PAGE
     </div>
   </section>
+  <section class="row">
+    <div class="col-12 text-center fs-1 " v-for="score in bossDamages" :key="score.id">{{ score.creator.name }}
+      {{ score.dmg }}
+    </div>
+  </section>
 </template>
 
 
 <script>
-import { onMounted } from "vue";
+import Pop from "../utils/Pop.js";
+import { bossDamageService } from "../services/BossDamageService.js";
+import { computed, onMounted } from "vue";
+import { AppState } from "../AppState.js";
 
 export default {
   setup() {
     onMounted(() => {
       setBgImg();
+      getBossDamages();
     });
+
+    async function getBossDamages() {
+      try {
+        await bossDamageService.getBossDamages()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
 
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
@@ -23,7 +40,9 @@ export default {
         mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
     }
-    return {}
+    return {
+      bossDamages: computed(() => AppState.bossDamages)
+    }
   }
 }
 </script>

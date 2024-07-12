@@ -40,7 +40,7 @@ export class Dragon {
   }
 
   getRandomDragonSprite() {
-    const dragonImages = ['dragon_1', 'dragon_2', 'dragon_3', 'dragon_4', 'dragon_5'];
+    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5'];
     return Phaser.Math.RND.pick(dragonImages);
   }
 
