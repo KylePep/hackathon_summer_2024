@@ -17,17 +17,9 @@
       </div>
     </div>
 
-    <div class="col-12 d-flex justify-content-center">
+    <div v-if="account.id" class="col-12 d-flex justify-content-center">
       <router-link :to="{ name: 'Game' }" class="btn fight-btn p-3 fs-1 fw-bold">JOIN THE FIGHT!</router-link>
     </div>
-
-    <!-- <div class="col-12 text-center fs-5">
-      <p>The dragons have invaded planet earth! No one knows where they came from but they must be stopped!</p>
-      <p> The largest dragon of them all, {{ activeBoss.name }}, blocks out the sun! It must be taken down at all costs!
-      </p>
-    </div> -->
-
-
 
   </section>
 </template>
@@ -88,7 +80,7 @@ export default {
 
 
     return {
-
+      account: computed(() => AppState.account),
       activeBoss: computed(() => AppState.activeBoss),
       bosses: computed(() => AppState.bosses)
 

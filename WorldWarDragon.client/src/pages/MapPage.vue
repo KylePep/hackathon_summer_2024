@@ -18,21 +18,30 @@
     <div @click="setActiveRoom(4)" class="col-6 map-section">Boghir</div>
   </section>
   <section v-else class="row d-flex justify-content-center  text-center">
-    <button @click="setActiveRoom(0)" class="btn btn-primary">Back</button>
-    <div v-if="activeRoom.id != 5">
+    <div class="col-12">
+      <button @click="setActiveRoom(0)" class=" btn btn-primary">To Map</button>
+    </div>
+    <div v-if="activeRoom.id != 5" class=" col-12 d-flex flex-column justify-content-center align-items-center">
       Messages
-      <div v-for="message in messages" :key="message.id">
+      <NewMessage />
+      <div v-for="message in messages" :key="message.id" class="bg-dark text-light px-3 rounded border border-light">
         {{ message.body }}
         {{ message.roomId }}
         {{ message?.creator?.name }}
+        <button v-if="message.creatorId == account.id" class="selectable mdi mdi-delete btn text-danger"
+          @click="deleteMessage(message.id)"></button>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="col-12 d-flex flex-column justify-content-center align-items-center">
       Assistances
-      <div v-for="assistance in assistances" :key="assistance.id">
+      <NewAssistance />
+      <div v-for="assistance in assistances" :key="assistance.id"
+        class="bg-dark text-light px-3 rounded border border-light">
         {{ assistance.body }}
         {{ assistance.roomId }}
         {{ assistance?.creator?.name }}
+        <button v-if="assistance.creatorId == account.id" class="selectable mdi mdi-delete btn text-danger" @click="
+          deleteAssistance(assistance.id)">delete</button>
       </div>
     </div>
   </section>
@@ -48,6 +57,8 @@ import Pop from "../utils/Pop.js";
 import { assistancesService } from "../services/AssistancesService.js";
 import { messagesService } from "../services/MessagesService.js";
 import { logger } from "../utils/Logger.js";
+import NewMessage from "../components/NewMessage.vue";
+import NewAssistance from "../components/NewAssistance.vue";
 
 
 export default {
@@ -76,14 +87,24 @@ export default {
       setBgImg();
     });
 
+    let bgImg = 'https://images.unsplash.com/photo-1569470451072-68314f596aec?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
       if (mainElement) {
-        let bgImg = 'https://images.unsplash.com/photo-1569470451072-68314f596aec?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        mainElement.style.backgroundImage = ` url(${bgImg})`;
+        mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
 
     }
+
+    function setBg(roomId) {
+      if (roomId != 0) {
+        bgImg = AppState.activeRoom.bgImage
+      }
+      else {
+        bgImg = 'https://images.unsplash.com/photo-1569470451072-68314f596aec?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+      }
+    }
+
     function setActiveRoom(roomId) {
       if (roomId != 0) {
         AppState.activeRoom = MAP_DATA.find((m) => m.id == roomId);
@@ -92,13 +113,28 @@ export default {
         AppState.activeRoom = { id: 0 }
         logger.log('clicked', AppState.activeRoom)
       }
+      setBg(roomId)
+      setBgImg()
     }
     return {
       messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id)),
       assistances: computed(() => AppState.assistances),
       activeRoom: computed(() => AppState.activeRoom),
+      account: computed(() => AppState.account),
 
       setActiveRoom,
+
+      async deleteMessage(messageId) {
+        try {
+          const confirmDelete = await Pop.confirm('Delete?')
+          if (!confirmDelete) {
+            return
+          }
+          await messagesService.deleteMessage(messageId)
+        } catch (error) {
+          Pop.error(error.message, '[]')
+        }
+      },
 
 
     }

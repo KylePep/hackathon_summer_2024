@@ -8,7 +8,10 @@ export const AccountSchema = new Schema(
     name: { type: String, required: true },
     picture: { type: String },
     // NOTE If you wish to add additional properties do so here
-    score: { type: Number }
+    valor: { type: Number, default: 0 },
+    gold: { type: Number, default: 0 },
+    health: { type: Number, default: 100 },
+    power: { type: Number, default: 1 },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

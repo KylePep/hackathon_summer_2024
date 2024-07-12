@@ -41,7 +41,7 @@ export default {
       }
     }
     return {
-      bossDamages: computed(() => AppState.bossDamages.sort((a, b) => b.dmg - a.dmg))
+      bossDamages: computed(() => AppState.bossDamages.filter((b) => b.bossId == AppState.activeBoss.id).sort((a, b) => b.dmg - a.dmg))
     }
   }
 }

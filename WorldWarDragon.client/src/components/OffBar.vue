@@ -13,16 +13,16 @@
 
       <section class="row ps-2 d-flex text-light disable-click">
         <div>
-          VALOR: 0
+          VALOR: {{ account.valor }}
         </div>
         <div class=" ">
-          GOLD: 0
+          GOLD: {{ account.gold }}
         </div>
         <div>
-          HEALTH: 0
+          HEALTH: {{ account.health }}
         </div>
         <div>
-          POWER: 0
+          POWER: {{ account.power }}
         </div>
 
       </section>
@@ -86,10 +86,11 @@
 
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import LoginSmall from './LoginSmall.vue';
+import { AppState } from "../AppState.js";
 
 const theme = ref(loadState('theme') || 'light')
 
@@ -97,11 +98,18 @@ onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
 
+// watchEffect(() => {
+//   const account = AppState.account
+// })
+
 function toggleTheme() {
   theme.value = theme.value == 'light' ? 'dark' : 'light'
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
 }
+
+const account = computed(() => AppState.account)
+
 </script>
 
 

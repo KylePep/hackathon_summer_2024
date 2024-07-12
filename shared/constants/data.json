@@ -6,27 +6,32 @@
     {
       "id": 1,
       "name": "Toleftios",
-      "bgImage": "public/assets/scales.jpeg"
+      "bgImage": "public/assets/room/beach.jpg",
+      "difficulty": 1
     },
     {
       "id": 2,
       "name": "Rysto",
-      "bgImage": "public/assets/scales.jpeg"
+      "bgImage": "public/assets/room/forest.jpg",
+      "difficulty": 2
     },
     {
       "id": 3,
       "name": "Lendbom",
-      "bgImage": "public/assets/scales.jpeg"
+      "bgImage": "public/assets/room/mountain.jpg",
+      "difficulty": 3
     },
     {
       "id": 4,
       "name": "Boghir",
-      "bgImage": "public/assets/scales.jpeg"
+      "bgImage": "public/assets/room/cliff.jpg",
+      "difficulty": 4
     },
     {
       "id": 5,
       "name": "Centeria",
-      "bgImage": "public/assets/scales.jpeg"
+      "bgImage": "public/assets/room/island.jpg",
+      "difficulty": 0
     }
   ],
   "DRAGON_NAMES": [
