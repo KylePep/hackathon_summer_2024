@@ -2,6 +2,28 @@
   "DATA_ITEMS": [
     {}
   ],
+  "MAP_DATA": [
+    {
+      "id": 1,
+      "name": "Toleftios",
+      "bgImage": "public/assets/scales.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Rysto",
+      "bgImage": "public/assets/scales.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Lendbom",
+      "bgImage": "public/assets/scales.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Boghir",
+      "bgImage": "public/assets/scales.jpeg"
+    }
+  ],
   "DRAGON_NAMES": [
     "Smaug",
   "Toothless",

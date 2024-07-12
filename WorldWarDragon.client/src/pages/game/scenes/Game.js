@@ -1,7 +1,3 @@
-import { computed } from "vue";
-import { AppState } from "../../../AppState.js";
-import { bossDamageService } from "../../../services/BossDamageService.js";
-import { logger } from "../../../utils/Logger.js";
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 import { useRouter } from "vue-router";

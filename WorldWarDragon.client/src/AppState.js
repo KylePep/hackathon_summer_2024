@@ -15,5 +15,6 @@ export const AppState = reactive({
   bosses: [],
   bossDamage: 0,
   /** @type {import('./models/BossDamage.js').BossDamage.js} */
-  bossDamages: []
+  bossDamages: [],
+  activeRoom: ''
 })

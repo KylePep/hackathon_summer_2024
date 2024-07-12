@@ -10,8 +10,10 @@
 
 
 <script>
+import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
 import { computed, onMounted } from "vue";
+import { bossService } from "../services/BossService.js";
 
 export default {
   setup() {

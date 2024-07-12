@@ -1,20 +1,28 @@
 <template>
   <section class="row">
     <div class="col-12 fs-1 fw-bold text-center text-light">
-      Map PAGE
+      <h1 v-if="!activeRoom.name" class="fs-1 fw-bold text-center text-light">
+        Select an area
+      </h1>
+      <h1 v-else class="fs-1 fw-bold text-center text-light">
+        {{ activeRoom.name }}
+      </h1>
     </div>
   </section>
   <section class="row map mx-3">
-    <div class="col-6 map-section">ToLeftios</div>
-    <div class="col-6 map-section">RyTosend</div>
-    <div class="col-6 map-section">LendBom</div>
-    <div class="col-6 map-section">Boghir</div>
+    <div @click="setActiveRoom(1)" class="col-6 map-section">Toleftios</div>
+    <div @click="setActiveRoom(2)" class="col-6 map-section">Rysto</div>
+    <div @click="setActiveRoom(3)" class="col-6 map-section">Lendbom</div>
+    <div @click="setActiveRoom(4)" class="col-6 map-section">Boghir</div>
   </section>
 </template>
 
 
 <script>
-import { onMounted } from "vue";
+import { AppState } from "../AppState.js";
+import { computed, onMounted } from "vue";
+import { MAP_DATA } from '../../../shared/constants/index.js'
+
 
 export default {
   setup() {
@@ -25,11 +33,23 @@ export default {
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
       if (mainElement) {
-        let bgImg = '';
+        let bgImg = 'https://images.unsplash.com/photo-1569470451072-68314f596aec?q=80&w=1031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
         mainElement.style.backgroundImage = ` url(${bgImg})`;
       }
+
     }
-    return {}
+    function setActiveRoom(roomID) {
+      AppState.activeRoom = MAP_DATA.find((m) => m.id == roomID);
+    }
+    return {
+      messages: computed(() => AppState.messages),
+      assistances: computed(() => AppState.assistances),
+      activeRoom: computed(() => AppState.activeRoom),
+
+      setActiveRoom,
+
+
+    }
   }
 }
 </script>
