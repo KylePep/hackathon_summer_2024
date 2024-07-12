@@ -5,6 +5,9 @@ export class Account {
     this.name = data.name
     this.picture = data.picture
     // TODO add additional properties if needed
-    this.score = data.score
+    this.valor = data.valor
+    this.gold = data.gold
+    this.health = data.health
+    this.power = data.power
   }
 }
