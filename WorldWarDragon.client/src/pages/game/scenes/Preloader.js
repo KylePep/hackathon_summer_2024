@@ -36,18 +36,17 @@ export class Preloader extends Scene {
         this.load.audio('swish_3', 'sound/swish_3.wav');
         this.load.audio('swish_4', 'sound/swish_4.wav');
 
-        this.load.image('logo', 'logo.png');
         this.load.image('star', 'star.png');
 
-        this.load.image('forestBackground', 'bg_1.png');
         this.load.image('castleGroundBG', 'castleGrounds.jpeg');
         this.load.image('darkDragonBG', 'darkDragon.jpeg');
         this.load.image('mapBG', 'map4.jpeg');
 
-        this.load.image('forest-back', 'parallax_forest_pack/layers/parallax-forest-back-trees.png');
-        this.load.image('forest-lights', 'parallax_forest_pack/layers/parallax-forest-lights.png');
-        this.load.image('forest-middle', 'parallax_forest_pack/layers/parallax-forest-middle-trees.png');
-        this.load.image('forest-front', 'parallax_forest_pack/layers/parallax-forest-front-trees.png');
+        this.load.image('beachBG', 'room/beach.jpg');
+        this.load.image('cliffBG', 'room/cliff.jpg');
+        this.load.image('forestBG', 'room/forest.jpg');
+        this.load.image('islandBG', 'castleGrounds.jpeg');
+        this.load.image('mountainBG', 'room/mountain.jpg');
 
         this.load.image('dragon', 'dragon_2.png');
 
@@ -56,6 +55,21 @@ export class Preloader extends Scene {
         this.load.image('dragon_3', 'dragon/dragon_3.png');
         this.load.image('dragon_4', 'dragon/dragon_4.png');
         this.load.image('dragon_5', 'dragon/dragon_5.png');
+
+        this.load.image('small_0001', 'battle/small_0001.png');
+        this.load.image('small_0004', 'battle/small_0004.png');
+        this.load.image('small_0006', 'battle/small_0006.png');
+        this.load.image('small_0010', 'battle/small_0010.png');
+        this.load.image('small_0015', 'battle/small_0015.png');
+        this.load.image('small_0019', 'battle/small_0019.png');
+        this.load.image('small_0020', 'battle/small_0020.png');
+        this.load.image('small_0022', 'battle/small_0022.png');
+        this.load.image('small_0026', 'battle/small_0026.png');
+        this.load.image('small_0030', 'battle/small_0030.png');
+        this.load.image('small_0032', 'battle/small_0032.png');
+        this.load.image('small_0034', 'battle/small_0034.png');
+        this.load.image('small_0036', 'battle/small_0036.png');
+        this.load.image('small_0037', 'battle/small_0037.png');
     }
 
     create() {
@@ -63,7 +77,7 @@ export class Preloader extends Scene {
         //  For example, you can define global animations here, so we can use them in other scenes.
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('Game');
+        this.scene.start('Map');
     }
 
     // resize(gameSize, baseSize, displaySize, resolution) {

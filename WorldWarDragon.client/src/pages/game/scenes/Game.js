@@ -5,6 +5,7 @@ import { DRAGON_NAMES } from '../../../../../shared/constants/index.js'
 import { DRAGON_TITLES } from '../../../../../shared/constants/index.js'
 import { Dragon } from "../objects/dragon.js";
 import { Slash } from "../objects/slash.js";
+import { AppState } from "../../../AppState.js";
 
 export class Game extends Scene {
     constructor() {
@@ -18,6 +19,7 @@ export class Game extends Scene {
 
         const dragonNames = DRAGON_NAMES
         const dragonTitles = DRAGON_TITLES
+        const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
 
 
         // Randomly select a name and title
@@ -26,7 +28,7 @@ export class Game extends Scene {
 
         this.cameras.main.setBackgroundColor(0xFFA500);
 
-        this.background = this.add.image(0, 0, 'castleGroundBG')
+        this.background = this.add.image(0, 0, backGrounds[AppState.activeRoom.id - 1])
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 

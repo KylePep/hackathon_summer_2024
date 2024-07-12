@@ -12,6 +12,7 @@ export const AccountSchema = new Schema(
     gold: { type: Number, default: 0 },
     health: { type: Number, default: 100 },
     power: { type: Number, default: 1 },
+    inventory: { type: Array }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

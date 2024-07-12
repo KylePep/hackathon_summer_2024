@@ -7,5 +7,6 @@ export class Profile {
     this.gold = data.gold
     this.health = data.health
     this.power = data.power
+    this.inventory = data.inventory
   }
 }

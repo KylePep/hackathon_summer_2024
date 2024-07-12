@@ -32,38 +32,62 @@
         </div>
 
       </section>
+      <section v-else class="row">
+        <div class="fs-3 text-center">
+          Account details
+          <div class="player-icon">
+            <img :src="account.picture" alt="">
+          </div>
+          <div>
+            {{ account.name }}
+          </div>
+        </div>
+      </section>
+      <section class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <div v-if="editMode == false">
+            <button class="btn btn-primary" @click="handleEditing()">EDIT</button>
+          </div>
+          <div v-else>
+            <button class="btn btn-danger" @click="handleEditing('cancel')">CANCEL</button>
+            <button class="btn btn-success" @click="handleEditing()">SUBMIT</button>
+          </div>
+        </div>
+      </section>
 
-      <div class="fs-3 text-center" v-else>
-        Account details
-        <div class="player-icon">
-          <img :src="account.picture" alt="">
+      <section class="row">
+        <div class="col-6 fs-5 text-center">
+          <div class="fs-4">
+            STATS
+          </div>
+          <div>
+            Valor: {{ account.valor || 0 }}
+          </div>
+          <div>
+            Gold: {{ account.gold || 0 }}
+          </div>
+          <div>
+            Health: {{ account.health || 0 }}
+          </div>
+          <div>
+            Power: {{ account.power || 0 }}
+          </div>
         </div>
-        <div>
-          {{ account.name }}
+        <div class="col-6 fs-5 text-center">
+          <div class="fs-4">
+            INVENTORY
+          </div>
+          <div>
+            this
+          </div>
+          <div>
+            that
+          </div>
+          <div>
+            the other
+          </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button v-if="editMode == false" class="btn btn-primary" @click="handleEditing()">edit</button>
-        <button class="btn btn-success" @click="handleEditing()" v-else>Submit</button>
-      </div>
-
-      <div class="fs-5 text-center">
-        <div class="fs-4">
-          Stats
-        </div>
-        <div>
-          Valor: {{ account.valor || 0 }}
-        </div>
-        <div>
-          Gold: {{ account.gold || 0 }}
-        </div>
-        <div>
-          Health: {{ account.health || 0 }}
-        </div>
-        <div>
-          Power: {{ account.power || 0 }}
-        </div>
-      </div>
+      </section>
 
       <div>
 
@@ -106,11 +130,15 @@ export default {
       editable,
       editMode,
       account: computed(() => AppState.account),
-      handleEditing() {
-        if (editMode.value == false) {
-          editMode.value = true
+      handleEditing(option) {
+        if (option != 'cancel') {
+          if (editMode.value == false) {
+            editMode.value = true
+          } else {
+            this.submitAccountChange()
+            editMode.value = false
+          }
         } else {
-          this.submitAccountChange()
           editMode.value = false
         }
       },
