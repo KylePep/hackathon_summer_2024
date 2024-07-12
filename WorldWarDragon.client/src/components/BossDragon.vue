@@ -1,18 +1,34 @@
 <template>
-  <div class="boss-dragon text-center ms-4  pb-1 px-3 fs-3">
+  <div class="boss-dragon position-absolute text-center ms-4  pb-1 px-3 fs-3">
     🐲
     <div class=" px-3">
-      <h1>Boss Dragon</h1>
-      <h2>1000000</h2>
+      <h1>{{ activeBoss.name }}</h1>
+      <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
     </div>
   </div>
 </template>
 
 
 <script>
+import { AppState } from "../AppState.js";
+import { computed, onMounted } from "vue";
+
 export default {
   setup() {
-    return {}
+    async function getBosses() {
+      try {
+        await bossService.getBosses()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
+    onMounted(() => {
+      getBosses()
+    })
+    return {
+      activeBoss: computed(() => AppState.activeBoss),
+    }
   }
 }
 </script>

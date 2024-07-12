@@ -6,9 +6,25 @@
         <div class="col-4  ps-3 pt-1">
           <LoginSmall />
         </div>
-        <div class="col-4 d-flex justify-content-center ">
+        <div class="col-4 d-flex justify-content-center position-relative">
           <BossDragon />
         </div>
+      </section>
+
+      <section class="row ps-2 text-light">
+        <div>
+          VALOR: 0
+        </div>
+        <div class=" ">
+          GOLD: 0
+        </div>
+        <div>
+          HEALTH: 0
+        </div>
+        <div>
+          POWER: 0
+        </div>
+
       </section>
 
 
@@ -50,6 +66,12 @@
             <li class="nav-item">
               <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
                 About
+              </router-link>
+            </li>
+
+            <li class="nav-item">
+              <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+                Map
               </router-link>
             </li>
 
