@@ -2,10 +2,22 @@
 import Phaser from 'phaser';
 import { onMounted, ref, toRaw } from 'vue';
 import PhaserGame from './game/PhaserGame.vue';
+import Pop from "../utils/Pop.js";
+import { messagesService } from "../services/MessagesService.js";
 
 onMounted(() => {
   setBgImg();
+  getMessages();
 });
+
+async function getMessages() {
+  try {
+    await messagesService.getMessages()
+  } catch (error) {
+    Pop.error(error.message)
+  }
+}
+
 
 const setBgImg = () => {
   const mainElement = document.querySelector('main');

@@ -12,21 +12,21 @@ export class GameResults extends Scene {
         super('GameResults');
     }
 
-
     create() {
-        this.getBossData()
+        this.getBossData();
         this.cameras.main.setBackgroundColor(0xff4500);
 
         this.background = this.add.image(0, 0, 'darkDragonBG')
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
-        this.updateBossHP()
+        this.updateBossHP();
 
-        this.updateAccount()
 
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
+
+        this.rewardItems = { attack: 0, shield: 0, heal: 0 };
 
         this.title = this.add.text(centerX, centerY - 200, `${AppState.bossDamage} Damage dealt to ${AppState.activeBoss.name}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
@@ -42,53 +42,54 @@ export class GameResults extends Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} Valor `, {
+        this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-
         this.fight = this.add.text(centerX, centerY + 100, 'FIGHT!', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100).setInteractive()
+        }).setOrigin(0.5).setDepth(100).setInteractive();
 
         this.fight.on('pointerdown', () => {
-            this.scene.start('Game')
-        })
+            this.scene.start('Game');
+        });
 
         this.fight.on('pointerover', () => {
-            this.fight.setColor('red')
+            this.fight.setColor('red');
             this.input.setDefaultCursor('pointer');
-        })
+        });
+
         this.fight.on('pointerout', () => {
-            this.fight.setColor('#ffffff')
+            this.fight.setColor('#ffffff');
             this.input.setDefaultCursor('default');
-        })
+        });
 
         this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100).setInteractive()
+        }).setOrigin(0.5).setDepth(100).setInteractive();
 
         this.return.on('pointerdown', () => {
             EventBus.emit('navigate-home');
         });
-        this.return.on('pointerover', () => {
-            this.return.setColor('white')
-            this.input.setDefaultCursor('pointer');
-        })
-        this.return.on('pointerout', () => {
-            this.return.setColor('gray')
-            this.input.setDefaultCursor('default');
-        })
 
+        this.return.on('pointerover', () => {
+            this.return.setColor('white');
+            this.input.setDefaultCursor('pointer');
+        });
+
+        this.return.on('pointerout', () => {
+            this.return.setColor('gray');
+            this.input.setDefaultCursor('default');
+        });
 
         this.adjustTextSize();
-
+        this.updateAccount();
         EventBus.emit('current-scene-ready', this);
     }
 
@@ -100,17 +101,15 @@ export class GameResults extends Scene {
 
         this.background.setDisplaySize(width, height);
 
-        // Re-center the dragon sprite on resize
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
-        this.title.setPosition(centerX, centerY - 200)
-        this.bossHp.setPosition(centerX, centerY - 100)
-        this.rewards.setPosition(centerX, centerY)
-        this.fight.setPosition(centerX, centerY + 100)
-        this.return.setPosition(centerX, centerY + 200)
+        this.title.setPosition(centerX, centerY - 200);
+        this.bossHp.setPosition(centerX, centerY - 100);
+        this.rewards.setPosition(centerX, centerY);
+        this.fight.setPosition(centerX, centerY + 100);
+        this.return.setPosition(centerX, centerY + 200);
 
         this.adjustTextSize();
-
     }
 
     setFontToFitWindow() {
@@ -119,6 +118,7 @@ export class GameResults extends Scene {
         const scaleFactor = Math.min(width / 1600, height / 1200);
         return baseFontSize * scaleFactor;
     }
+
     adjustTextSize() {
         const newFontSize = `${this.setFontToFitWindow()}px`;
 
@@ -133,27 +133,48 @@ export class GameResults extends Scene {
         bossService.getBosses();
     }
 
+    lootTable() {
+        const difficulty = AppState.activeRoom.difficulty;
+        const baseChance = difficulty / 100;
+        const changeLuckMod = baseChance + (AppState.luckMod[AppState.activeRoom.id]) * .1
+        const items = ['attack', 'shield', 'heal'];
+
+        items.forEach(item => {
+            if (Math.random() < changeLuckMod) {
+                this.rewardItems[item]++;
+            }
+        });
+
+        this.rewards.setText(`+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`);
+    }
+
     async updateAccount() {
         try {
-            const accountData = {}
-            accountData.gold = AppState.account.gold + AppState.gold
-            accountData.valor = AppState.account.valor + AppState.valor
-            logger.log('GOLD VALOR', accountData)
-            await accountService.editAccount(accountData)
+            this.lootTable();
+            const accountData = {
+                gold: AppState.account.gold + AppState.gold,
+                valor: AppState.account.valor + AppState.valor,
+                attack: AppState.account.attack + this.rewardItems.attack,
+                shield: AppState.account.shield + this.rewardItems.shield,
+                heal: AppState.account.heal + this.rewardItems.heal
+            };
+            logger.log('Account Data', accountData);
+            await accountService.editAccount(accountData);
         } catch (error) {
-            Pop.error(error.message, '[]')
+            Pop.error(error.message, '[UPDATE ACCOUNT - GAME RESULT]');
         }
     }
 
     async updateBossHP() {
         try {
-            const bossDamageData = {}
-            bossDamageData.dmg = AppState.bossDamage
-            bossDamageData.bossId = AppState.activeBoss.id
-            logger.log('BossDamage', AppState.bossDamage)
-            await bossDamageService.createOrIncreaseBossDamage(bossDamageData)
+            const bossDamageData = {
+                dmg: AppState.bossDamage,
+                bossId: AppState.activeBoss.id
+            };
+            logger.log('Boss Damage', AppState.bossDamage);
+            await bossDamageService.createOrIncreaseBossDamage(bossDamageData);
         } catch (error) {
-            Pop.error(error.message, '[]')
+            Pop.error(error.message, '[]');
         }
     }
 }
