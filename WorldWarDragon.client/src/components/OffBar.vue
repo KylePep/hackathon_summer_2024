@@ -65,6 +65,12 @@
               </router-link>
             </li>
 
+            <li class="nav-item">
+              <router-link class="btn text-success lighten-30 selectable text-uppercase" :to="{ name: 'Account' }">
+                ACCOUNT
+              </router-link>
+            </li>
+
 
             <li class="nav-item">
               <router-link :to="{ name: 'Score' }" class="btn text-success lighten-30 selectable text-uppercase">

@@ -1,11 +1,12 @@
 <template>
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center">
-      SCORE PAGE
+    <div class="col-12 fs-1 fw-bold text-center text-light">
+      Hall of Valor
     </div>
   </section>
   <section class="row">
-    <div class="col-12 text-center fs-1 " v-for="score in bossDamages" :key="score.id">{{ score.creator.name }}
+    <div class="col-12 text-center fs-1 text-light" v-for="score in bossDamages" :key="score.id">{{ score.creator.name
+      }}
       {{ Math.round(score.dmg) }}
     </div>
   </section>

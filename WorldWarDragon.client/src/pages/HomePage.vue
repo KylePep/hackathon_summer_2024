@@ -17,8 +17,14 @@
       </div>
     </div>
 
-    <div v-if="account.id" class="col-12 d-flex justify-content-center">
-      <router-link :to="{ name: 'Game' }" class="btn fight-btn p-3 fs-1 fw-bold">JOIN THE FIGHT!</router-link>
+    <div v-if="account.id" class="col-4 d-flex justify-content-center">
+      <router-link :to="{ name: 'Map' }" class="btn fight-btn w-100 p-3 fs-1 fw-bold">Map</router-link>
+    </div>
+    <div v-if="account.id" class="col-4 d-flex justify-content-center">
+      <router-link :to="{ name: 'Game' }" class="btn fight-btn p-3 fs-1 w-100 fw-bold">JOIN THE FIGHT!</router-link>
+    </div>
+    <div v-if="account.id" class="col-4 d-flex justify-content-center">
+      <router-link :to="{ name: 'Score' }" class="btn fight-btn p-3 fs-1 w-100 fw-bold">HALL OF VALOR</router-link>
     </div>
 
   </section>
