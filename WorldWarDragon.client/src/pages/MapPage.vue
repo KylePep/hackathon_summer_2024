@@ -51,13 +51,14 @@
     <div v-else class="col-12 d-flex flex-column justify-content-center align-items-center">
       <h2 class="text-light">Assistance</h2>
       <NewAssistance />
-      <div v-for="assistance in assistances" :key="assistance.id"
-        class="bg-dark text-light px-3 rounded border border-light">
+      <div v-for="assistance in assistances" :key="assistance.id" class="bg-dark px-3 rounded border border-light"
+        :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
         {{ assistance.body }}
         {{ assistance.roomId }}
         {{ assistance?.creator?.name }}
-        <!-- <button v-if="assistance.creatorId == account.id" class="selectable mdi mdi-delete btn text-danger" @click="
-          deleteAssistance(assistance.id)">delete</button> -->
+        <button v-if="assistance.creatorId == account.id && assistance
+          .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
+            claimAssistance(assistance.id)"> Claim</button>
       </div>
     </div>
   </section>
@@ -167,6 +168,17 @@ export default {
             return
           }
           await assistancesService.deleteAssistance(assistanceId)
+        } catch (error) {
+          Pop.error(error.message, '[]')
+        }
+      },
+      async claimAssistance(assistanceId) {
+        try {
+          const confirmClaim = await Pop.confirm('Claim?')
+          if (!confirmClaim) {
+            return
+          }
+          await assistancesService.claimAssistance(assistanceId)
         } catch (error) {
           Pop.error(error.message, '[]')
         }

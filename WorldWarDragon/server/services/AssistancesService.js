@@ -2,6 +2,24 @@ import { dbContext } from "../db/DbContext.js";
 import { BadRequest, Forbidden } from "../utils/Errors.js";
 
 class AssistancesService {
+
+  async claimAssistance(assistanceId, userId) {
+    const claimedAssistance = await this.getAssistancesById(assistanceId)
+    claimedAssistance.claim = true
+
+    await claimedAssistance.save()
+    return claimedAssistance
+  }
+
+  async getAssistancesById(assistanceId) {
+    const assist = await dbContext.Assistance.findById(assistanceId)
+    if (!assist) {
+      throw new BadRequest(`No assist found with id:${assistanceId}`)
+    }
+    return assist
+  }
+
+
   async getAssistances() {
     const assistances = await dbContext.Assistance.find().populate('creator', 'name picture')
     return assistances
