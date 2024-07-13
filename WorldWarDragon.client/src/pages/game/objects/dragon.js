@@ -6,7 +6,11 @@ export class Dragon {
   constructor(scene, x, y) {
     this.scene = scene;
     this.dragonHP = this.getRandomDragonHP();
-    this.bossDamage = 10 * (this.dragonHP * .01);
+    this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
+    this.modifier = Phaser.Math.RND.pick([1.1, .9])
+    this.gold = Phaser.Math.RoundTo((this.bossDamage * this.modifier), 0)
+    logger.log('Gold', this.gold, this.bossDamage)
+    this.valor = Phaser.Math.RoundTo((this.bossDamage * 0.1), 0)
 
     this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5)
     this.setScaleToFitWindow(0);
@@ -36,7 +40,7 @@ export class Dragon {
   getRandomDragonHP() {
     const minHP = 10; // 100 / 10
     const maxHP = 100; // 1000 / 10
-    return Phaser.Math.Between(minHP, maxHP) * 10;
+    return Phaser.Math.Between(minHP, maxHP) * (1 + (AppState.activeRoom.difficulty * AppState.activeRoom.difficulty));
   }
 
   getRandomDragonSprite() {
@@ -79,16 +83,16 @@ export class Dragon {
     sound.play();
     sound.volume = 0.2;
 
-    this.dragonHP -= 10
+    this.dragonHP -= AppState.account.power
     console.log(this.dragonHP)
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     if (this.dragonHP <= 0) {
 
-      this.updateBossHP({
-        dmg: this.bossDamage,
-        bossId: AppState.activeBoss.id
-      })
+      AppState.bossDamage = this.bossDamage
+      AppState.gold = this.gold
+      AppState.valor = this.valor
+
       this.scene.events.off('dragon:hit')
       this.scene.events.off('dragon:over')
       this.scene.events.off('dragon:out')
@@ -141,10 +145,6 @@ export class Dragon {
     this.scene.input.setDefaultCursor('default');
   }
 
-  updateBossHP(bossDamageData) {
-    AppState.bossDamage = this.bossDamage
-    logger.log('BossDamage', AppState.bossDamage)
-    bossDamageService.createOrIncreaseBossDamage(bossDamageData)
-  }
+
 
 }

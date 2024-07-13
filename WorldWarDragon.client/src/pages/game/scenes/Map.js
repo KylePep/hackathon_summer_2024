@@ -25,31 +25,31 @@ export class Map extends Scene {
     createButtons() {
         const fontSize = this.getFontSize();
 
-        this.topLeftButton = this.add.text(0, 0, 'Toleftios', {
+        this.topLeftButton = this.add.text(0, 0, 'Toleftios\nEasy', {
             fontFamily: 'Arial Black', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Left', 1)).on('pointerover', () => this.buttonOver(this.topLeftButton)).on('pointerout', () => this.buttonOut(this.topLeftButton));
 
-        this.topRightButton = this.add.text(0, 0, 'Rysto', {
+        this.topRightButton = this.add.text(0, 0, 'Rysto\nMedium', {
             fontFamily: 'Arial Black', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(1, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Right', 2)).on('pointerover', () => this.buttonOver(this.topRightButton)).on('pointerout', () => this.buttonOut(this.topRightButton));
 
-        this.centerButton = this.add.text(0, 0, 'Centeria', {
+        this.centerButton = this.add.text(0, 0, 'Centeria\nSafe', {
             fontFamily: 'Arial Black', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.buttonAction('Center', 5)).on('pointerover', () => this.buttonOver(this.centerButton)).on('pointerout', () => this.buttonOut(this.centerButton));
 
-        this.bottomRightButton = this.add.text(0, 0, 'Boghir', {
+        this.bottomRightButton = this.add.text(0, 0, 'Boghir\nExtreme', {
             fontFamily: 'Arial Black', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(1, 0).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Right', 4)).on('pointerover', () => this.buttonOver(this.bottomRightButton)).on('pointerout', () => this.buttonOut(this.bottomRightButton));
+        }).setOrigin(1, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Right', 4)).on('pointerover', () => this.buttonOver(this.bottomRightButton)).on('pointerout', () => this.buttonOut(this.bottomRightButton));
 
-        this.bottomLeftButton = this.add.text(0, 0, 'Lendbom', {
+        this.bottomLeftButton = this.add.text(0, 0, 'Lendbom\nHard', {
             fontFamily: 'Arial Black', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

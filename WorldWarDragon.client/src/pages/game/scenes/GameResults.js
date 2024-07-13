@@ -2,6 +2,10 @@ import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 import { bossService } from "../../../services/BossService.js";
 import { AppState } from "../../../AppState.js";
+import Pop from "../../../utils/Pop.js";
+import { accountService } from "../../../services/AccountService.js";
+import { logger } from "../../../utils/Logger.js";
+import { bossDamageService } from "../../../services/BossDamageService.js";
 
 export class GameResults extends Scene {
     constructor() {
@@ -17,10 +21,14 @@ export class GameResults extends Scene {
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
+        this.updateBossHP()
+
+        this.updateAccount()
+
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
-        this.title = this.add.text(centerX, centerY - 100, 'Game Results', {
+        this.title = this.add.text(centerX, centerY - 200, `${AppState.bossDamage} Damage dealt to ${AppState.activeBoss.name}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -28,7 +36,13 @@ export class GameResults extends Scene {
 
         const newBossHp = AppState.activeBoss.hp - AppState.activeBoss.damages - AppState.bossDamage;
 
-        this.bossHp = this.add.text(centerX, centerY, `Boss Dragon HP ${newBossHp}`, {
+        this.bossHp = this.add.text(centerX, centerY - 100, `${newBossHp} Hp remains`, {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
+
+        this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} Valor `, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -89,8 +103,9 @@ export class GameResults extends Scene {
         // Re-center the dragon sprite on resize
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
-        this.title.setPosition(centerX, centerY - 100)
-        this.bossHp.setPosition(centerX, centerY)
+        this.title.setPosition(centerX, centerY - 200)
+        this.bossHp.setPosition(centerX, centerY - 100)
+        this.rewards.setPosition(centerX, centerY)
         this.fight.setPosition(centerX, centerY + 100)
         this.return.setPosition(centerX, centerY + 200)
 
@@ -109,11 +124,36 @@ export class GameResults extends Scene {
 
         this.title.setStyle({ fontSize: newFontSize });
         this.bossHp.setStyle({ fontSize: newFontSize });
+        this.rewards.setStyle({ fontSize: newFontSize });
         this.fight.setStyle({ fontSize: newFontSize });
         this.return.setStyle({ fontSize: newFontSize });
     }
 
     getBossData() {
         bossService.getBosses();
+    }
+
+    async updateAccount() {
+        try {
+            const accountData = {}
+            accountData.gold = AppState.gold
+            accountData.valor = AppState.valor
+            logger.log('GOLD VALOR', accountData)
+            await accountService.editAccount(accountData)
+        } catch (error) {
+            Pop.error(error.message, '[]')
+        }
+    }
+
+    async updateBossHP() {
+        try {
+            const bossDamageData = {}
+            bossDamageData.dmg = AppState.bossDamage
+            bossDamageData.bossId = AppState.activeBoss.id
+            logger.log('BossDamage', AppState.bossDamage)
+            await bossDamageService.createOrIncreaseBossDamage(bossDamageData)
+        } catch (error) {
+            Pop.error(error.message, '[]')
+        }
     }
 }
