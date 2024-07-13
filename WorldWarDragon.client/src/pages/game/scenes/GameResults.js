@@ -158,7 +158,6 @@ export class GameResults extends Scene {
                 shield: AppState.account.shield + this.rewardItems.shield,
                 heal: AppState.account.heal + this.rewardItems.heal
             };
-            logger.log('Account Data', accountData);
             await accountService.editAccount(accountData);
         } catch (error) {
             Pop.error(error.message, '[UPDATE ACCOUNT - GAME RESULT]');
@@ -171,7 +170,6 @@ export class GameResults extends Scene {
                 dmg: AppState.bossDamage,
                 bossId: AppState.activeBoss.id
             };
-            logger.log('Boss Damage', AppState.bossDamage);
             await bossDamageService.createOrIncreaseBossDamage(bossDamageData);
         } catch (error) {
             Pop.error(error.message, '[]');

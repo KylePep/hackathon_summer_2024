@@ -45,6 +45,7 @@ export class Preloader extends Scene {
         this.load.audio('swish_4', 'sound/swish_4.wav');
         this.load.audio('swish_3', 'sound/swish_3.wav');
         this.load.audio('attackItem', 'sound/magic1.wav');
+        this.load.audio('healItem', 'sound/spell.wav');
 
         this.load.image('star', 'star.png');
 

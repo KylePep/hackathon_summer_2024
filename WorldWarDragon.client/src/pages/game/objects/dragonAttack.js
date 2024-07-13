@@ -53,7 +53,7 @@ export class DragonAttack extends GameObjects.Container {
 
     logger.log('PLAYERHP', this.scene.playerHp)
     this.scene.playerHp -= 10
-    this.scene.playerText.setText(`${AppState.account.name} \n  HP: ${this.scene.playerHp}`)
+    this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
     if (this.scene.playerHp <= 0) {
       EventBus.emit('navigate-home');
     }
@@ -97,14 +97,14 @@ export class DragonAttack extends GameObjects.Container {
   }
 
   setProgressBarSize(width, height) {
-    logger.log('new size')
+    // logger.log('new size')
     this.progressBarWidth = width;
     this.progressBarHeight = height;
     this.updateProgressBar();
   }
 
   updatePosition() {
-    logger.log('new position')
+    // logger.log('new position')
     this.setPosition(this.scene.dragon.x, this.scene.dragon.y + 50); // Update the container position relative to the dragon
   }
 }

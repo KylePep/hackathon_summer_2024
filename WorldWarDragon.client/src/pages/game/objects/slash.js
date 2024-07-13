@@ -90,7 +90,6 @@ export class Slash {
   }
 
   destroy() {
-    logger.log('destroy - slash');
 
     // Remove event listeners
     this.interactiveSlash.off('pointerdown');

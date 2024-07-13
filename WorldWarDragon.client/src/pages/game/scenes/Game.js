@@ -64,7 +64,7 @@ export class Game extends Scene {
         const topLeftX = 128; // Offset from the left edge
         const topLeftY = 16; // Offset from the bottom edge
 
-        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name} \n  HP: ${this.playerHp}`, {
+        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name}\nHP: ${this.playerHp}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

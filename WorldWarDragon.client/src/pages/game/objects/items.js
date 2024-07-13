@@ -44,7 +44,8 @@ export class Item {
           if (!this.isDrawing) {
             // obj.setTint(0x00ff00); // Hover color - green
           } else {
-            this.inputCode.push(obj.id)
+            this.setInputCode(obj.id)
+
             obj.setTint(0xff0000); // red
             this.addStaticLine(obj);
           }
@@ -58,7 +59,6 @@ export class Item {
 
         // Change color on click and start drawing
         obj.on('pointerdown', (pointer) => {
-          logger.log('made it here', this.isDrawing);
           if (!this.isDrawing) {
             this.startDrawing(obj.x, obj.y, obj);
             obj.setTint(0xff0000); // Clicked color
@@ -124,9 +124,11 @@ export class Item {
       line.setTo(this.startX, this.startY, this.startX + distance * Math.cos(angle), this.startY + distance * Math.sin(angle));
       line.setLineWidth(this.lineWidth); // Ensure line width is set
 
-      if (this.lines.length < 3) {
+      if (this.inputCode.length < 4) {
+        logger.log('inputCode', this.inputCode)
         this.startDrawing(obj.x, obj.y, obj);
       } else {
+        logger.log('inputCode', this.inputCode)
         this.stopDrawing(obj);
       }
     }
@@ -153,50 +155,60 @@ export class Item {
     }
   }
 
-  checkInputCode() {
-    logger.log(this.inputCode)
-    if (this.action == 'input') {
-      this.patterns.attack.forEach((i) => {
-        if (this.inputCode[i] == i) {
-          if (this.action == 'input') {
-            this.action = 'attack'
-          }
-        }
-        this.patterns.shield.forEach((i) => {
-          if (this.inputCode[i] == i) {
-            if (this.action == 'input') {
-              this.action = 'shield'
-            }
-          }
-        })
-        this.patterns.heal.forEach((i) => {
-          if (this.inputCode[i] == i) {
-            if (this.action == 'input') {
-              this.action = 'heal'
-            }
-          }
-        })
-      })
-    }
-
-    if (this.action != 'input') {
-      AppState.account[this.action] -= 1
-      const accontData = AppState.account
-      accountService.editAccount(accontData)
-
-      this.useItem();
-
-      this.action = 'input'
+  setInputCode(objId) {
+    if (this.inputCode[this.inputCode.length - 1] != objId) {
+      this.inputCode.push(objId)
     }
   }
 
+  checkInputCode() {
+    if (this.action == 'input') {
+      const inputCodeString = this.inputCode.join(',');
+
+      // Convert pattern arrays to strings for easy comparison
+      const patterns = {
+        attack: this.patterns.attack.join(','),
+        shield: this.patterns.shield.join(','),
+        heal: this.patterns.heal.join(',')
+      };
+
+      // Check if inputCode matches any pattern
+      if (inputCodeString === patterns.attack) {
+        this.action = 'attack';
+      } else if (inputCodeString === patterns.shield) {
+        this.action = 'shield';
+      } else if (inputCodeString === patterns.heal) {
+        this.action = 'heal';
+      }
+    }
+
+    logger.log('ACTION', this.action);
+
+    if (this.action != 'input') {
+      AppState.account[this.action] -= 1;
+      const accountData = AppState.account;
+      accountService.editAccount(accountData);
+
+      this.useItem();
+
+      this.action = 'input';
+    }
+    this.inputCode = [];
+  }
+
   useItem() {
-    if (this.action = 'attack') {
+
+    if (this.action == 'attack') {
       this.scene.events.emit('dragon:attackItem')
-    } else if (this.action = 'shield') {
+    } else if (this.action == 'shield') {
       this.scene.events.emit('dragon:shieldItem')
-    } else if (this.action = 'heal') {
-      this.scene.events.emit('dragon:healItem')
+    } else if (this.action == 'heal') {
+      const selectedSound = 'healItem'
+      const sound = this.scene.sound.add(selectedSound)
+      sound.play();
+      sound.volume = 1;
+      this.scene.playerHp = this.scene.playerMaxHp;
+      this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
     } else {
     }
   }
