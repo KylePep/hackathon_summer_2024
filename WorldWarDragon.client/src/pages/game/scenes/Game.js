@@ -42,6 +42,7 @@ export class Game extends Scene {
 
         this.item = new Item(this, centerX, centerY);
 
+
         this.slash = new Slash(this, centerX, centerY)
 
         this.clickText = this.add.text(128, 16, `HP: ${this.dragon.dragonHP}`, {
