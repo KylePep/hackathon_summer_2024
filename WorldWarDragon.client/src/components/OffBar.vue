@@ -11,7 +11,7 @@
         </div>
       </section>
 
-      <section class="row ps-2 d-flex text-light disable-click">
+      <section class="row ps-2 d-flex text-light disable-click fw-bold text-shadow">
         <div>
           VALOR: {{ account.valor }}
         </div>
@@ -130,6 +130,10 @@ a:hover {
 
 li {
   padding-bottom: 32px;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 0px black;
 }
 
 .disable-click {

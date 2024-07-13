@@ -12,7 +12,7 @@
         :style="{ backgroundImage: `url(${activeBoss.image})` }">
         <div class="pt-5">
           <h1>{{ activeBoss.name }}</h1>
-          <h2 class="">{{ activeBoss.hp - activeBoss.damages }}</h2>
+          <h2 class="">{{ Math.round(activeBoss.hp - activeBoss.damages) }}</h2>
         </div>
       </div>
     </div>
@@ -92,6 +92,9 @@ export default {
 
 <style lang="scss" scoped>
 .hero-title {
+  font-family: "Metal Mania", system-ui;
+  font-weight: 400;
+  font-style: normal;
   font-size: 64px;
 
   color: #ff4500;
@@ -108,8 +111,12 @@ export default {
 }
 
 .boss-dragon-img {
+  font-family: "Metal Mania", system-ui;
+  font-weight: 400;
+  font-style: normal;
   width: 40%;
   height: 40vh;
+  max-width: 512px;
 
   >div {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.593) 40%);

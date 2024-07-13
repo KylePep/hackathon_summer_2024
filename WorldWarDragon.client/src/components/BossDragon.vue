@@ -3,7 +3,7 @@
     🐲
     <div class=" px-3">
       <h1>{{ activeBoss.name }}</h1>
-      <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
+      <h2>{{ Math.round(activeBoss.hp - activeBoss.damages) }}</h2>
     </div>
   </div>
 </template>
@@ -37,10 +37,8 @@ export default {
 
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
 .boss-dragon {
-  font-family: "MedievalSharp", cursive;
+  font-family: "Metal Mania", system-ui;
   font-weight: 400;
   font-style: normal;
   color: var(--bs-light);

@@ -6,7 +6,7 @@
   </section>
   <section class="row">
     <div class="col-12 text-center fs-1 " v-for="score in bossDamages" :key="score.id">{{ score.creator.name }}
-      {{ score.dmg }}
+      {{ Math.round(score.dmg) }}
     </div>
   </section>
 </template>

@@ -11,7 +11,7 @@
     </div>
   </section>
 
-  <section v-if="!activeRoom.name || activeRoom.id == 0" class="row position-relative map mx-3">
+  <section v-if="!activeRoom.name || activeRoom.id == 0" class="row position-relative map mx-auto mx-3">
     <div @click="setActiveRoom(5)" class="position-absolute top-50 start-50 translate-middle map-section map-center">
       Centeria</div>
     <div @click="setActiveRoom(1)" class="col-6 map-section">Toleftios</div>
@@ -51,14 +51,33 @@
     <div v-else class="col-12 d-flex flex-column justify-content-center align-items-center">
       <h2 class="text-light">Assistance</h2>
       <NewAssistance />
-      <div v-for="assistance in assistances" :key="assistance.id" class="bg-dark px-3 rounded border border-light"
-        :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
-        {{ assistance.body }}
-        {{ assistance.roomId }}
-        {{ assistance?.creator?.name }}
-        <button v-if="assistance.creatorId == account.id && assistance
-          .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
-            claimAssistance(assistance.id)"> Claim</button>
+      <div class="d-flex">
+        <div>
+          <div v-for="assistance in assistancesUnclaimed" :key="assistance.id"
+            class="bg-dark px-3 rounded border border-light"
+            :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
+            {{ assistance.body }}
+            {{ assistance.roomId }}
+            {{ assistance?.creator?.name }}
+            <button v-if="assistance.creatorId == account.id && assistance
+              .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
+                claimAssistance(assistance.id)"> Claim</button>
+          </div>
+        </div>
+        <div>
+          <div v-for="assistance in assistancesClaimed" :key="assistance.id"
+            class="bg-dark px-3 rounded border border-light"
+            :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
+            {{ assistance.body }}
+            {{ assistance.roomId }}
+            {{ assistance?.creator?.name }}
+            <button v-if="assistance.creatorId == account.id && assistance
+              .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
+                claimAssistance(assistance.id)"> Claim</button>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </section>
@@ -143,7 +162,8 @@ export default {
     }
     return {
       messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id)),
-      assistances: computed(() => AppState.assistances),
+      assistancesUnclaimed: computed(() => AppState.assistances.filter((a) => a.claim == false)),
+      assistancesClaimed: computed(() => AppState.assistances.filter((a) => a.claim == true)),
       activeRoom: computed(() => AppState.activeRoom),
       account: computed(() => AppState.account),
       AppState: computed(() => AppState),
@@ -201,7 +221,7 @@ export default {
 
   width: auto;
   height: 512px;
-
+  max-width: 1024px;
 }
 
 .map-center {

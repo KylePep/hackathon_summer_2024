@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import { AppState } from "../../../AppState.js";
 import { logger } from "../../../utils/Logger.js";
+import { accountService } from "../../../services/AccountService.js";
 
 export class Item {
   constructor(scene, x, y) {
@@ -8,40 +9,43 @@ export class Item {
     this.x = x;
     this.y = y;
     this.items = ['attack', 'shield', 'heal'];
+    this.patterns = {
+      attack: [0, 3, 1, 2],
+      shield: [0, 3, 2, 1],
+      heal: [0, 2, 1, 3],
+    }
+    this.inputCode = []
+    this.action = 'input'
     this.interactiveObjects = [];
     this.lines = [];
     this.isDrawing = false;
     this.lineWidth = 5; // Set the desired line width here
 
     this.createInteractiveObjects();
-
-    this.mouse = this.scene.add.text(128, 96, `Mouse: X:0 | Y:0`, {
-      fontFamily: 'Arial Black', fontSize: 16, color: '#ffffff',
-      stroke: '#000000', strokeThickness: 8,
-      align: 'center'
-    }).setDepth(300);
   }
 
   createInteractiveObjects() {
     if (AppState.account.attack > 0 || AppState.account.shield > 0 || AppState.account.heal > 0) {
       const positions = [
-        { x: this.x, y: this.y - 300 },
-        { x: this.x, y: this.y + 300 },
-        { x: this.x + 300, y: this.y },
-        { x: this.x - 300, y: this.y }
+        { x: this.x, y: this.y - 300, id: 0 },
+        { x: this.x, y: this.y + 300, id: 2 },
+        { x: this.x + 300, y: this.y, id: 1 },
+        { x: this.x - 300, y: this.y, id: 3 }
       ];
 
       positions.forEach((pos, index) => {
         const obj = this.scene.add.sprite(pos.x, pos.y, 'star')
           .setInteractive()
           .setDepth(200);
+        obj.id = pos.id; // Assign the ID to the object
 
         // Change color on hover
         obj.on('pointerover', () => {
           if (!this.isDrawing) {
-            obj.setTint(0x00ff00); // Hover color - green
+            // obj.setTint(0x00ff00); // Hover color - green
           } else {
-            obj.setTint(0x0B2ED6); // blue
+            this.inputCode.push(obj.id)
+            obj.setTint(0xff0000); // red
             this.addStaticLine(obj);
           }
         });
@@ -58,6 +62,7 @@ export class Item {
           if (!this.isDrawing) {
             this.startDrawing(obj.x, obj.y, obj);
             obj.setTint(0xff0000); // Clicked color
+            this.inputCode.push(obj.id)
           } else {
             this.stopDrawing(obj);
             obj.setTint(0xffffff); // Reset to default color
@@ -70,8 +75,6 @@ export class Item {
       this.scene.input.on('pointermove', (pointer) => {
         if (this.isDrawing) {
           this.updateLine(pointer.x, pointer.y);
-          // Update mouse coordinates
-          this.updateMouseCoordinates(pointer.x, pointer.y);
         }
       });
 
@@ -142,10 +145,59 @@ export class Item {
         line.setTo(this.startX, this.startY, this.startX + distance * Math.cos(angle), this.startY + distance * Math.sin(angle));
         line.setLineWidth(this.lineWidth); // Ensure line width is set
         // Logic for completing the action when all objects are connected can be added here
+        this.checkInputCode()
         this.cancelDrawing();
       }
     } else {
       this.cancelDrawing();
+    }
+  }
+
+  checkInputCode() {
+    logger.log(this.inputCode)
+    if (this.action == 'input') {
+      this.patterns.attack.forEach((i) => {
+        if (this.inputCode[i] == i) {
+          if (this.action == 'input') {
+            this.action = 'attack'
+          }
+        }
+        this.patterns.shield.forEach((i) => {
+          if (this.inputCode[i] == i) {
+            if (this.action == 'input') {
+              this.action = 'shield'
+            }
+          }
+        })
+        this.patterns.heal.forEach((i) => {
+          if (this.inputCode[i] == i) {
+            if (this.action == 'input') {
+              this.action = 'heal'
+            }
+          }
+        })
+      })
+    }
+
+    if (this.action != 'input') {
+      AppState.account[this.action] -= 1
+      const accontData = AppState.account
+      accountService.editAccount(accontData)
+
+      this.useItem();
+
+      this.action = 'input'
+    }
+  }
+
+  useItem() {
+    if (this.action = 'attack') {
+      this.scene.events.emit('dragon:attackItem')
+    } else if (this.action = 'shield') {
+      this.scene.events.emit('dragon:shieldItem')
+    } else if (this.action = 'heal') {
+      this.scene.events.emit('dragon:healItem')
+    } else {
     }
   }
 
@@ -154,9 +206,6 @@ export class Item {
     this.lines.forEach(line => line.destroy());
     this.lines = [];
     this.interactiveObjects.forEach(obj => obj.setTint(0xffffff)); // Reset color
-  }
-
-  updateMouseCoordinates(x, y) {
-    this.mouse.setText(`Mouse: X:${x} | Y:${y}`);
+    this.inputCode = [];
   }
 }

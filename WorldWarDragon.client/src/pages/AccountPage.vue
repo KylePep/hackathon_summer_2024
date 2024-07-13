@@ -78,13 +78,13 @@
             INVENTORY
           </div>
           <div>
-            this
+            Attack: {{ account.attack }}
           </div>
           <div>
-            that
+            shield: {{ account.shield }}
           </div>
           <div>
-            the other
+            heal: {{ account.heal }}
           </div>
         </div>
       </section>

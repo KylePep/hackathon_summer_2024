@@ -75,8 +75,55 @@ export class Dragon {
     this.scene.events.on('dragon:hit', this.onDragonHit, this);
     this.scene.events.on('dragon:over', this.onPointerOver, this);
     this.scene.events.on('dragon:out', this.onPointerOut, this);
+    this.scene.events.on('dragon:attackItem', this.onAttackItem, this);
   }
 
+  onAttackItem() {
+    const selectedSound = 'attackItem'
+    const sound = this.scene.sound.add(selectedSound)
+    sound.play();
+    sound.volume = 1;
+
+    this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
+    console.log(this.dragonHP)
+    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+
+    if (this.dragonHP <= 0) {
+
+      AppState.bossDamage = this.bossDamage
+      AppState.gold = this.gold
+      AppState.valor = this.valor
+
+      this.scene.events.off('dragon:hit')
+      this.scene.events.off('dragon:over')
+      this.scene.events.off('dragon:out')
+      this.scene.events.off('dragon:attackItem')
+      logger.log(this.scene.events.off('dragon:hit'))
+      this.scene.leaveRoom()
+    }
+
+    this.scene.tweens.add({
+      // Shake effect
+      targets: this.dragon,
+      duration: 300, // Duration of the shake in milliseconds
+      ease: 'Power1',
+      x: this.dragon.x + Phaser.Math.RND.between(-16, 16), // Random X offset
+      y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
+      angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
+      yoyo: true, // Yoyo back to original position
+      repeat: 0, // Number of times to repeat (0 means no repeat, just once)
+      onStart: () => {
+        this.dragon.setTint(0xff0000); // Turn red at the start of the tween
+      },
+      onComplete: () => {
+        // Reset to original values
+        this.dragon.x = this.originalX;
+        this.dragon.y = this.originalY;
+        this.dragon.angle = this.originalAngle;
+        this.dragon.clearTint(); // Reset tint to default color
+      }
+    });
+  }
   onDragonHit() {
     const selectedSound = this.getRandomDragonSound()
     const sound = this.scene.sound.add(selectedSound)
@@ -96,10 +143,13 @@ export class Dragon {
       this.scene.events.off('dragon:hit')
       this.scene.events.off('dragon:over')
       this.scene.events.off('dragon:out')
+      this.scene.events.off('dragon:attackItem')
       logger.log(this.scene.events.off('dragon:hit'))
       this.scene.leaveRoom()
 
     }
+
+
 
 
     // this.canAnimate = true
