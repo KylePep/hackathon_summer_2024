@@ -10,6 +10,16 @@ export class Map extends Scene {
 
     create() {
 
+        // Create and play the background music
+        this.backgroundMusic = this.sound.add('DragonKingDungeon', {
+            volume: 0.5, // Adjust the volume
+            loop: true   // Loop the music
+        });
+
+        this.backgroundMusic.play();
+
+        // Your existing code to setup the game objects, etc.
+
         this.cameras.main.setBackgroundColor(0xff4500);
 
         this.background = this.add.image(0, 0, 'mapBG')

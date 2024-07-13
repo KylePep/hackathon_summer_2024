@@ -32,6 +32,8 @@ export class Preloader extends Scene {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
+        this.load.audio('DragonKingDungeon', 'bgm/DragonKingDungeon.mp3');
+
         this.load.audio('swish_2', 'sound/swish_2.wav');
         this.load.audio('swish_3', 'sound/swish_3.wav');
         this.load.audio('swish_4', 'sound/swish_4.wav');
