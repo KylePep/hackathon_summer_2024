@@ -22,19 +22,18 @@
         </label>
       </div>
     </div>
-    <button type="submit" class="btn btn-success"> Give Assistance </button>
+    <button v-if="account[editable.body] > 0" type="submit" class="btn btn-success"> Give Assist <br> +100
+      valor</button>
+    <div v-else class="btn btn-dark">Not enough Items </div>
   </form>
-  <!-- <form @submit.prevent="createAssistance()" class="d-flex">
-    <textarea v-model="editable.body" name="body" id="body"></textarea>
-    <button type="submit" class="btn btn-success">Create Assistance</button>
-  </form> -->
 </template>
 
 
 <script>
+import { AppState } from "../AppState.js";
 import { assistancesService } from "../services/AssistancesService.js";
 import Pop from "../utils/Pop.js";
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 export default {
   setup() {
     const editable = ref({})
@@ -42,7 +41,7 @@ export default {
 
     return {
       editable,
-
+      account: computed(() => AppState.account),
       async createAssistance() {
         try {
           const assistanceData = editable.value

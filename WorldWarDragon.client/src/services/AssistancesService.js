@@ -12,11 +12,18 @@ class AssistancesService {
     AppState.assistances = res.data.map(a => new Assistance(a))
   }
 
-  async createAssistance(messageData) {
-    const res = await api.post('api/assistances', messageData)
-    const assistance = new Assistance(res.data)
-    AppState.assistances.push(assistance)
-    return assistance
+  async createAssistance(assistData) {
+    if (AppState.account[assistData.body] < 0) {
+      return 'not enough items'
+    } else {
+      AppState.account[assistData.body] -= 1
+      AppState.account.valor = AppState.account.valor + 100
+      accountService.editAccount(AppState.account)
+      const res = await api.post('api/assistances', assistData)
+      const assistance = new Assistance(res.data)
+      AppState.assistances.push(assistance)
+      return assistance
+    }
   }
 
   async claimAssistance(assistanceId) {
