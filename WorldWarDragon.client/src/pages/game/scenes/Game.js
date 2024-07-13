@@ -16,6 +16,9 @@ export class Game extends Scene {
 
         this.timerInterval = 1000;
 
+        this.playerMaxHp = AppState.account.health + (AppState.healthMod[AppState.activeRoom.id] || 0)
+        this.playerHp = this.playerMaxHp
+
     }
 
     create() {
@@ -31,7 +34,7 @@ export class Game extends Scene {
         const dragonTitles = DRAGON_TITLES
         const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
 
-        const playerHp = AppState.account.health + (AppState.healthMod[AppState.activeRoom.id] || 0)
+
 
 
         // Randomly select a name and title
@@ -61,7 +64,7 @@ export class Game extends Scene {
         const topLeftX = 128; // Offset from the left edge
         const topLeftY = 16; // Offset from the bottom edge
 
-        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name} \n  HP: ${playerHp}`, {
+        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name} \n  HP: ${this.playerHp}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

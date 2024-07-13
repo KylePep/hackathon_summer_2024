@@ -78,16 +78,7 @@ export class Dragon {
     this.scene.events.on('dragon:attackItem', this.onAttackItem, this);
   }
 
-  onAttackItem() {
-    const selectedSound = 'attackItem'
-    const sound = this.scene.sound.add(selectedSound)
-    sound.play();
-    sound.volume = 1;
-
-    this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
-    console.log(this.dragonHP)
-    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
-
+  checkDeath() {
     if (this.dragonHP <= 0) {
 
       AppState.bossDamage = this.bossDamage
@@ -99,8 +90,22 @@ export class Dragon {
       this.scene.events.off('dragon:out')
       this.scene.events.off('dragon:attackItem')
       logger.log(this.scene.events.off('dragon:hit'))
+      this.scene.playerHp = this.scene.playerMaxHp
       this.scene.leaveRoom()
     }
+  }
+
+  onAttackItem() {
+    const selectedSound = 'attackItem'
+    const sound = this.scene.sound.add(selectedSound)
+    sound.play();
+    sound.volume = 1;
+
+    this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
+    console.log(this.dragonHP)
+    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+
+    this.checkDeath()
 
     this.scene.tweens.add({
       // Shake effect
@@ -134,27 +139,7 @@ export class Dragon {
     console.log(this.dragonHP)
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
-    if (this.dragonHP <= 0) {
-
-      AppState.bossDamage = this.bossDamage
-      AppState.gold = this.gold
-      AppState.valor = this.valor
-
-      this.scene.events.off('dragon:hit')
-      this.scene.events.off('dragon:over')
-      this.scene.events.off('dragon:out')
-      this.scene.events.off('dragon:attackItem')
-      logger.log(this.scene.events.off('dragon:hit'))
-      this.scene.leaveRoom()
-
-    }
-
-
-
-
-    // this.canAnimate = true
-
-    // if (this.canAnimate != false) {
+    this.checkDeath()
 
     this.scene.tweens.add({
 
@@ -166,19 +151,13 @@ export class Dragon {
       y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
       angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
       yoyo: true, // Yoyo back to original position
-      repeat: 0, // Number of times to repeat (0 means no repeat, just once)
-      // onStart: () => {
-      //   this.canAnimate = false
-      // },
+      repeat: 0,
       onComplete: () => {
-        // Reset to original values
         this.dragon.x = this.originalX;
         this.dragon.y = this.originalY;
         this.dragon.angle = this.originalAngle;
-        // this.canAnimate = true
       }
     });
-    // }
   }
 
   onPointerOver() {

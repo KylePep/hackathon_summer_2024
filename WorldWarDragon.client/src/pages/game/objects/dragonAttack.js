@@ -1,3 +1,4 @@
+import { EventBus } from '../EventBus';
 import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
 import { GameObjects } from 'phaser';
@@ -50,8 +51,16 @@ export class DragonAttack extends GameObjects.Container {
     sound.play();
     sound.volume = 0.5;
 
+    logger.log('PLAYERHP', this.scene.playerHp)
+    this.scene.playerHp -= 10
+    this.scene.playerText.setText(`${AppState.account.name} \n  HP: ${this.scene.playerHp}`)
+    if (this.scene.playerHp <= 0) {
+      EventBus.emit('navigate-home');
+    }
+
     this.lastAttackTime = this.scene.time.now; // Reset the timer for the next attack
   }
+
 
   getRandomSound() {
     return Phaser.Math.RND.pick(this.dragonSounds);
