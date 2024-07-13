@@ -7,20 +7,31 @@ import { Dragon } from "../objects/dragon.js";
 import { Slash } from "../objects/slash.js";
 import { AppState } from "../../../AppState.js";
 import { Item } from "../objects/items.js";
+import { DragonAttack } from "../objects/dragonAttack.js";
 
 export class Game extends Scene {
     constructor() {
         super('Game');
         this.router = useRouter()
 
+        this.timerInterval = 1000;
 
     }
 
     create() {
 
+        this.timerEvent = this.time.addEvent({
+            delay: this.timerInterval,
+            callback: this.onTimerEvent,
+            callbackScope: this,
+            loop: true
+        });
+
         const dragonNames = DRAGON_NAMES
         const dragonTitles = DRAGON_TITLES
         const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
+
+        const playerHp = AppState.account.health + (AppState.healthMod[AppState.activeRoom.id] || 0)
 
 
         // Randomly select a name and title
@@ -33,7 +44,7 @@ export class Game extends Scene {
             .setOrigin(0, 0)
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
-        this.scale.on('resize', this.resize, this);
+
 
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
@@ -42,14 +53,19 @@ export class Game extends Scene {
 
         this.item = new Item(this, centerX, centerY);
 
+        this.dragonAttack = new DragonAttack(this, this.dragon);
+        this.dragonAttack.startAttack();
 
         this.slash = new Slash(this, centerX, centerY)
 
-        this.clickText = this.add.text(128, 16, `HP: ${this.dragon.dragonHP}`, {
+        const topLeftX = 128; // Offset from the left edge
+        const topLeftY = 16; // Offset from the bottom edge
+
+        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name} \n  HP: ${playerHp}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        })
+        }).setOrigin(0, 0)
 
         // Adding the 'NAME' text at the top right
         const topRightX = this.cameras.main.width - 32; // Offset from the left edge
@@ -58,6 +74,12 @@ export class Game extends Scene {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8
         }).setDepth(100).setOrigin(1, 0)
+
+        this.clickText = this.add.text(topRightX, topRightY + 64, `HP: ${this.dragon.dragonHP}`, {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(1, 0)
 
         // Adding the 'RETREAT...' text at the bottom left
         const bottomLeftX = 128; // Offset from the left edge
@@ -79,9 +101,20 @@ export class Game extends Scene {
             this.input.setDefaultCursor('default');
         })
 
+        this.scale.on('resize', this.resize, this);
+        this.resize({ width: this.scale.width, height: this.scale.height });
+
         this.adjustTextSize()
 
         EventBus.emit('current-scene-ready', this);
+    }
+
+    onTimerEvent() {
+        // Actions to perform on each timer tick
+        // For example, you can call a function on the dragon object
+        if (this.dragon) {
+            this.dragonAttack.update();
+        }
     }
 
     resize(gameSize, baseSize, displaySize, resolution) {
@@ -95,16 +128,19 @@ export class Game extends Scene {
         // Re-center the dragon sprite on resize
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
-        this.dragon.setPosition(centerX, centerY);
+        // this.dragon.setPosition(centerX, centerY);
+        this.dragonAttack.updatePosition();
+        this.dragonAttack.setProgressBarSize(width * 0.25, 10);
 
         // Reposition the 'RETREAT...' text at the bottom left on resize
         const bottomLeftX = 128; // Offset from the left edge
         const bottomLeftY = height - 96; // Offset from the bottom edge
         this.return.setPosition(bottomLeftX, bottomLeftY);
 
-        const topRightX = this.cameras.main.width - 400; // Offset from the left edge
-        const topRightY = 96; // Offset from the bottom edge
-        this.name.setPosition(topRightX, topRightY);
+        const topRightX = this.cameras.main.width; // Offset from the left edge
+        const topRightY = 16; // Offset from the bottom edge
+        this.name.setPosition(topRightX - 16, topRightY);
+        this.clickText.setPosition(topRightX - 16, topRightY + 64)
 
         this.adjustTextSize();
     }
@@ -126,9 +162,15 @@ export class Game extends Scene {
         this.clickText.setStyle({ fontSize: newFontSize });
         this.name.setStyle({ fontSize: newFontSize });
         this.return.setStyle({ fontSize: newFontSize });
+        this.playerText.setStyle({ fontSize: newFontSize });
     }
 
     changeScene() {
         this.scene.start('GameOver');
+    }
+
+    update() {
+        // Your update logic
+        this.dragonAttack.update();
     }
 }
