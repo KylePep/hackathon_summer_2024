@@ -19,10 +19,10 @@
           GOLD: {{ account.gold }}
         </div>
         <div>
-          HEALTH: {{ account.health }}
+          HEALTH: {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
         </div>
         <div>
-          POWER: {{ account.power }}
+          POWER: {{ account.power }}( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
         <div>
           Attack: {{ account.attack }}
@@ -118,6 +118,7 @@ function toggleTheme() {
 }
 
 const account = computed(() => AppState.account)
+const appState = computed(() => AppState)
 
 </script>
 

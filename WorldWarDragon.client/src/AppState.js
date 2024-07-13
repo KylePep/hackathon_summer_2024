@@ -18,6 +18,8 @@ export const AppState = reactive({
   bossDamage: 0,
   gold: 0,
   valor: 0,
+  health: 0,
+  power: 0,
   activeRoom: '',
 
   goldMod: { 1: 0, 2: 0, 3: 0, 4: 0 },
