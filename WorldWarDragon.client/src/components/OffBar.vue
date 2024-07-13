@@ -24,6 +24,15 @@
         <div>
           POWER: {{ account.power }}
         </div>
+        <div>
+          Attack: {{ account.attack }}
+        </div>
+        <div>
+          Shield: {{ account.shield }}
+        </div>
+        <div>
+          heal: {{ account.heal }}
+        </div>
 
       </section>
 

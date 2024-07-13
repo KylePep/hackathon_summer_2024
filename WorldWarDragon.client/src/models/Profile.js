@@ -7,6 +7,8 @@ export class Profile {
     this.gold = data.gold
     this.health = data.health
     this.power = data.power
-    this.inventory = data.inventory
+    this.attack = data.attack
+    this.shield = data.shield
+    this.heal = data.heal
   }
 }

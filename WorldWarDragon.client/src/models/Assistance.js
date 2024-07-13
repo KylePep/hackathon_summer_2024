@@ -5,5 +5,6 @@ export class Assistance {
     this.body = data.body
     this.id = data.id
     this.creator = data.creator
+    this.claim = data.claim
   }
 }

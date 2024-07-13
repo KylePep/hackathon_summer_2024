@@ -136,8 +136,8 @@ export class GameResults extends Scene {
     async updateAccount() {
         try {
             const accountData = {}
-            accountData.gold = AppState.gold
-            accountData.valor = AppState.valor
+            accountData.gold = AppState.account.gold + AppState.gold
+            accountData.valor = AppState.account.valor + AppState.valor
             logger.log('GOLD VALOR', accountData)
             await accountService.editAccount(accountData)
         } catch (error) {

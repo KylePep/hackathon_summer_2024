@@ -42,7 +42,10 @@ function sanitizeBody(body) {
     name: body.name,
     picture: body.picture,
     gold: body.gold,
-    valor: body.valor
+    valor: body.valor,
+    attack: body.attack,
+    shield: body.shield,
+    heal: body.heal
   }
   return writable
 }
