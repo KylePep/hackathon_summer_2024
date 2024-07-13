@@ -6,6 +6,7 @@ import { DRAGON_TITLES } from '../../../../../shared/constants/index.js'
 import { Dragon } from "../objects/dragon.js";
 import { Slash } from "../objects/slash.js";
 import { AppState } from "../../../AppState.js";
+import { Item } from "../objects/items.js";
 
 export class Game extends Scene {
     constructor() {
@@ -38,6 +39,8 @@ export class Game extends Scene {
         const centerY = this.cameras.main.centerY;
 
         this.dragon = new Dragon(this, centerX, centerY)
+
+        this.item = new Item(this, centerX, centerY);
 
         this.slash = new Slash(this, centerX, centerY)
 

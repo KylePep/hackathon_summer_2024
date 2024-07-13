@@ -83,7 +83,7 @@ export class Dragon {
     sound.play();
     sound.volume = 0.2;
 
-    this.dragonHP -= AppState.account.power + AppState.powerMod[AppState.activeRoom.id]
+    this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
     console.log(this.dragonHP)
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
