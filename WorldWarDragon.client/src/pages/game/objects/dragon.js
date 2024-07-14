@@ -15,7 +15,7 @@ export class Dragon {
       this.goldMod = 0
     }
     this.modifier = Phaser.Math.RND.pick([1.1, .9])
-    this.gold = Phaser.Math.RoundTo((this.bossDamage + goldMod * this.modifier), 0)
+    this.gold = Phaser.Math.RoundTo((this.bossDamage + this.goldMod * this.modifier), 0)
     this.valor = Phaser.Math.RoundTo((this.bossDamage * 0.1), 0)
     // logger.log('Gold', this.gold, this.bossDamage, this.valor)
 
@@ -51,7 +51,7 @@ export class Dragon {
   }
 
   getRandomDragonSprite() {
-    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5'];
+    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5', 'dragon_6', 'dragon_7', 'dragon_8', 'dragon_9'];
     return Phaser.Math.RND.pick(dragonImages);
   }
 

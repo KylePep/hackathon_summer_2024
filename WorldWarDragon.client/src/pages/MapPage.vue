@@ -59,7 +59,7 @@
             {{ assistance.body }}
             {{ assistance.roomId }}
             {{ assistance?.creator?.name }}
-            <button v-if="assistance.creatorId == account.id && assistance
+            <button v-if="assistance.creatorId != account.id && assistance
               .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
                 claimAssistance(assistance.id)"> Claim</button>
           </div>

@@ -1,5 +1,7 @@
+import { AppState } from "../../../AppState.js";
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
+import { accountService } from "../../../services/AccountService.js";
 
 export class GameOver extends Scene {
     constructor() {
@@ -7,6 +9,10 @@ export class GameOver extends Scene {
     }
 
     create() {
+
+        this.keptGold = Phaser.Math.RoundTo((AppState.account.gold * .9), 0)
+        this.lostGoldAmount = AppState.account.gold -= this.keptGold
+        this.loseGold(this.keptGold)
 
         // Create and play the background music
         this.backgroundMusic = this.sound.add('gameOverBGM', {
@@ -24,6 +30,12 @@ export class GameOver extends Scene {
 
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
+
+        this.lostGold = this.add.text(centerX, centerY - 100, `${this.lostGoldAmount} Gold was lost`, {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
 
         this.gameOver = this.add.text(centerX, centerY, 'Game Over', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
@@ -91,11 +103,18 @@ export class GameOver extends Scene {
         // Re-center the dragon sprite on resize
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
+        this.lostGold.setPosition(centerX, centerY - 100)
         this.gameOver.setPosition(centerX, centerY)
         this.fight.setPosition(centerX, centerY + 100);
         this.return.setPosition(centerX, centerY + 200);
 
         this.adjustTextSize();
+    }
+
+    loseGold(keptGold) {
+        AppState.account.gold = keptGold
+        const accountData = AppState.account
+        accountService.editAccount(accountData)
     }
 
     setFontToFitWindow() {

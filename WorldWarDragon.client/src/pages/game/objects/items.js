@@ -46,7 +46,7 @@ export class Item {
           } else {
             this.setInputCode(obj.id)
 
-            obj.setTint(0xff0000); // red
+            obj.setTint(0x00C1FF); // red
             this.addStaticLine(obj);
           }
         });
@@ -61,7 +61,7 @@ export class Item {
         obj.on('pointerdown', (pointer) => {
           if (!this.isDrawing) {
             this.startDrawing(obj.x, obj.y, obj);
-            obj.setTint(0xff0000); // Clicked color
+            obj.setTint(0x00C1FF); // Clicked color
             this.inputCode.push(obj.id)
           } else {
             this.stopDrawing(obj);
@@ -94,7 +94,7 @@ export class Item {
     this.isDrawing = true;
     this.startX = x;
     this.startY = y;
-    this.currentLine = this.scene.add.line(0, 0, x, y, x, y, 0xff0000)
+    this.currentLine = this.scene.add.line(0, 0, x, y, x, y, 0x00C1FF)
       .setOrigin(0, 0)
       .setDepth(100)
       .setLineWidth(this.lineWidth); // Set line width here
@@ -185,11 +185,18 @@ export class Item {
     logger.log('ACTION', this.action);
 
     if (this.action != 'input') {
-      AppState.account[this.action] -= 1;
-      const accountData = AppState.account;
-      accountService.editAccount(accountData);
+      if (AppState.account[this.action] > 0) {
+        AppState.account[this.action] -= 1;
+        const accountData = AppState.account;
+        accountService.editAccount(accountData);
 
-      this.useItem();
+        this.useItem();
+
+      } else {
+        AppState.account[this.action] = 0;
+        const accountData = AppState.account;
+        accountService.editAccount(accountData);
+      }
 
       this.action = 'input';
     }
@@ -199,6 +206,7 @@ export class Item {
   useItem() {
 
     if (this.action == 'attack') {
+
       this.scene.events.emit('dragon:attackItem')
     } else if (this.action == 'shield') {
       this.scene.events.emit('dragon:shieldItem')

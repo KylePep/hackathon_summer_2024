@@ -69,6 +69,11 @@ export class Preloader extends Scene {
         this.load.image('dragon_3', 'dragon/dragon_3.png');
         this.load.image('dragon_4', 'dragon/dragon_4.png');
         this.load.image('dragon_5', 'dragon/dragon_5.png');
+        this.load.image('dragon_6', 'dragon/dragon_6.png');
+        this.load.image('dragon_7', 'dragon/dragon_7.png');
+        this.load.image('dragon_8', 'dragon/dragon_8.png');
+        this.load.image('dragon_9', 'dragon/dragon_9.png');
+        this.load.image('dragon_10', 'dragon/dragon_10.png');
 
         this.load.image('small_0001', 'battle/small_0001.png');
         this.load.image('small_0004', 'battle/small_0004.png');

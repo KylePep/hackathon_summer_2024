@@ -172,7 +172,8 @@ export default {
           this.valorSpend = 0
         } else {
           if (this.valorSpend + 100 < this.availableValor) {
-            this.levelUp[option]++
+            option == 0 ? this.levelUp[option] += 10 : this.levelUp[option]++
+            logger.log(option, this.levelUp[0], this.levelUp[1])
             this.valorSpend += 100
           }
 
@@ -183,8 +184,9 @@ export default {
           if (levelMode.value == false) {
             levelMode.value = true
           } else {
-            AppState.account.health += this.levelUp[0]
-            AppState.account.power += this.levelUp[1]
+            editable.value.health = AppState.account.health += this.levelUp[0]
+            editable.value.power = AppState.account.power += this.levelUp[1]
+            editable.valorSpend = AppState.account.valorSpend += this.valorSpend
             this.submitAccountChange()
             this.levelUp = [0, 0]
             levelMode.value = false
@@ -199,6 +201,7 @@ export default {
       async submitAccountChange() {
         try {
           const accountData = editable.value
+          logger.log(accountData)
           await accountService.editAccount(accountData)
         } catch (error) {
           Pop.error(error.message, '[ACCOUNT CHANGE]')

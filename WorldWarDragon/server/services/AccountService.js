@@ -46,7 +46,9 @@ function sanitizeBody(body) {
     attack: body.attack,
     shield: body.shield,
     heal: body.heal,
-    valorSpent: body.valorSpent
+    health: body.health,
+    power: body.power,
+    valorSpend: body.valorSpend
   }
   return writable
 }
