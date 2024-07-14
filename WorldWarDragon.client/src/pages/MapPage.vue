@@ -126,7 +126,7 @@ export default {
       getMessages()
       getAssistances()
       setBgImg();
-      // calculateMods();
+      AppState.activeRoom = {}
     });
     onUnmounted(() => {
       setActiveRoom(0)
