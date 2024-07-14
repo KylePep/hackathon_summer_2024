@@ -8,6 +8,7 @@ import { Slash } from "../objects/slash.js";
 import { AppState } from "../../../AppState.js";
 import { Item } from "../objects/items.js";
 import { DragonAttack } from "../objects/dragonAttack.js";
+import { logger } from "../../../utils/Logger.js";
 
 export class Game extends Scene {
     constructor() {
@@ -16,8 +17,6 @@ export class Game extends Scene {
 
         this.timerInterval = 1000;
 
-        this.playerMaxHp = AppState.account.health + (AppState.healthMod[AppState.activeRoom.id] || 0)
-        this.playerHp = this.playerMaxHp
 
     }
 
@@ -35,7 +34,14 @@ export class Game extends Scene {
         const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
 
 
-
+        this.activeRoomId = AppState.activeRoom.id
+        if (this.activeRoomId && this.activeRoomId != 5) {
+            this.playerMaxHp = AppState.account.health + AppState.healthMod[this.activeRoomId]
+        } else {
+            this.playerMaxHp = AppState.account.health
+        }
+        logger.log('HealthMod', AppState.healthMod[this.activeRoomId], 'ROOMID', this.activeRoomId)
+        this.playerHp = this.playerMaxHp
 
         // Randomly select a name and title
         const randomName = Phaser.Math.RND.pick(dragonNames);
@@ -149,7 +155,9 @@ export class Game extends Scene {
     }
 
     leaveRoom() {
-
+        AppState.activeRoom = {}
+        AppState.healthMod = 0
+        AppState.powerMod = 0
         this.scene.start('GameResults')
     }
 

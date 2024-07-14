@@ -49,6 +49,7 @@ export class Preloader extends Scene {
 
         this.load.image('star', 'star.png');
 
+        this.load.image('gameOverBG', 'gameOver1.jpeg');
         this.load.image('castleGroundBG', 'castleGrounds.jpeg');
         this.load.image('darkDragonBG', 'darkDragon.jpeg');
         this.load.image('mapBG', 'map4.jpeg');

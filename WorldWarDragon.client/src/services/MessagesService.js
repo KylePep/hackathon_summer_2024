@@ -25,8 +25,8 @@ class MessagesService {
       } else {
         AppState.luckMod[`${m.roomId}`]++
       }
-      logger.log(AppState)
     })
+    logger.log('MODS', AppState.goldMod, AppState.healthMod, AppState.powerMod, AppState.luckMod)
   }
 
   async createMessage(messageData, cost) {

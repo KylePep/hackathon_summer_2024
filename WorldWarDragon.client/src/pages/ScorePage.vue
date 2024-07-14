@@ -5,7 +5,9 @@
     </div>
   </section>
   <section class="row">
-    <div class="col-12 text-center fs-1 text-light" v-for="score in bossDamages" :key="score.id">{{ score.creator.name
+    <div class="col-12 text-center fs-1 text-light" v-for="score in bossDamages" :key="score.id">
+      <img class="character-icon" :src="score.creator.picture" alt="">
+      {{ score.creator.name
       }}
       {{ Math.round(score.dmg) }}
     </div>
@@ -18,6 +20,7 @@ import Pop from "../utils/Pop.js";
 import { bossDamageService } from "../services/BossDamageService.js";
 import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
+import { CHARACTER_ICONS_DATA } from '../../../shared/constants/index.js'
 
 export default {
   setup() {
@@ -49,4 +52,9 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.character-icon {
+  height: 32px;
+  width: auto;
+}
+</style>

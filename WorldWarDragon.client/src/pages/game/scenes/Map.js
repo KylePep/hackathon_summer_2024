@@ -105,8 +105,8 @@ export class Map extends Scene {
     }
 
     buttonAction(buttonName, roomId) {
-        console.log(`${buttonName} button clicked`);
         AppState.activeRoom = MAP_DATA.find((m) => m.id == roomId);
+        console.log(`roomId`, roomId, 'ACTIVE ROOM', AppState.activeRoom);
         this.changeScene()
     }
     buttonOver(button) {

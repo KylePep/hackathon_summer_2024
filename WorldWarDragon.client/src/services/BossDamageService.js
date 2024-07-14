@@ -9,6 +9,12 @@ class BossDamageService {
     const res = await api.get('api/bossDamage')
     logger.log('[BOSS DAMAGGES]', res.data)
     AppState.bossDamages = res.data.map(b => new BossDamage(b))
+    AppState.bossDamages.forEach((bs) => {
+      if (bs.creator.picture.length < 2) {
+        bs.creator.picture = `public/assets/player/player${bs.creator.picture}.jpeg`
+      }
+    });
+    logger.log(AppState.bossDamages)
   }
 
   async createOrIncreaseBossDamage(bossDamageData) {

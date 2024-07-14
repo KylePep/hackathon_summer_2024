@@ -114,7 +114,8 @@ onMounted(() => {
 })
 
 // watchEffect(() => {
-//   const account = AppState.account
+//   AppState.account.id
+
 // })
 
 function toggleTheme() {

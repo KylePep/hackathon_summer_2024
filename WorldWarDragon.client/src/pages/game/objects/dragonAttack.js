@@ -55,7 +55,7 @@ export class DragonAttack extends GameObjects.Container {
     this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
     this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
     if (this.scene.playerHp <= 0) {
-      EventBus.emit('navigate-home');
+      this.scene.scene.start('GameOver');
     }
 
     this.lastAttackTime = this.scene.time.now; // Reset the timer for the next attack

@@ -2,6 +2,12 @@
   "DATA_ITEMS": [
     {}
   ],
+  "CHARACTER_ICONS_DATA":{
+    "1": "/assets/player/player1.jpeg", 
+    "2": "/assets/player/player2.jpeg", 
+    "3": "/assets/player/player3.jpeg", 
+    "4": "/assets/player/player4.jpeg" 
+  },
   "MAP_DATA": [
     {
       "id": 1,
