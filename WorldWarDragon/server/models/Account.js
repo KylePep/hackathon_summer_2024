@@ -14,7 +14,8 @@ export const AccountSchema = new Schema(
     power: { type: Number, default: 1 },
     attack: { type: Number, default: 0 },
     shield: { type: Number, default: 0 },
-    heal: { type: Number, default: 0 }
+    heal: { type: Number, default: 0 },
+    valorSpent: { type: Number, default: 0 }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

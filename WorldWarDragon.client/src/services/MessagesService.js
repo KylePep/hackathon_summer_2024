@@ -11,6 +11,10 @@ class MessagesService {
     logger.log('[MESSAGES]', res.data)
     const messages = res.data.map(m => new Message(m))
     AppState.messages = messages
+    AppState.goldMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
+    AppState.healthMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
+    AppState.luckMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
+    AppState.powerMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
     messages.forEach((m) => {
       if (m.boon == 'gold') {
         AppState.goldMod[`${m.roomId}`]++
@@ -30,6 +34,7 @@ class MessagesService {
       return 'not enough gold'
     } else {
       AppState.account.gold -= cost
+      AppState.account.valor += Math.round(cost / 2)
       accountService.editAccount(AppState.account)
       const res = await api.post('api/messages', messageData)
       const message = new Message(res.data)

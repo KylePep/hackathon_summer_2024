@@ -10,5 +10,6 @@ export class Profile {
     this.attack = data.attack
     this.shield = data.shield
     this.heal = data.heal
+    this.valorSpent = data.valorSpent
   }
 }

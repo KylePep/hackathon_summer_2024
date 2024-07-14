@@ -54,6 +54,19 @@
           </div>
         </div>
       </section>
+      <section v-if="availableValor > 100" class="row">
+        <div class="col-12 ">
+          <div v-if="levelMode == false" class="d-flex justify-content-center">
+            <button @click="handleLeveling()" class="btn btn-success">+ LEVEL UP | COST: 100</button>
+          </div>
+          <div class="d-flex justify-content-around" v-else>
+            <div @click="increaseStat(0)" class="btn btn-primary">+ {{ levelUp[0] }} Health</div>
+            <div @click="increaseStat(1)" class="btn btn-primary">+ {{ levelUp[1] }} Power</div>
+            <button @click="handleLeveling()" class="btn btn-success">SUBMIT</button>
+            <button @click="handleLeveling('cancel'), increaseStat(-1)" class="btn btn-danger">CANCEL</button>
+          </div>
+        </div>
+      </section>
 
       <section class="row">
         <div class="col-6 fs-5 text-center">
@@ -61,7 +74,7 @@
             STATS
           </div>
           <div>
-            Valor: {{ account.valor || 0 }}
+            Valor: {{ account.valor || 0 }} | EXP: {{ availableValor - valorSpend }}
           </div>
           <div>
             Gold: {{ account.gold || 0 }}
@@ -109,9 +122,15 @@ export default {
     const editable = ref({})
 
     const editMode = ref(false)
+    const levelMode = ref(false)
+
+    const levelUp = ref({})
+    const valorSpend = ref({})
 
     onMounted(() => {
       setBgImg();
+      levelUp.value = [0, 0]
+      valorSpend.value = 0
     });
 
     watchEffect(() => {
@@ -129,7 +148,12 @@ export default {
     return {
       editable,
       editMode,
+      levelMode,
       account: computed(() => AppState.account),
+      availableValor: computed(() => AppState.account.valor - AppState.account.valorSpent),
+      levelUp,
+      valorSpend,
+
       handleEditing(option) {
         if (option != 'cancel') {
           if (editMode.value == false) {
@@ -140,6 +164,33 @@ export default {
           }
         } else {
           editMode.value = false
+        }
+      },
+      increaseStat(option) {
+        if (option == -1) {
+          this.levelUp = [0, 0]
+          this.valorSpend = 0
+        } else {
+          if (this.valorSpend + 100 < this.availableValor) {
+            this.levelUp[option]++
+            this.valorSpend += 100
+          }
+
+        }
+      },
+      handleLeveling(option) {
+        if (option != 'cancel') {
+          if (levelMode.value == false) {
+            levelMode.value = true
+          } else {
+            AppState.account.health += this.levelUp[0]
+            AppState.account.power += this.levelUp[1]
+            this.submitAccountChange()
+            this.levelUp = [0, 0]
+            levelMode.value = false
+          }
+        } else {
+          levelMode.value = false
         }
       },
       selectPicture(pictureId) {
