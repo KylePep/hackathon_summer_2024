@@ -7,6 +7,15 @@ export class GameOver extends Scene {
     }
 
     create() {
+
+        // Create and play the background music
+        this.backgroundMusic = this.sound.add('gameOverBGM', {
+            volume: 0.5, // Adjust the volume
+            loop: true   // Loop the music
+        });
+
+        this.backgroundMusic.play();
+
         this.cameras.main.setBackgroundColor(0xff4500);
 
         this.background = this.add.image(0, 0, 'gameOverBG')
@@ -22,25 +31,46 @@ export class GameOver extends Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        // Adding the 'RETREAT...' text at the bottom left
-        const bottomLeftX = 128; // Offset from the left edge
-        const bottomLeftY = this.cameras.main.height - 96; // Offset from the bottom edge
-        this.return = this.add.text(bottomLeftX, bottomLeftY, 'RETREAT...', {
-            fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
-            stroke: '#000000', strokeThickness: 8, align: 'left'
-        }).setDepth(100).setInteractive()
+        this.fight = this.add.text(centerX, centerY + 100, 'FIGHT!', {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100).setInteractive();
+
+        this.fight.on('pointerdown', () => {
+            this.sound.stopAll()
+            this.scene.start('Map');
+        });
+
+        this.fight.on('pointerover', () => {
+            this.fight.setColor('red');
+            this.input.setDefaultCursor('pointer');
+        });
+
+        this.fight.on('pointerout', () => {
+            this.fight.setColor('#ffffff');
+            this.input.setDefaultCursor('default');
+        });
+
+        this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100).setInteractive();
 
         this.return.on('pointerdown', () => {
             EventBus.emit('navigate-home');
         });
+
         this.return.on('pointerover', () => {
-            this.return.setColor('white')
+            this.return.setColor('white');
             this.input.setDefaultCursor('pointer');
-        })
+        });
+
         this.return.on('pointerout', () => {
-            this.return.setColor('gray')
+            this.return.setColor('gray');
             this.input.setDefaultCursor('default');
-        })
+        });
 
         this.scale.on('resize', this.resize, this);
         this.resize({ width: this.scale.width, height: this.scale.height });
@@ -62,14 +92,8 @@ export class GameOver extends Scene {
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
         this.gameOver.setPosition(centerX, centerY)
-
-        // Reposition the 'RETREAT...' text at the bottom left on resize
-        const bottomLeftX = 128; // Offset from the left edge
-        const bottomLeftY = height - 96; // Offset from the bottom edge
-        this.return.setPosition(bottomLeftX, bottomLeftY);
-
-        const topRightX = this.cameras.main.width; // Offset from the left edge
-        const topRightY = 16; // Offset from the bottom edge
+        this.fight.setPosition(centerX, centerY + 100);
+        this.return.setPosition(centerX, centerY + 200);
 
         this.adjustTextSize();
     }

@@ -7,8 +7,15 @@ export class Dragon {
     this.scene = scene;
     this.dragonHP = this.getRandomDragonHP();
     this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
+
+    this.activeRoomId = AppState.activeRoom.id
+    if (this.activeRoomId && this.activeRoomId != 5) {
+      this.goldMod = AppState.goldMod[this.activeRoomId]
+    } else {
+      this.goldMod = 0
+    }
     this.modifier = Phaser.Math.RND.pick([1.1, .9])
-    this.gold = Phaser.Math.RoundTo((this.bossDamage * this.modifier), 0)
+    this.gold = Phaser.Math.RoundTo((this.bossDamage + goldMod * this.modifier), 0)
     this.valor = Phaser.Math.RoundTo((this.bossDamage * 0.1), 0)
     // logger.log('Gold', this.gold, this.bossDamage, this.valor)
 
@@ -90,6 +97,7 @@ export class Dragon {
       this.scene.events.off('dragon:out')
       this.scene.events.off('dragon:attackItem')
       this.scene.playerHp = this.scene.playerMaxHp
+
       this.scene.leaveRoom()
     }
   }

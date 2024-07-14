@@ -18,6 +18,7 @@ export class Map extends Scene {
 
         this.backgroundMusic.play();
 
+
         // Your existing code to setup the game objects, etc.
 
         this.cameras.main.setBackgroundColor(0xff4500);

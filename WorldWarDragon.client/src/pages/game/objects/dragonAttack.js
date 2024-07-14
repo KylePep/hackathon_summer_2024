@@ -55,6 +55,7 @@ export class DragonAttack extends GameObjects.Container {
     this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
     this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
     if (this.scene.playerHp <= 0) {
+      this.scene.sound.stopAll()
       this.scene.scene.start('GameOver');
     }
 

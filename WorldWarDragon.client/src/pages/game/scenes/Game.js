@@ -155,9 +155,7 @@ export class Game extends Scene {
     }
 
     leaveRoom() {
-        AppState.activeRoom = {}
-        AppState.healthMod = 0
-        AppState.powerMod = 0
+        this.sound.stopAll()
         this.scene.start('GameResults')
     }
 

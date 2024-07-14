@@ -13,6 +13,13 @@ export class GameResults extends Scene {
     }
 
     create() {
+        // Create and play the background music
+        this.backgroundMusic = this.sound.add('victoryBGM', {
+            volume: 0.5, // Adjust the volume
+            loop: false   // Loop the music
+        });
+
+        this.backgroundMusic.play();
         this.getBossData();
         this.cameras.main.setBackgroundColor(0xff4500);
 
@@ -55,7 +62,8 @@ export class GameResults extends Scene {
         }).setOrigin(0.5).setDepth(100).setInteractive();
 
         this.fight.on('pointerdown', () => {
-            this.scene.start('Game');
+            this.sound.stopAll()
+            this.scene.start('Map');
         });
 
         this.fight.on('pointerover', () => {
@@ -136,7 +144,12 @@ export class GameResults extends Scene {
     lootTable() {
         const difficulty = AppState.activeRoom.difficulty;
         const baseChance = difficulty / 100;
-        const changeLuckMod = baseChance + (AppState.luckMod[AppState.activeRoom.id]) * .1
+        if (this.activeRoomId && this.activeRoomId != 5) {
+            this.luckMod = AppState.luckMod[this.activeRoomId]
+        } else {
+            this.luckMod = 0
+        }
+        const changeLuckMod = baseChance + (this.luckMod) * .1
         const items = ['attack', 'shield', 'heal'];
 
         items.forEach(item => {

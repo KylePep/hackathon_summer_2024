@@ -27,6 +27,11 @@ const routes = [
     component: loadPage('ScorePage')
   },
   {
+    path: '/admin',
+    name: 'Admin',
+    component: loadPage('AdminPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
