@@ -9,6 +9,7 @@ export class Map extends Scene {
     }
 
     create() {
+        AppState.winStreak = 0
 
         // Create and play the background music
         this.backgroundMusic = this.sound.add('DragonKingDungeon', {

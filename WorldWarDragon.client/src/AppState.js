@@ -26,4 +26,6 @@ export const AppState = reactive({
   healthMod: { 1: 0, 2: 0, 3: 0, 4: 0 },
   luckMod: { 1: 0, 2: 0, 3: 0, 4: 0 },
   powerMod: { 1: 0, 2: 0, 3: 0, 4: 0 },
+
+  winStreak: 0,
 })

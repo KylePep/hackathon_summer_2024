@@ -55,7 +55,7 @@ export class GameResults extends Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        this.fight = this.add.text(centerX, centerY + 100, 'FIGHT!', {
+        this.fight = this.add.text(centerX, centerY + 100, `FIGHT! | ${AppState.winStreak} : Streak`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -63,7 +63,15 @@ export class GameResults extends Scene {
 
         this.fight.on('pointerdown', () => {
             this.sound.stopAll()
-            this.scene.start('Map');
+
+            this.backgroundMusic = this.sound.add('DragonKingDungeon', {
+                volume: 0.5, // Adjust the volume
+                loop: true   // Loop the music
+            });
+
+            this.backgroundMusic.play();
+
+            this.scene.start('Game');
         });
 
         this.fight.on('pointerover', () => {

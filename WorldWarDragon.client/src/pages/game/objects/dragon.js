@@ -90,7 +90,8 @@ export class Dragon {
 
       AppState.bossDamage = this.bossDamage
       AppState.gold = this.gold
-      AppState.valor = this.valor
+      AppState.winStreak++
+      AppState.valor = Phaser.Math.RoundTo(this.valor * (AppState.winStreak * .1), 0)
 
       this.scene.events.off('dragon:hit')
       this.scene.events.off('dragon:over')

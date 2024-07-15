@@ -22,6 +22,8 @@ export class Game extends Scene {
 
     create() {
 
+
+
         this.timerEvent = this.time.addEvent({
             delay: this.timerInterval,
             callback: this.onTimerEvent,

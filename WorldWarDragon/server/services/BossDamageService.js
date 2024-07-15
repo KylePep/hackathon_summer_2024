@@ -20,7 +20,7 @@ class BossDamageService {
   }
 
   async getUserBossDamageByBossId(bossDamageData) {
-    const bossDamage = await dbContext.BossDamage.findOne({ creatorId: bossDamageData.creatorId })
+    const bossDamage = await dbContext.BossDamage.findOne({ bossId: bossDamageData.bossId, creatorId: bossDamageData.creatorId })
     if (!bossDamage) {
       return bossDamage
       // throw new BadRequest(`No bossDamage found with id:${bossDamageData.bossId}`)
