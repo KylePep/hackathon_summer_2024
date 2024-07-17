@@ -27,7 +27,16 @@
         </label>
       </div>
     </div>
-    <textarea v-model="editable.body" name="body" id="body" required maxlength="300"></textarea>
+    <div>
+      <select required name="category" id="category" v-model="editable.body">
+        <option value="For Honor!" required>For Honor!</option>
+        <option value="For Glory!" required>For Glory!</option>
+        <option value="For Centeria!" required>For Centeria!</option>
+        <option value="Dragons!" required>Dragons!</option>
+        <option value="FIGHT! WIN!" required>FIGHT! WIN!</option>
+        <option value="It's dangerous to go alone" required>It's dangerous to go alone</option>
+      </select>
+    </div>
     <button v-if="gold > messageProp.cost" type="submit" class="btn btn-success"> Create Boon <br>
       Gold: {{ messageProp.cost }} </button>
     <div v-else class="btn btn-dark">Not enough Gold <br> Gold: {{ messageProp.cost }}</div>
