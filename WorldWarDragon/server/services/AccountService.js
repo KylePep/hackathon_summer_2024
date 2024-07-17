@@ -41,14 +41,17 @@ function sanitizeBody(body) {
   const writable = {
     name: body.name,
     picture: body.picture,
-    gold: body.gold,
     valor: body.valor,
-    attack: body.attack,
-    shield: body.shield,
-    heal: body.heal,
+    valorSpent: body.valorSpent,
+    gold: body.gold,
     health: body.health,
     power: body.power,
-    valorSpent: body.valorSpent
+    attack: body.attack,
+    attackAid: body.attackAid,
+    shield: body.shield,
+    shieldAid: body.shieldAid,
+    heal: body.heal,
+    healAid: body.healAid,
   }
   return writable
 }

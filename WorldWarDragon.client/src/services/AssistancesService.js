@@ -32,7 +32,7 @@ class AssistancesService {
     const claimedAssist = AppState.assistances.find((a) => a.id == assistanceId)
 
     const accountData = AppState.account
-    accountData[claimedAssist.body] = AppState.account[claimedAssist.body] + 1
+    accountData[`${claimedAssist.body}Aid`] = AppState.account[`${claimedAssist.body}Aid`] + 1
 
     accountService.editAccount(accountData)
 

@@ -25,13 +25,13 @@
           POWER: {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
         <div>
-          Attack: {{ account.attack }}
+          Attack: {{ account.attack }} ( {{ account.attackAid }} )
         </div>
         <div>
-          Shield: {{ account.shield }}
+          Shield: {{ account.shield }} ( {{ account.shieldAid }} )
         </div>
         <div>
-          heal: {{ account.heal }}
+          heal: {{ account.heal }} ( {{ account.healAid }} )
         </div>
 
       </section>
