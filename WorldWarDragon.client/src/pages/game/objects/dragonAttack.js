@@ -44,7 +44,6 @@ export class DragonAttack extends GameObjects.Container {
 
   attack() {
     // Logic for dragon attack
-    console.log('Dragon attacks!');
 
     const selectedSound = this.getRandomSound()
     const sound = this.scene.sound.add(selectedSound)

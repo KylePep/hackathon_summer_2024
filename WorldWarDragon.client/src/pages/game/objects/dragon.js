@@ -17,7 +17,6 @@ export class Dragon {
     this.modifier = Phaser.Math.RND.pick([1.1, .9])
     this.gold = Phaser.Math.RoundTo((this.bossDamage + this.goldMod * this.modifier), 0)
     this.valor = Phaser.Math.RoundTo((this.bossDamage * 0.1), 0)
-    // logger.log('Gold', this.gold, this.bossDamage, this.valor)
 
     this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5)
     this.setScaleToFitWindow(0);
@@ -89,9 +88,11 @@ export class Dragon {
     if (this.dragonHP <= 0) {
 
       AppState.bossDamage = this.bossDamage
-      AppState.gold = this.gold
       AppState.winStreak++
-      AppState.valor = Phaser.Math.RoundTo(this.valor * (AppState.winStreak * .1), 0)
+
+      AppState.gold = Phaser.Math.RoundTo(this.gold + (this.gold * (AppState.winStreak * .025)), 0)
+      AppState.valor = Phaser.Math.RoundTo(this.valor + (this.valor * (AppState.winStreak * .025)), 0)
+
 
       this.scene.events.off('dragon:hit')
       this.scene.events.off('dragon:over')
@@ -110,7 +111,6 @@ export class Dragon {
     sound.volume = 1;
 
     this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
-    console.log(this.dragonHP)
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     this.checkDeath()
@@ -144,7 +144,6 @@ export class Dragon {
     sound.volume = 0.2;
 
     this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
-    console.log(this.dragonHP)
     this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     this.checkDeath()

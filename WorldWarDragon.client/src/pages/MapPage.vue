@@ -21,30 +21,61 @@
   </section>
   <section v-else class="row d-flex justify-content-center  text-center">
     <div class="col-12">
-      <button @click="setActiveRoom(0)" class=" btn btn-primary">To Map</button>
+      <button @click="setActiveRoom(0)" class=" btn btn-primary">TO MAP</button>
     </div>
 
 
     <div v-if="activeRoom.id != 5" class=" col-12 d-flex flex-column justify-content-center align-items-center">
-      <h2 class="text-light">Messages</h2>
-      <div class="text-light">
-        <h3>Total Boons</h3>
-        <h4>
-          Gold: {{ AppState.goldMod[activeRoom.id] }} | Health: {{ AppState.healthMod[activeRoom.id] }} | Luck: {{
-            AppState.luckMod[activeRoom.id] }}
-          | Power: {{
-            AppState.powerMod[activeRoom.id] }}
-        </h4>
-      </div>
-      <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
-      <div v-for="message in messages" :key="message.id" class="bg-dark text-light px-3 rounded border border-light">
-        {{ message.boon }}
-        {{ message.body }}
-        {{ message.roomId }}
-        {{ message?.creator?.name }}
-        <!-- <button v-if="message.creatorId == account.id" class="selectable mdi mdi-delete btn text-danger"
-          @click="deleteMessage(message.id)"></button> -->
-      </div>
+      <section class="row">
+
+        <div class="col-12">
+          <h2 class="text-light">BOONS</h2>
+          <div class="text-light">
+            <h4>
+              Gold: {{ AppState.goldMod[activeRoom.id] }} | Health: {{ AppState.healthMod[activeRoom.id] }} | Luck: {{
+                AppState.luckMod[activeRoom.id] }}
+              | Power: {{
+                AppState.powerMod[activeRoom.id] }}
+            </h4>
+          </div>
+        </div>
+
+
+        <div class="col-6">
+          <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
+          <div v-for="message in messages" :key="message.id"
+            class="bg-dark text-light px-3 rounded border border-light">
+            {{ message.boon }}
+            {{ message.body }}
+            {{ message.roomId }}
+            {{ message?.creator?.name }}
+          </div>
+
+        </div>
+        <div class="col-6 bg-dark border border-light rounded fs-5 fw-bold text-start">
+          <p>
+            Dragons defeated: 0000
+
+          </p>
+          <p>
+            Damage done to boss Dragon: 0000
+
+          </p>
+          <p>
+            Gold collected: 0000
+
+          </p>
+          <p>
+            Gold lost: 0000
+
+          </p>
+
+          <p>
+            Losses: 0000
+          </p>
+        </div>
+
+      </section>
     </div>
 
 
@@ -57,7 +88,7 @@
             class="bg-dark px-3 rounded border border-light"
             :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
             {{ assistance.body }}
-            {{ assistance.roomId }}
+            <!-- {{ assistance.roomId }} -->
             {{ assistance?.creator?.name }}
             <button v-if="assistance.creatorId != account.id && assistance
               .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
@@ -69,10 +100,10 @@
             class="bg-dark px-3 rounded border border-light"
             :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
             {{ assistance.body }}
-            {{ assistance.roomId }}
+            <!-- {{ assistance.roomId }} -->
             {{ assistance?.creator?.name }}
             <button v-if="assistance.creatorId == account.id && assistance
-              .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
+              .claim == false" class="selectable mdi mdi-download btn text-success" @click="
                 claimAssistance(assistance.id)"> Claim</button>
           </div>
 
@@ -116,11 +147,6 @@ export default {
         Pop.error(error.message)
       }
     }
-
-    // function calculateMods() {
-    //   logger.log('cmods')
-
-    // }
 
     onMounted(() => {
       getMessages()

@@ -21,8 +21,7 @@
         </label>
       </div>
       <div class="form-check">
-        <input v-model="editable.boon" value="power" class="form-check-input" type="radio" name="boon" id="boon4"
-          checked>
+        <input v-model="editable.boon" value="power" class="form-check-input" type="radio" name="boon" id="boon4">
         <label class="form-check-label" for="boon4">
           Power
         </label>
@@ -59,6 +58,7 @@ export default {
         try {
           const cost = props.messageProp.cost
           const messageData = editable.value
+          messageData.roomId = AppState.activeRoom.id
           await messagesService.createMessage(messageData, cost)
           editable.value = {}
           editable.value.roomId = 1

@@ -11,9 +11,9 @@
         </div>
       </section>
 
-      <section class="row ps-2 d-flex text-light disable-click fw-bold text-shadow">
+      <section v-if="account.id" class="row ps-2 d-flex text-light disable-click fw-bold text-shadow">
         <div>
-          VALOR: {{ account.valor }}
+          VALOR: {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
         </div>
         <div class=" ">
           GOLD: {{ account.gold }}
@@ -22,7 +22,7 @@
           HEALTH: {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
         </div>
         <div>
-          POWER: {{ account.power }}( {{ appState.powerMod[appState.activeRoom.id] }} )
+          POWER: {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
         <div>
           Attack: {{ account.attack }}

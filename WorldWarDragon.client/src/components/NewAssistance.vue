@@ -15,8 +15,7 @@
         </label>
       </div>
       <div class="form-check">
-        <input v-model="editable.body" value="heal" class="form-check-input" type="radio" name="body" id="body4"
-          checked>
+        <input v-model="editable.body" value="heal" class="form-check-input" type="radio" name="body" id="body4">
         <label class="form-check-label" for="body4">
           Heal
         </label>
