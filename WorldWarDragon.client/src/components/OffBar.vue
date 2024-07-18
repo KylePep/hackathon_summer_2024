@@ -12,11 +12,11 @@
       </section>
 
       <section v-if="account.id" class="row ps-2 d-flex text-light disable-click fw-bold text-shadow">
-        <div>
-          VALOR: {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
-        </div>
         <div class=" ">
           GOLD: {{ account.gold }}
+        </div>
+        <div>
+          VALOR: {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
         </div>
         <div>
           HEALTH: {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
