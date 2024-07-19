@@ -71,12 +71,37 @@ import { computed, onMounted, watchEffect } from "vue";
 import { bossService } from "../services/BossService.js";
 import { logger } from "../utils/Logger.js";
 import { bossDamageService } from "../services/BossDamageService.js";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
   setup() {
+
+    const route = useRoute();
+    const router = useRouter();
+
     onMounted(() => {
       setBgImg();
+      // checkAdmin();
     });
+
+    // const user = computed(() => AppState.user)
+
+    const checkAdmin = (activeUserId) => {
+      if (!activeUserId) {
+        return
+      }
+      const activeUser = AppState.user
+      logger.log('USER', activeUser, 'ROLE', activeUser.role)
+
+      if (activeUser.role.length == 0 || !activeUser.role.includes('admin')) {
+        router.push({ name: "Home" })
+      }
+    }
+
+
+    watchEffect(() => {
+      checkAdmin(AppState.user.id)
+    })
 
     const setBgImg = () => {
       const mainElement = document.querySelector('main');

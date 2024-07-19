@@ -29,13 +29,13 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: loadPage('AdminPage')
+    component: loadPage('AdminPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
-    beforeEnter: authGuard
   },
   {
     path: '/game',
