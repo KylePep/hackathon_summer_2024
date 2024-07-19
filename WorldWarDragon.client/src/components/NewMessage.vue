@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="createMessage()" class="d-flex bg-dark p-3 rounded border border-3 border-light">
+  <form @submit.prevent="createMessage()"
+    class="d-flex justify-content-around bg-dark p-3 rounded border border-3 border-light">
     <div class="pe-3">
       <div class="form-check">
         <input v-model="editable.boon" value="gold" class="form-check-input" type="radio" name="boon" id="boon1"

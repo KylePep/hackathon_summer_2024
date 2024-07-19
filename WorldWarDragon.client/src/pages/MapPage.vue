@@ -1,11 +1,11 @@
 <template>
 
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center text-light mb-5">
+    <div class="col-12 fs-1 fw-bold text-center text-light mt-3 mb-5">
       <h1 v-if="!activeRoom.name || activeRoom.id == 0" class="fs-1 fw-bold text-center text-light">
         Select an area
       </h1>
-      <h1 v-else class="fs-1 fw-bold text-center text-light">
+      <h1 v-else class="fs-1 fw-bold text-center text-light ">
         {{ activeRoom.name }}
       </h1>
     </div>

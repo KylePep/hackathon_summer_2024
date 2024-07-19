@@ -1,17 +1,13 @@
 <template>
 
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center">
-      ACCOUNT PAGE
+    <div class="col-12 fs-1 fw-bold text-center text-light">
+      ACCOUNT DETAILS
     </div>
   </section>
 
   <section class="row">
     <div class="col-8 mx-auto custom-bg border border-light rounded">
-
-      <h2 class="">
-        Change account stuff
-      </h2>
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12">EDIT MODE</div>
         <div @click="selectPicture(1)" class="player-icon col-6" :class="[editable.picture == 1 ? 'selected' : '']"><img
@@ -34,11 +30,13 @@
       </section>
       <section v-else class="row">
         <div class="fs-3 text-center">
-          Account details
+          <h2 class="mb-5 text-uppercase">
+            Character details
+          </h2>
           <div class="player-icon">
             <img :src="account.picture" alt="">
           </div>
-          <div>
+          <div class="text-uppercase fw-bold fs-1">
             {{ account.name }}
           </div>
         </div>
