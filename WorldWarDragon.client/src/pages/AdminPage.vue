@@ -1,7 +1,7 @@
 <template>
   <section class="row g-3 px-5 pt-5 mx-5">
 
-    <div class="col-12">
+    <div class="col-12 bg-dark p-2">
       <div
         class="boss-dragon-img border border-2 border-light rounded d-flex flex-column justify-content-end text-light"
         :style="{ backgroundImage: `url(${activeBoss.image})` }">
@@ -18,16 +18,12 @@
           class="btn btn-secondary">activate: {{ boss.active }}</button>
       </div>
     </div>
-    <div class="col-12">
-      <p>For testing creating messages</p>
+    <div class="col-12 bg-dark p-2">
+      <p class="fs-1">For testing creating boons</p>
       <NewMessage :messageProp="{ cost: 100 * 0 }" />
-      <p>Messages will be made with a preselected vocab or emotes</p>
-      <p>Players can also delete a message, no sense in editing.</p>
-      <p>Other players can favorite a message</p>
     </div>
 
     <div class="col-12">
-      Here is where the messages will go
       <div class="bg-light text-dark rounded">
         <div v-for="message in messages" :key="message.id">
           Message: {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
@@ -36,19 +32,13 @@
       </div>
     </div>
 
-    <div class="col-12">
-      <p>For testing creating aid</p>
+    <div class="col-12 bg-dark p-2">
+      <p class="fs-1">For testing creating assistance</p>
       <NewAssistance />
-      <p>Aid is in the form of an extra item from their inventory, weapons, armor.</p>
-      <p> Aid can be deleted</p>
-      <p>Aid can only be claimed once</p>
-      <p>Both parties benefit from aid</p>
-      <p>The receiving player can add a tip ( ex: +10 Gold )</p>
     </div>
 
 
     <div class="col-12">
-      Here is where the aid will go
       <div class="bg-light text-dark rounded">
         <div v-for="assistance in assistances" :key="assistance.id">
           Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
@@ -81,10 +71,8 @@ export default {
 
     onMounted(() => {
       setBgImg();
-      // checkAdmin();
     });
 
-    // const user = computed(() => AppState.user)
 
     const checkAdmin = (activeUserId) => {
       if (!activeUserId) {
