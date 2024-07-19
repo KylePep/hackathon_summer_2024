@@ -25,8 +25,6 @@ World War Dragon is an idle clicker game where the main goal is to beat as many 
 
 ## Technical Details
 - **Technologies and Frameworks**: Developed using Vue and Phaser, with MongoDB handling the online aspect.
-   * [![Vue][Vue.js]][Vue-url]
-   * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 - **Design Patterns**: MVC design pattern is used for database interactions.
 - **Auth0 Integration**: Auth0 provides a secure login for the game.
 
