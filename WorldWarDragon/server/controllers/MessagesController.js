@@ -37,7 +37,8 @@ export class MessagesController extends BaseController {
     try {
       const messageId = req.params.messageId
       const userId = req.userInfo.id
-      const assistance = await messagesService.removeMessageById(messageId, userId)
+      const isAdmin = req.userInfo.role.includes('admin')
+      const assistance = await messagesService.removeMessageById(messageId, userId, isAdmin)
       return res.send(assistance)
     } catch (error) {
       next(error);

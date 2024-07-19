@@ -3,7 +3,7 @@
     <div class="container-fluid px-0 disable-click">
 
       <section class="can-click row w-100 mt-0  mt-0">
-        <div class="col-4 d-flex  ps-3 pt-1">
+        <div class="col-4 d-flex  ps-3 py-1">
           <LoginSmall />
           <router-link v-if="route.name != 'Game'" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
@@ -11,9 +11,11 @@
             :class="[route.name == 'Map' ? 'nav-btn-off' : 'nav-btn']">Map</router-link>
         </div>
         <div class="col-4 d-flex justify-content-center position-relative">
-          <BossDragon />
+          <div v-if="route.name != 'Game'" class="d-flex justify-content-center">
+            <BossDragon />
+          </div>
         </div>
-        <div class="col-4 d-flex justify-content-end pe-0">
+        <div class="col-4 d-flex justify-content-end pe-0 py-1">
 
           <router-link v-if="route.name != 'Game'" :to="{ name: 'Account' }"
             :class="[route.name == 'Account' ? 'nav-btn-off' : 'nav-btn']">Character</router-link>
@@ -25,26 +27,26 @@
       </section>
 
       <section v-if="account.id" class="row ps-2 d-flex text-light disable-click fw-bold text-shadow">
-        <div class=" ">
-          GOLD: {{ account.gold }}
+        <div class="mdi mdi-circle-multiple " title="Gold">
+          : {{ account.gold }}
         </div>
-        <div>
-          VALOR: {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
+        <div class="mdi mdi-medal" title="Valor">
+          : {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
         </div>
-        <div>
-          HEALTH: {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
+        <div class="mdi mdi-heart" title="Health">
+          : {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
         </div>
-        <div>
-          POWER: {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+        <div class="mdi mdi-weight-lifter" title="Power">
+          : {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
-        <div>
-          Attack: {{ account.attack }} ( {{ account.attackAid }} )
+        <div class="mdi mdi-sword-cross text-danger" title="Attack">
+          : {{ account.attack }} ( {{ account.attackAid }} )
         </div>
-        <div>
-          Shield: {{ account.shield }} ( {{ account.shieldAid }} )
+        <div class="mdi mdi-shield-sun text-info" title="Shield">
+          : {{ account.shield }} ( {{ account.shieldAid }} )
         </div>
-        <div>
-          heal: {{ account.heal }} ( {{ account.healAid }} )
+        <div class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
+          : {{ account.heal }} ( {{ account.healAid }} )
         </div>
 
       </section>
@@ -54,9 +56,10 @@
       <div class="can-click offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel">
 
-        <div class="offcanvas-header mb-5">
-          <router-link :to="{ name: 'Home' }" class="offcanvas-title fs-4 selectable fw-semibold text-light"
-            id="offcanvasNavbarLabel">World War
+
+        <div class="offcanvas-header mb-1">
+          <router-link :to="{ name: 'Home' }" class=" game-title fs-1 selectable fw-semibold"
+            id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
           <button class="btn text-light" @click="toggleTheme"
             :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
@@ -65,7 +68,36 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
+
         <div class="offcanvas-body text-center">
+          <div class="mb-3">
+            <div class="d-flex justify-content-around">
+              <div class="mdi mdi-circle-multiple " title="Gold">
+                : {{ account.gold }}
+              </div>
+              <div class="mdi mdi-medal" title="Valor">
+                : {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
+              </div>
+              <div class="mdi mdi-heart" title="Health">
+                : {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
+              </div>
+              <div class="mdi mdi-weight-lifter" title="Power">
+                : {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+              </div>
+            </div>
+            <div class="d-flex justify-content-around">
+              <div class="mdi mdi-sword-cross text-danger" title="Attack">
+                : {{ account.attack }} ( {{ account.attackAid }} )
+              </div>
+              <div class="mdi mdi-shield-sun text-info" title="Shield">
+                : {{ account.shield }} ( {{ account.shieldAid }} )
+              </div>
+              <div class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
+                : {{ account.heal }} ( {{ account.healAid }} )
+              </div>
+
+            </div>
+          </div>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
             <li>
@@ -79,29 +111,30 @@
             </li>
 
             <li class="nav-item">
+              <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
+                Map
+              </router-link>
+            </li>
+
+            <li class="nav-item">
               <router-link class="btn text-success lighten-30 selectable text-uppercase" :to="{ name: 'Account' }">
-                ACCOUNT
+                Character
               </router-link>
             </li>
 
 
             <li class="nav-item">
               <router-link :to="{ name: 'Score' }" class="btn text-success lighten-30 selectable text-uppercase">
-                SCORE
+                Hall of Valor
               </router-link>
             </li>
 
             <li class="nav-item">
               <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-                About
+                Lore
               </router-link>
             </li>
 
-            <li class="nav-item">
-              <router-link :to="{ name: 'Map' }" class="btn text-success lighten-30 selectable text-uppercase">
-                Map
-              </router-link>
-            </li>
 
 
           </ul>
@@ -176,6 +209,19 @@ li {
 
 .nav-btn-off {
   cursor: default;
+}
+
+.game-title {
+  font-family: "Metal Mania", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
+  color: #ff7300;
+
+  // border: 2px solid white;
+  // border-radius: 8px;
+
+  text-shadow: 4px 4px 4px black;
 }
 
 .text-shadow {

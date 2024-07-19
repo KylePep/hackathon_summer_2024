@@ -73,16 +73,16 @@
           <div class="fs-4">
             STATS
           </div>
-          <div>
-            Valor: {{ account.valor || 0 }} | EXP: {{ availableValor - valorSpend }}
-          </div>
-          <div>
+          <div class="mdi mdi-circle-multiple">
             Gold: {{ account.gold || 0 }}
           </div>
-          <div>
+          <div class="mdi mdi-medal">
+            Valor: {{ account.valor || 0 }} | EXP: {{ availableValor - valorSpend }}
+          </div>
+          <div class="mdi mdi-heart">
             Health: {{ account.health || 0 }}
           </div>
-          <div>
+          <div class="mdi mdi-weight-lifter">
             Power: {{ account.power || 0 }}
           </div>
         </div>
@@ -90,13 +90,13 @@
           <div class="fs-4">
             INVENTORY
           </div>
-          <div>
+          <div class="mdi mdi-sword-cross">
             Attack: {{ account.attack }}
           </div>
-          <div>
+          <div class="mdi mdi-shield-sun">
             shield: {{ account.shield }}
           </div>
-          <div>
+          <div class="mdi mdi-bottle-tonic-plus">
             heal: {{ account.heal }}
           </div>
         </div>

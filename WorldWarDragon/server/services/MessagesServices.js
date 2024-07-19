@@ -13,12 +13,12 @@ class MessagesService {
     return newMessage
   }
 
-  async removeMessageById(messageId, userId) {
+  async removeMessageById(messageId, userId, isAdmin) {
     const message = await dbContext.Message.findById(messageId)
     if (!message) {
       throw new BadRequest(`Message with ID${messageId} does not exist`)
     }
-    if (message.creatorId != userId) {
+    if (message.creatorId != userId && !isAdmin) {
       throw new Forbidden('You can not delete an message you do not own')
     }
     await message.remove()

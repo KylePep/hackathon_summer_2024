@@ -41,7 +41,7 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-12">
           <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
           <div v-for="message in messages" :key="message.id"
             class="bg-dark text-light px-3 rounded border border-light">
@@ -52,7 +52,7 @@
           </div>
 
         </div>
-        <div class="col-6 bg-dark border border-light rounded fs-5 fw-bold text-start">
+        <!-- <div class="col-6 bg-dark border border-light rounded fs-5 fw-bold text-start">
           <p>
             Dragons defeated: 0000
 
@@ -73,7 +73,7 @@
           <p>
             Losses: 0000
           </p>
-        </div>
+        </div> -->
 
       </section>
     </div>
@@ -96,7 +96,7 @@
           </div>
         </div>
         <div>
-          <div v-for="assistance in assistancesClaimed" :key="assistance.id"
+          <div v-for="assistance in assistancesClaimed.slice(0, 5)" :key="assistance.id"
             class="bg-dark px-3 rounded border border-light"
             :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
             {{ assistance.body }}
