@@ -10,10 +10,6 @@ World War Dragon is an idle clicker game where the main goal is to beat as many 
   - Create boons within an area of the map to increase the stats of everyone fighting in that room.
   - Offer assistance to the community in the form of items you earn, gaining valor in return.
 
-## Installation Instructions
-- **Prerequisites**: This game runs within your browser.
-- **Setup**: The game is not yet hosted. Once hosted, you can play by visiting the website and creating an account.
-
 ## Gameplay Instructions
 - **Starting a New Game**: Create a login for the application, select "Join the Fight", choose an area, and begin fighting.
 - **Main Controls**: Swipe the dragon (or use the mouse click fallback) to attack. Click and drag on the stars to draw symbols and use special moves.
