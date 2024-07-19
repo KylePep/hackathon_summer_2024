@@ -1,29 +1,57 @@
-# READ ME for hackathon summer 2024
-here is the read me
+# World War Dragon
 
-# Multiplayer clicker/resource game
-Players fight alongside each other against the coming waves of Dragons
+## Project Overview
+World War Dragon is an idle clicker game where the main goal is to beat as many dragons as you can to deal damage to the boss dragon. The game falls under the idle clicker genre with unique mechanics that allow players to click and swipe to do damage to the dragon they are fighting.
 
-# Participate in the fight
-An individual player can begin by fighting the smallest of dragon kind, and advance to going toe to toe with enormous threats.
+## Game Features
+- **Online Experience**: You and other players contribute together to take down the boss dragon.
+- **Unique Mechanics**:
+  - Draw signs on the screen to use special moves.
+  - Create boons within an area of the map to increase the stats of everyone fighting in that room.
+  - Offer assistance to the community in the form of items you earn, gaining valor in return.
 
-# Help others
-Leave behind encouragement and supplies for your fellow fighters to take advantage of, doing so earns you favor with the goddess of (?). Making you and fellow fighters stronger in the process.
+## Installation Instructions
+- **Prerequisites**: This game runs within your browser.
+- **Setup**: The game is not yet hosted. Once hosted, you can play by visiting the website and creating an account.
 
-# Take control
-Become your Goddesses chosen by completing tasks and helping others. The Chosen is lifted up to highest level and the biggest battle against the world ending dragon (?).
+## Gameplay Instructions
+- **Starting a New Game**: Create a login for the application, select "Join the Fight", choose an area, and begin fighting.
+- **Main Controls**: Swipe the dragon (or use the mouse click fallback) to attack. Click and drag on the stars to draw symbols and use special moves.
+- **Guides**: An introduction to the game's concept is available on the lore page, but no detailed guides are provided yet.
 
-# Never ending
-When the WED is destroyed another just takes it's place.
+## Game Story and Characters
+- **Storyline**: An enormous dragon appears in the sky with seemingly infinite smaller dragons. You, a warrior of Centeria, along with other players, must fight the dragons to eventually repel the boss dragon.
+- **Characters**: The main characters are the veteran and the princess, though their roles are currently minimal.
 
-# Random events
-The playing field gets turned on it's head with random events that effect the player or effect the entire battle field.
+## Technical Details
+- **Technologies and Frameworks**: Developed using Vue and Phaser, with MongoDB handling the online aspect.
+- **Design Patterns**: MVC design pattern is used for database interactions.
+- **Auth0 Integration**: Auth0 provides a secure login for the game.
 
-## MVP
-- Players will be able to login, do a simple clicker challenge, then see their results lower the global count of -Dragons -Big Dragon HP. Then send help anonymously to other players. 
+## Development and Contributions
+- **Main Contributor**: Kyle Peppersack, using knowledge from CodeWorks and their templates and examples.
+- **Contributing Guidelines**: No contributions are accepted at this time.
+- **Roadmap**: A roadmap is in progress.
 
-## IDEAl 
-- Everything looks pretty. Some story added, Characters and NPC's.
+## Licensing and Credits
+- **License**: Distributed under the MIT License. See LICENSE.txt for more information.
+- **Third-Party Assets**: Assets from [OpenGameArt](https://opengameart.org) were used, and AI generated all key art and backgrounds.
 
-## FEATURE RICH
-- The app on a global scale will be effected by events.
+## Contact and Support
+- **Reporting Issues**: https://www.linkedin.com/in/kyle-peppersack - kylepeppersack@hotmail.com
+- **Project Link**: https://github.com/KylePep/hackathon_summer_2024
+- **Communities**: Not yet available.
+
+## Admin and User Permissions
+- **Admin Access**: Used to control the game environment, such as creating Boss Dragons.
+- **Admin Restrictions**: Creating Boss Dragons and deleting content are restricted to admins.
+
+## Updates and Changelog
+- **Version History**: First release.
+- **Recent Updates**: 
+  - Showcased at the 2024 CodeWorks summer hackathon.
+  - Feedback incorporated and bugs fixed.
+  - Notable updates include preventing repetitive assistance exchanges, allowing reverse sign drawing, and losing gold upon defeat.
+
+## Acknowledgements
+- **Special Thanks**: CodeWorks for hosting the hackathon and providing the opportunity to present and receive feedback.
