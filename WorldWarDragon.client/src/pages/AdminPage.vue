@@ -1,11 +1,15 @@
 <template>
-  <section class="row g-3">
+  <section class="row g-3 px-5 pt-5 mx-5">
 
     <div class="col-12">
-      <img :src="activeBoss.image" class="img-fluid" alt="">
-      {{ activeBoss.image }}
-      <h1>{{ activeBoss.name }}</h1>
-      <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
+      <div
+        class="boss-dragon-img border border-2 border-light rounded d-flex flex-column justify-content-end text-light"
+        :style="{ backgroundImage: `url(${activeBoss.image})` }">
+        <div>
+          <h1>{{ activeBoss.name }}</h1>
+          <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
+        </div>
+      </div>
       <DamageActiveboss />
       <NewBoss />
       <p>A list of all bosses</p>
@@ -174,6 +178,22 @@ export default {
 p {
   padding: 0;
   margin: 0;
+}
+
+.boss-dragon-img {
+  font-family: "Metal Mania", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  width: 40%;
+  height: 40vh;
+  max-width: 512px;
+
+  >div {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.593) 40%);
+  }
+
+  background-position: center;
+  background-size: cover;
 }
 </style>
 
