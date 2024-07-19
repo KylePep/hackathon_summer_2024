@@ -39,13 +39,13 @@
         <div class="mdi mdi-weight-lifter" title="Power">
           : {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
-        <div class="mdi mdi-sword-cross text-danger" title="Attack">
+        <div v-if="account.attack > 0 || account.attackAid > 0" class="mdi mdi-sword-cross text-danger" title="Attack">
           : {{ account.attack }} ( {{ account.attackAid }} )
         </div>
-        <div class="mdi mdi-shield-sun text-info" title="Shield">
+        <div v-if="account.shield > 0 || account.shieldAid > 0" class="mdi mdi-shield-sun text-info" title="Shield">
           : {{ account.shield }} ( {{ account.shieldAid }} )
         </div>
-        <div class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
+        <div v-if="account.heal > 0 || account.healAid > 0" class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
           : {{ account.heal }} ( {{ account.healAid }} )
         </div>
 
