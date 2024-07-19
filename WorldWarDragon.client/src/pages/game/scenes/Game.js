@@ -70,23 +70,24 @@ export class Game extends Scene {
         this.slash = new Slash(this, centerX, centerY)
 
         const topLeftX = 128; // Offset from the left edge
-        const topLeftY = 16; // Offset from the bottom edge
+        const topLeftY = 64; // Offset from the bottom edge
 
         this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name}\nHP: ${this.playerHp}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
-            align: 'center'
+            align: 'start'
         }).setOrigin(0, 0)
 
         // Adding the 'NAME' text at the top right
         const topRightX = this.cameras.main.width - 32; // Offset from the left edge
         const topRightY = 16; // Offset from the bottom edge
-        this.name = this.add.text(topRightX, topRightY, `${randomName} ${randomTitle}`, {
+        this.name = this.add.text(topRightX, topRightY + 16, `${randomName}\n ${randomTitle}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8
+            stroke: '#000000', strokeThickness: 8,
+            align: 'end'
         }).setDepth(100).setOrigin(1, 0)
 
-        this.clickText = this.add.text(topRightX, topRightY + 64, `HP: ${this.dragon.dragonHP}`, {
+        this.clickText = this.add.text(topRightX, topRightY + 96, `HP: ${this.dragon.dragonHP}`, {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -149,9 +150,9 @@ export class Game extends Scene {
         this.return.setPosition(bottomLeftX, bottomLeftY);
 
         const topRightX = this.cameras.main.width; // Offset from the left edge
-        const topRightY = 16; // Offset from the bottom edge
+        const topRightY = 64; // Offset from the bottom edge
         this.name.setPosition(topRightX - 16, topRightY);
-        this.clickText.setPosition(topRightX - 16, topRightY + 64)
+        this.clickText.setPosition(topRightX - 16, topRightY + 96)
 
         this.adjustTextSize();
     }

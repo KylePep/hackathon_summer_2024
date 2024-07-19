@@ -3,11 +3,24 @@
     <div class="container-fluid px-0 disable-click">
 
       <section class="can-click row w-100 mt-0  mt-0">
-        <div class="col-4  ps-3 pt-1">
+        <div class="col-4 d-flex  ps-3 pt-1">
           <LoginSmall />
+          <router-link v-if="route.name != 'Game'" :to="{ name: 'Home' }"
+            :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
+          <router-link v-if="route.name != 'Game'" :to="{ name: 'Map' }"
+            :class="[route.name == 'Map' ? 'nav-btn-off' : 'nav-btn']">Map</router-link>
         </div>
         <div class="col-4 d-flex justify-content-center position-relative">
           <BossDragon />
+        </div>
+        <div class="col-4 d-flex justify-content-end pe-0">
+
+          <router-link v-if="route.name != 'Game'" :to="{ name: 'Account' }"
+            :class="[route.name == 'Account' ? 'nav-btn-off' : 'nav-btn']">Character</router-link>
+          <router-link v-if="route.name != 'Game'" :to="{ name: 'Score' }"
+            :class="[route.name == 'Score' ? 'nav-btn-off' : 'nav-btn']">Hall</router-link>
+          <router-link v-if="route.name != 'Game'" :to="{ name: 'About' }"
+            :class="[route.name == 'About' ? 'nav-btn-off' : 'nav-btn']">Lore</router-link>
         </div>
       </section>
 
@@ -106,17 +119,15 @@ import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import LoginSmall from './LoginSmall.vue';
 import { AppState } from "../AppState.js";
+import { useRoute } from "vue-router";
 
 const theme = ref(loadState('theme') || 'light')
+const route = useRoute()
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
 
-// watchEffect(() => {
-//   AppState.account.id
-
-// })
 
 function toggleTheme() {
   theme.value = theme.value == 'light' ? 'dark' : 'light'
@@ -137,6 +148,34 @@ a:hover {
 
 li {
   padding-bottom: 32px;
+}
+
+.nav-btn {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+  padding: 8px;
+  border: 2px solid var(--bs-light);
+  border-radius: 6px;
+  font-weight: bold;
+
+}
+
+.nav-btn:hover {
+  color: var(--bs-secondary);
+  cursor: pointer;
+}
+
+.nav-btn-off {
+  background-color: var(--bs-dark);
+  padding: 8px;
+  border: 2px solid gray;
+  border-radius: 6px;
+  font-weight: bold;
+  color: gray;
+}
+
+.nav-btn-off {
+  cursor: default;
 }
 
 .text-shadow {

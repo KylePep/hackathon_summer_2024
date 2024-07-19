@@ -55,6 +55,11 @@ main {
     background-repeat: none;
     background-size: cover;
     background-attachment: fixed;
+    user-select: none;
+}
+
+header {
+    user-select: none;
 }
 
 section:first-child {
@@ -64,14 +69,6 @@ section:first-child {
 ::-webkit-scrollbar {
     display: none;
 }
-
-footer {
-    // height: 32px;
-}
-
-// main {
-//     display: flex;
-// }
 
 :root {
     --main-height: calc(100vh - 32px - 64px);
