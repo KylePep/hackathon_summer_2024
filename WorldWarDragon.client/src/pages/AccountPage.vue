@@ -46,24 +46,29 @@
       <section class="row">
         <div class="col-12 d-flex justify-content-center">
           <div v-if="editMode == false">
-            <button class="btn btn-primary" @click="handleEditing()">EDIT</button>
+            <button class="btn btn-dark text-primary border-1 border-light" @click="handleEditing()">EDIT</button>
           </div>
           <div v-else>
-            <button class="btn btn-danger" @click="handleEditing('cancel')">CANCEL</button>
-            <button class="btn btn-success" @click="handleEditing()">SUBMIT</button>
+            <button class="btn btn-dark text-danger border-1 border-light"
+              @click="handleEditing('cancel')">CANCEL</button>
+            <button class="btn btn-dark text-success border-1 border-light" @click="handleEditing()">SUBMIT</button>
           </div>
         </div>
       </section>
       <section v-if="availableValor > 100" class="row">
         <div class="col-12 ">
           <div v-if="levelMode == false" class="d-flex justify-content-center">
-            <button @click="handleLeveling()" class="btn btn-success">+ LEVEL UP | COST: 100</button>
+            <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
+              100</button>
           </div>
           <div class="d-flex justify-content-around" v-else>
-            <div @click="increaseStat(0)" class="btn btn-primary">+ {{ levelUp[0] }} Health</div>
-            <div @click="increaseStat(1)" class="btn btn-primary">+ {{ levelUp[1] }} Power</div>
-            <button @click="handleLeveling()" class="btn btn-success">SUBMIT</button>
-            <button @click="handleLeveling('cancel'), increaseStat(-1)" class="btn btn-danger">CANCEL</button>
+            <div @click="increaseStat(0)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[0] }}
+              Health</div>
+            <div @click="increaseStat(1)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[1] }}
+              Power</div>
+            <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">SUBMIT</button>
+            <button @click="handleLeveling('cancel'), increaseStat(-1)"
+              class="btn btn-dark text-danger border-1 border-light">CANCEL</button>
           </div>
         </div>
       </section>

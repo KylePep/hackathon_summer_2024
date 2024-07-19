@@ -21,7 +21,7 @@
   </section>
   <section v-else class="row d-flex justify-content-center  text-center">
     <div class="col-12">
-      <button @click="setActiveRoom(0)" class=" btn btn-primary">TO MAP</button>
+      <button @click="setActiveRoom(0)" class=" btn btn-dark border border-1 border-light">TO MAP</button>
     </div>
 
 
