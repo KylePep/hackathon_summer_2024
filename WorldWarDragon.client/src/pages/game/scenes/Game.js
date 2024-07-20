@@ -152,7 +152,7 @@ export class Game extends Scene {
         const topRightX = this.cameras.main.width; // Offset from the left edge
         const topRightY = 16; // Offset from the bottom edge
         this.name.setPosition(topRightX - 16, topRightY);
-        this.clickText.setPosition(topRightX - 16, topRightY + 96)
+        this.clickText.setPosition(topRightX - 16, topRightY + 128)
 
         this.adjustTextSize();
     }
