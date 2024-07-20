@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from "../utils/Errors.js";
 
 class BossDamageService {
   async getBossDamages() {
-    const bossDamages = await dbContext.BossDamage.find().populate('creator', 'name picture')
+    const bossDamages = await dbContext.BossDamage.find().populate('creator', 'name picture level valor')
     return bossDamages
   }
 

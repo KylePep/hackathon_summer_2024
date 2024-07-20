@@ -4,12 +4,10 @@
       Hall of Valor
     </div>
   </section>
-  <section class="row">
-    <div class="col-12 text-center fs-1 text-light" v-for="score in bossDamages" :key="score.id">
-      <img class="character-icon" :src="score.creator.picture" alt="">
-      {{ score.creator.name
-      }}
-      {{ Math.round(score.dmg) }}
+  <section class="row g-3">
+    <div class="col-12" v-for="score, index in bossDamages" :key="score.id">
+      <ScoreCard :scoreProp="score" :index="index" />
+
     </div>
   </section>
 </template>
@@ -52,9 +50,4 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-.character-icon {
-  height: 32px;
-  width: auto;
-}
-</style>
+<style lang="scss" scoped></style>

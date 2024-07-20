@@ -19,7 +19,7 @@
         </router-link> -->
         <div class="d-flex ">
           <div class="py-2 pe-3 text-uppercase text-light fw-semibold">
-            {{ account.name }} | Level : 1
+            {{ account.name }} | Level : {{ account.level }}
           </div>
           <div class="text-danger btn lighten-30 selectable text-uppercase" @click="logout">
             <i class="mdi mdi-logout "></i>
