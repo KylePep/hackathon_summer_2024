@@ -206,6 +206,7 @@ export default {
             editable.value.health = AppState.account.health += this.levelUp[0]
             editable.value.power = AppState.account.power += this.levelUp[1]
             editable.value.valorSpent = AppState.account.valorSpent += this.valorSpend
+            editable.value.level = AppState.account.level + this.levelNew
             this.submitAccountChange()
             this.levelUp = [0, 0]
             this.valorSpend = 0
