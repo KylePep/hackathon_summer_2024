@@ -39,6 +39,9 @@
           <div class="text-uppercase fw-bold fs-1">
             {{ account.name }}
           </div>
+          <div class="text-uppercase fw-bold fs-2">
+            Level: {{ account.level }}
+          </div>
         </div>
       </section>
       <section class="row">
@@ -53,17 +56,20 @@
           </div>
         </div>
       </section>
-      <section v-if="availableValor > 100" class="row">
+      <section v-if="availableValor > 100" class="row mt-3">
         <div class="col-12 ">
           <div v-if="levelMode == false" class="d-flex justify-content-center">
             <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
-              100</button>
+              {{ levelUpRequirement }}</button>
           </div>
           <div class="d-flex justify-content-around" v-else>
             <div @click="increaseStat(0)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[0] }}
               Health</div>
             <div @click="increaseStat(1)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[1] }}
               Power</div>
+            <div class="bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info">
+              Cost: {{ levelUpRequirement }}
+            </div>
             <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">SUBMIT</button>
             <button @click="handleLeveling('cancel'), increaseStat(-1)"
               class="btn btn-dark text-danger border-1 border-light">CANCEL</button>
@@ -129,6 +135,7 @@ export default {
 
     const levelUp = ref({})
     const valorSpend = ref({})
+    const levelNew = ref(0)
 
     onMounted(() => {
       setBgImg();
@@ -152,8 +159,12 @@ export default {
       editable,
       editMode,
       levelMode,
+      levelNew,
       account: computed(() => AppState.account),
       availableValor: computed(() => AppState.account.valor - AppState.account.valorSpent),
+      levelModifier: computed(() => (AppState.account.level + levelNew) * 2 + 1),
+      levelBase: 100,
+      levelUpRequirement: computed(() => Math.round(((AppState.account.level + levelNew.value) * 2 + 1) * 100)),
       levelUp,
       valorSpend,
 
@@ -174,10 +185,14 @@ export default {
           this.levelUp = [0, 0]
           this.valorSpend = 0
         } else {
-          if (this.valorSpend + 100 < this.availableValor) {
+          if (this.valorSpend + this.levelUpRequirement < this.availableValor) {
             option == 0 ? this.levelUp[option] += 10 : this.levelUp[option]++
-            logger.log(option, this.levelUp[0], this.levelUp[1])
-            this.valorSpend += 100
+
+
+            this.valorSpend += this.levelUpRequirement
+
+            levelNew.value++
+            logger.log(option, this.levelUp[0], this.levelUp[1], this.levelUpRequirement, levelNew.value)
           }
 
         }
@@ -186,6 +201,7 @@ export default {
         if (option != 'cancel') {
           if (levelMode.value == false) {
             levelMode.value = true
+
           } else {
             editable.value.health = AppState.account.health += this.levelUp[0]
             editable.value.power = AppState.account.power += this.levelUp[1]
@@ -193,10 +209,13 @@ export default {
             this.submitAccountChange()
             this.levelUp = [0, 0]
             this.valorSpend = 0
+            this.levelNew = 0
             levelMode.value = false
           }
         } else {
           levelMode.value = false
+          this.levelNew = 0
+          // this.levelUp = [0, 0]
         }
       },
       selectPicture(pictureId) {

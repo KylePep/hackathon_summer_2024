@@ -3,6 +3,7 @@ export class Profile {
     this.id = data._id
     this.name = data.name
     this.picture = data.picture
+    this.level = data.level
     this.valor = data.valor
     this.valorSpent = data.valorSpent
     this.gold = data.gold
