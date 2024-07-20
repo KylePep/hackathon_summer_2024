@@ -7,7 +7,7 @@
   </section>
 
   <section class="row">
-    <div class="col-8 mx-auto custom-bg border border-light rounded">
+    <div class="col-8 mx-auto p-4 custom-bg border border-light rounded">
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12">EDIT MODE</div>
         <div @click="selectPicture(1)" class="player-icon col-6" :class="[editable.picture == 1 ? 'selected' : '']"><img
@@ -56,7 +56,7 @@
           </div>
         </div>
       </section>
-      <section v-if="availableValor > 100" class="row mt-3">
+      <section v-if="availableValor >= levelUpRequirement" class="row mt-3">
         <div class="col-12 ">
           <div v-if="levelMode == false" class="d-flex justify-content-center">
             <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
@@ -76,10 +76,17 @@
           </div>
         </div>
       </section>
+      <section v-else class="row mt-3">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="bg-dark p-2 border border-1 border-light rounded text-danger">
+            LEVEL UP | COST: {{ levelUpRequirement }}
+          </div>
+        </div>
+      </section>
 
-      <section class="row">
+      <section class="row mt-3">
         <div class="col-6 fs-5 text-center">
-          <div class="fs-4">
+          <div class="fs-4 fw-bold">
             STATS
           </div>
           <div class="mdi mdi-circle-multiple">
@@ -96,7 +103,7 @@
           </div>
         </div>
         <div class="col-6 fs-5 text-center">
-          <div class="fs-4">
+          <div class="fs-4 fw-bold">
             INVENTORY
           </div>
           <div class="mdi mdi-sword-cross">
