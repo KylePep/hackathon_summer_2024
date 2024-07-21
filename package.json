@@ -5,9 +5,9 @@
     "scripts": {
       "build": "npm run setup:server",
       "setup:app": "npm run setup:server && npm run setup:client",
-      "setup:client": "cd worldwardragon.client && npm i",
-      "setup:server": "cd worldwardragon && npm i",
-      "start": "node worldwardragon/index.js"
+      "setup:client": "cd WorldWarDragon.client && npm i",
+      "setup:server": "cd WorldWarDragon && npm i",
+      "start": "node WorldWarDragon/index.js"
     }
   }
   
