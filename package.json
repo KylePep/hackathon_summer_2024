@@ -1,13 +1,13 @@
 
-  {
-    "name": "worldwardragon",
-    "version": "1.0.0",
-    "scripts": {
-      "build": "npm run setup:app",
-      "setup:app": "npm run setup:server && npm run setup:client",
-      "setup:client": "cd WorldWarDragon.client && npm i",
-      "setup:server": "cd WorldWarDragon && npm i",
-      "start": "node WorldWarDragon/index.js"
-    }
+{
+  "name": "worldwardragon",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run setup:app && npm run build:client",
+    "setup:app": "npm run setup:server && npm run setup:client",
+    "setup:client": "cd WorldWarDragon.client && npm i",
+    "setup:server": "cd WorldWarDragon && npm i",
+    "build:client": "cd WorldWarDragon.client && npm run build",
+    "start": "node WorldWarDragon/index.js"
   }
-  
+}

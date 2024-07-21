@@ -31,7 +31,6 @@ export default defineConfig({
     },
     logLevel: 'warning',
     build: {
-        outDir: '../WorldWarDragon/client',
         rollupOptions: {
             output: {
                 manualChunks: {
