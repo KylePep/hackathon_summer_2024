@@ -27,10 +27,7 @@
             smaller
             dragons fell to the earth.
           </p>
-          <p>It is your duty to defeat these dragons and drive back the Immense dragon.</p>
-          <p>You can not do this alone. You must rely and come to the aid of every warrior and citizen of Centeria.
-          </p>
-          <p>Through everyone's combined might, the dragon will be repelled.</p>
+
         </div>
       </section>
     </div>
