@@ -42,7 +42,6 @@ export class Game extends Scene {
         } else {
             this.playerMaxHp = AppState.account.health
         }
-        // logger.log('HealthMod', AppState.healthMod[this.activeRoomId], 'ROOMID', this.activeRoomId)
         this.playerHp = this.playerMaxHp
 
         // Randomly select a name and title
