@@ -1,0 +1,16 @@
+{
+  "builds": [
+    {
+      "src": "WorldWarDragon/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "WorldWarDragon.client/dist/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "WorldWarDragon/index.js" },
+    { "src": "/(.*)", "dest": "/dist/$1" }
+  ]
+}
