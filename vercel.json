@@ -9,14 +9,14 @@
       }
     },
     {
-      "src": "WorldWarDragon/server/**/*.js",
+      "src": "WorldWarDragon/server/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/WorldWarDragon/server/$1"
+      "dest": "/WorldWarDragon/server/index.js"
     },
     {
       "src": "/(.*)",
