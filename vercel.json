@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "WorldWarDragon.client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "WorldWarDragon/client"
+      }
+    },
+    {
+      "src": "WorldWarDragon/server/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/WorldWarDragon/server/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/WorldWarDragon/client/$1"
+    }
+  ]
+}
