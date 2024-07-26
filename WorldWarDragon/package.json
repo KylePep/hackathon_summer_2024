@@ -7,7 +7,7 @@
     "debug": "node index.js",
     "start": "node index.js",
     "dev": "node index.js",
-    "setup": "pnpm install -p"
+    "setup": "npm install"
   },
   "author": "Codeworks",
   "license": "ISC",
