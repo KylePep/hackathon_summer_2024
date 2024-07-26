@@ -49,5 +49,8 @@ export default defineConfig({
             }
         },
         outDir: '../WorldWarDragon/client'
+    },
+    server: {
+        port: 8080
     }
 });
