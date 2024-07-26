@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/vite.config.prod.mjs",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "WorldWarDragon/client"
+      }
+    },
+    {
+      "src": "WorldWarDragon/server/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/server/(.*)",
+      "dest": "/server/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    }
+  ]
+}
