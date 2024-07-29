@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "WorldWarDragon/client/package.json",
+      "src": "WorldWarDragon.client/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "WorldWarDragon/client/dist"
