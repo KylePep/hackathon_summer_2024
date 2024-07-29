@@ -30,7 +30,7 @@ import { onMounted, ref, watchEffect } from "vue";
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
 
 main {
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url('../public/assets/towerbg4.jpeg');
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url('/assets/towerbg4.jpeg');
     background-position: center;
     background-repeat: none;
     background-size: cover;

@@ -11,7 +11,7 @@ class BossDamageService {
     AppState.bossDamages = res.data.map(b => new BossDamage(b))
     AppState.bossDamages.forEach((bs) => {
       if (bs.creator.picture.length < 2) {
-        bs.creator.picture = `public/assets/player/player${bs.creator.picture}.jpeg`
+        bs.creator.picture = `/assets/player/player${bs.creator.picture}.jpeg`
       }
     });
     logger.log(AppState.bossDamages)

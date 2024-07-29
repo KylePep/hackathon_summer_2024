@@ -243,7 +243,7 @@ export default {
 <style lang="scss" scoped>
 .map {
   font-size: 32px;
-  background-image: url('../public/assets/map4.jpeg');
+  background-image: url('/assets/map4.jpeg');
   background-position: center;
   background-repeat: none;
   background-size: cover;
