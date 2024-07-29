@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "WorldWarDragon/server/index.js",
+      "src": "WorldWarDragon/index.js",
       "use": "@vercel/node"
     },
     {
@@ -16,7 +16,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/WorldWarDragon/server/index.js"
+      "dest": "/WorldWarDragon/index.js"
     },
     {
       "src": "/(.*)",
