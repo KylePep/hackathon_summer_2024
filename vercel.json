@@ -2,15 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "WorldWarDragon/client"
-      }
-    },
-    {
       "src": "WorldWarDragon/server/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "WorldWarDragon/client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "WorldWarDragon/client/dist"
+      }
     }
   ],
   "routes": [
