@@ -1,8 +1,10 @@
 @import "./_variables.scss";
+@import "bootstrap";
+@import "./_overrides.scss";
 @import "./_utilities.scss";
 @import "./loaders.scss";
 
-body {
+body{
   overscroll-behavior: none;
 }
 
@@ -10,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bs-page);
+  background-color: var(--body-bg);
 }
 
 main {
@@ -21,3 +23,20 @@ a {
   text-decoration: none;
 }
 
+input,
+textarea,
+select {
+  &:not(:placeholder-shown) {
+    &:valid {
+      border: 1px solid $success;
+    }
+    &:invalid {
+      border: 1px solid $danger;
+    }
+  }
+}
+
+form:invalid button[type="submit"] {
+  filter: grayscale(1);
+  pointer-events: none;
+}

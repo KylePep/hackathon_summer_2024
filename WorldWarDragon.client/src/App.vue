@@ -1,8 +1,6 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
-import NavBar from './components/Navbar.vue'
 import OffBar from './components/OffBar.vue'
-import { onMounted, ref, watchEffect } from "vue";
 
 </script>
 
