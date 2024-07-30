@@ -9,18 +9,18 @@
       "src": "WorldWarDragon.client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "../WorldWarDragon/client"
+        "distDir": "WorldWarDragon.client/dist"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/WorldWarDragon/index.js"
+      "dest": "WorldWarDragon/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/WorldWarDragon/client/$1"
+      "dest": "WorldWarDragon.client/dist/$1"
     }
   ]
 }

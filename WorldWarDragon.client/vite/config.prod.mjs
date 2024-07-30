@@ -48,6 +48,6 @@ export default defineConfig({
                 comments: false
             }
         },
-        outDir: '../WorldWarDragon/client'
+        outDir: 'dist'
     }
 });
