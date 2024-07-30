@@ -9,7 +9,7 @@
       "src": "WorldWarDragon.client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "WorldWarDragon/client/dist"
+        "distDir": "WorldWarDragon/client"
       }
     }
   ],
