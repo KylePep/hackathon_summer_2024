@@ -16,11 +16,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "WorldWarDragon/index.js"
+      "dest": "../WorldWarDragon/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "WorldWarDragon/client/$1"
+      "dest": "../WorldWarDragon/client/$1"
     }
   ]
 }
