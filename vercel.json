@@ -6,11 +6,22 @@
       "use": "@vercel/node"
     },
     {
+      "framework": "vite",
       "src": "WorldWarDragon.client/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
       }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/WorldWarDragon/index.js"
+    },
+    {
+      "src": "/.*",
+      "dest": "/WorldWarDragon.client/dist/$1"
     }
   ]
 }
