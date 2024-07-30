@@ -48,7 +48,8 @@ export default defineConfig({
                 comments: false
             }
         },
-        outDir: '../WorldWarDragon/client'
+        outDir: 'dist',
+        sourcemap: false
     },
     server: {
         port: 8080
