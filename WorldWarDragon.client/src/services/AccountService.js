@@ -13,7 +13,7 @@ class AccountService {
     }
 
     if (AppState.account.picture.length < 2) {
-      AppState.account.picture = `public/assets/player/player${AppState.account.picture}.jpeg`
+      AppState.account.picture = `/assets/player/player${AppState.account.picture}.jpeg`
     }
   }
 
@@ -23,7 +23,7 @@ class AccountService {
     const account = new Account(res.data)
     AppState.account = account
     if (account.picture.length < 2) {
-      AppState.account.picture = `public/assets/player/player${account.picture}.jpeg`
+      AppState.account.picture = `/assets/player/player${account.picture}.jpeg`
     }
   }
 }

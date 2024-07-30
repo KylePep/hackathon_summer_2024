@@ -12,31 +12,31 @@
     {
       "id": 1,
       "name": "Toleftios",
-      "bgImage": "public/assets/room/beach.jpg",
+      "bgImage": "/assets/room/beach.jpg",
       "difficulty": 3
     },
     {
       "id": 2,
       "name": "Rysto",
-      "bgImage": "public/assets/room/forest.jpg",
+      "bgImage": "/assets/room/forest.jpg",
       "difficulty": 5
     },
     {
       "id": 3,
       "name": "Lendbom",
-      "bgImage": "public/assets/room/mountain.jpg",
+      "bgImage": "/assets/room/mountain.jpg",
       "difficulty": 10
     },
     {
       "id": 4,
       "name": "Boghir",
-      "bgImage": "public/assets/room/cliff.jpg",
+      "bgImage": "/assets/room/cliff.jpg",
       "difficulty": 100
     },
     {
       "id": 5,
       "name": "Centeria",
-      "bgImage": "public/assets/room/island.jpg",
+      "bgImage": "/assets/room/island.jpg",
       "difficulty": 1
     }
   ],

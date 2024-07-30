@@ -94,7 +94,7 @@ export default {
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
       if (mainElement) {
-        let bgImg = '../public/assets/bg_1.png';
+        let bgImg = '/assets/bg_1.png';
         mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
     }

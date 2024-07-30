@@ -12,7 +12,7 @@ class BossService {
     const findActiveBoss = AppState.bosses.find((b) => b.active == true)
     AppState.activeBoss = findActiveBoss
     if (findActiveBoss.image.length < 2) {
-      AppState.activeBoss.image = `public/assets/boss/bossDragon${findActiveBoss.image}.jpeg`
+      AppState.activeBoss.image = `/assets/boss/bossDragon${findActiveBoss.image}.jpeg`
     }
 
     bossDamageService.getBossDamageByBossId(AppState.activeBoss.id)
