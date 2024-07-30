@@ -2,7 +2,6 @@
 {
   "name": "worldwardragon",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "build": "npm run setup:app && npm run build:client",
     "setup:app": "npm run setup:server && npm run setup:client",
