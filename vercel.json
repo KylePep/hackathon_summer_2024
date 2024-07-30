@@ -6,7 +6,6 @@
       "use": "@vercel/node"
     },
     {
-      "framework": "vite",
       "src": "WorldWarDragon.client/package.json",
       "use": "@vercel/static-build",
       "config": {
