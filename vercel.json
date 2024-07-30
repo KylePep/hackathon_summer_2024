@@ -12,16 +12,6 @@
         "distDir": "dist"
       }
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/WorldWarDragon/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/WorldWarDragon.client/dist/$1"
-    }
   ]
 }
 
