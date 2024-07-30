@@ -48,7 +48,7 @@ export default defineConfig({
                 comments: false
             }
         },
-        outDir: 'dist',
+        outDir: '../WorldWarDragon/client',
         sourcemap: false
     },
     server: {
