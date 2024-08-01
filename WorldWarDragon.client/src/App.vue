@@ -11,11 +11,6 @@ import OffBar from './components/OffBar.vue'
     <main class="container-fluid">
         <RouterView />
     </main>
-
-    <footer class="bg-dark">
-    </footer>
-
-
 </template>
 
 <style lang="scss">
@@ -34,6 +29,7 @@ main {
     background-size: cover;
     background-attachment: fixed;
     user-select: none;
+    color: var(--bs-text);
 }
 
 header {
@@ -49,6 +45,22 @@ section:first-child {
 }
 
 :root {
-    --main-height: calc(100vh - 32px - 64px);
+    --main-height: calc(100vh - 31px - 64px);
+}
+
+.text-2p {
+    font-family: "Press Start 2P", system-ui;
+}
+
+.text-V {
+    font-family: "VT323", system-ui;
+}
+
+.text-outline {
+    text-shadow: 1px 1px 0 var(--bs-dark), 1px -1px 0 var(--bs-dark), -1px 1px 0 var(--bs-dark), -1px -1px 0 var(--bs-dark), 1px 0px 0 var(--bs-dark), 0px 1px 0 var(--bs-dark), -1px 0px 0 var(--bs-dark), 0px -1px 0 var(--bs-dark);
+}
+
+.text-outline-bg {
+    text-shadow: 1px 1px 0 var(--bs-text-outline), 1px -1px 0 var(--bs-text-outline), -1px 1px 0 var(--bs-text-outline), -1px -1px 0 var(--bs-text-outline), 1px 0px 0 var(--bs-text-outline), 0px 1px 0 var(--bs-text-outline), -1px 0px 0 var(--bs-text-outline), 0px -1px 0 var(--bs-text-outline);
 }
 </style>

@@ -12,13 +12,9 @@
               class="login-icon rounded selectable no-select" />
           </div>
         </router-link>
-        <!-- <router-link :to="{ name: 'Account' }">
-          <div class="btn text-success lighten-30 selectable text-uppercase">
-            Manage Account
-          </div>
-        </router-link> -->
-        <div class="d-flex ">
-          <div class="py-2 pe-3 text-uppercase text-light fw-semibold">
+
+        <div class="d-flex flex-column">
+          <div class="py-2 pe-3 text text-uppercase fw-semibold">
             {{ account.name }} | Level : {{ account.level }}
           </div>
           <div class="text-danger btn lighten-30 selectable text-uppercase" @click="logout">
@@ -56,6 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.text {
+  color: var(--bs-text);
+}
+
 .login-icon {
   width: auto;
   height: 256px;

@@ -7,26 +7,34 @@
 
 $light-theme: (
   "primary": #066ac9,
-  "secondary": #071e3b,
+  "secondary": #ff6200,
   "success": #0cbc87,
   "info": #17a2b8,
   "warning": #f7c32e,
   "danger": #d6293e,
-  "text": #f8f9fd,
-  "page": #f4f4f4
+  "text": #141414,
+  "dark": #080617,
+  "page": #d0c6c6,
+  "body-bg": #d1d9db,
+  "background": #d1d1d178,
+  "outline": #000000,
+  "text-outline": #d3d5de
 );
 
 $dark-theme: (
-  "primary": #ff22ff,
-  "secondary": #2fff9a,
-  "success": #aa49f9,
-  "info": #01efb6,
+  "primary": #2d2a8d,
+  "secondary": #ff7b00,
+  "success": #1a6c34,
+  "info": #127e94,
   "warning": #ffda6a,
-  "danger": #ea868f,
-  "text": #b1aafa,
+  "danger": #a04048,
+  "text": #ffffff,
   "page": #0a081b,
   "dark": #030110,
-  "body-bg": #020314
+  "body-bg": #020314,
+  "background": #10101071,
+  "outline": #ededed,
+  "text-outline": #00000078
 );
 
 $default-colors: (

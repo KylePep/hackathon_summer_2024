@@ -1,15 +1,15 @@
 <template>
 
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center text-light">
+    <div class="col-12 text-2p text-outline-bg fs-1 fw-bold text-center">
       ACCOUNT DETAILS
     </div>
   </section>
 
-  <section class="row">
-    <div class="col-8 mx-auto p-4 custom-bg border border-light rounded">
+  <section class="row text-V text-outline-bg">
+    <div class="col-11 col-md-8 mx-auto p-4 character-container ">
       <section v-if="editMode == true" class="row fs-3 text-center">
-        <div class="col-12">EDIT MODE</div>
+        <div class="col-12 text-2p">EDIT MODE</div>
         <div @click="selectPicture(1)" class="player-icon col-6" :class="[editable.picture == 1 ? 'selected' : '']"><img
             src="/assets/player/player1.jpeg" alt="player1">
         </div>
@@ -28,18 +28,18 @@
         </div>
 
       </section>
-      <section v-else class="row">
-        <div class="fs-3 text-center">
-          <h2 class="mb-5 text-uppercase">
+      <section v-else class="row mb-4">
+        <div class="fs-3 text-2p text-center">
+          <h2 class="mb-5  text-uppercase">
             Character details
           </h2>
           <div class="player-icon">
             <img :src="account.picture" alt="">
           </div>
-          <div class="text-uppercase fw-bold fs-1">
+          <div class="text-uppercase fw-bold fs-3">
             {{ account.name }}
           </div>
-          <div class="text-uppercase fw-bold fs-2">
+          <div class="text-uppercase fw-bold fs-4">
             Level: {{ account.level }}
           </div>
         </div>
@@ -56,23 +56,29 @@
           </div>
         </div>
       </section>
-      <section v-if="availableValor >= levelUpRequirement" class="row mt-3">
+      <section v-if="availableValor >= levelUpRequirement" class="row text-outline mt-3">
         <div class="col-12 ">
-          <div v-if="levelMode == false" class="d-flex justify-content-center">
+          <div v-if="levelMode == false" class="row justify-content-center">
             <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
               {{ levelUpRequirement }}</button>
           </div>
-          <div class="d-flex justify-content-around" v-else>
-            <div @click="increaseStat(0)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[0] }}
+          <div class="row justify-content-around" v-else>
+            <div @click="increaseStat(0)" class="col-6 col-md-2 btn btn-dark text-primary border-1 border-light">+ {{
+              levelUp[0]
+            }}
               Health</div>
-            <div @click="increaseStat(1)" class="btn btn-dark text-primary border-1 border-light">+ {{ levelUp[1] }}
+            <div @click="increaseStat(1)" class="col-6 col-md-2 btn btn-dark text-primary border-1 border-light">+ {{
+              levelUp[1]
+            }}
               Power</div>
-            <div class="bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info">
+            <div
+              class="col-md-2 bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info text-center">
               Cost: {{ levelUpRequirement }}
             </div>
-            <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">SUBMIT</button>
-            <button @click="handleLeveling('cancel'), increaseStat(-1)"
-              class="btn btn-dark text-danger border-1 border-light">CANCEL</button>
+            <div @click="handleLeveling()" class="col-md-2 btn btn-dark text-success border-1 border-light ">SUBMIT
+            </div>
+            <div @click="handleLeveling('cancel'), increaseStat(-1)"
+              class="col-md-2 btn btn-dark text-danger border-1 border-light ">CANCEL</div>
           </div>
         </div>
       </section>
@@ -85,8 +91,8 @@
       </section>
 
       <section class="row mt-3">
-        <div class="col-6 fs-5 text-center">
-          <div class="fs-4 fw-bold">
+        <div class="col-12 col-md-6 fs-5 text-center">
+          <div class="fs-4 text-2p fw-bold">
             STATS
           </div>
           <div class="mdi mdi-circle-multiple">
@@ -102,8 +108,8 @@
             Power: {{ account.power || 0 }}
           </div>
         </div>
-        <div class="col-6 fs-5 text-center">
-          <div class="fs-4 fw-bold">
+        <div class="col-12 col-md-6 fs-5 text-center">
+          <div class="fs-4 text-2p fw-bold">
             INVENTORY
           </div>
           <div class="mdi mdi-sword-cross">
@@ -249,6 +255,12 @@ export default {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%239C92AC' fill-opacity='0.25' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to right top, #343a40, #2b2c31, #211f22, #151314, #000000);
 }
 
+.character-container {
+  background-color: var(--bs-body-bg);
+  border: solid 4px var(--bs-outline);
+  border-radius: 8px;
+}
+
 .selected {
   >img {
     border: 1px solid white;
@@ -257,8 +269,10 @@ export default {
 
 .player-icon {
   >img {
-    width: 256px;
-    height: auto
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 20vh;
   }
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center text-light">
+    <div class="col-12 text-2p text-outline fs-1 fw-bold text-center text-light">
       Hall of Valor
     </div>
   </section>
-  <section class="row g-3">
-    <div class="col-12" v-for="score, index in bossDamages" :key="score.id">
+  <section class="row">
+    <div class="col-12 d-flex justify-content-center" v-for="score, index in bossDamages" :key="score.id">
       <ScoreCard :scoreProp="score" :index="index" />
 
     </div>

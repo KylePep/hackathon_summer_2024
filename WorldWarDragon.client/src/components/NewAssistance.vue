@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="createAssistance()" class="d-flex bg-dark p-3 rounded border border-3 border-light">
+  <form @submit.prevent="createAssistance()" class="d-flex assistance-container p-3 text-outline-bg">
     <div class="pe-3">
       <div class="form-check">
         <input v-model="editable.body" value="attack" class="form-check-input" type="radio" name="body" id="body1"
@@ -23,7 +23,7 @@
     </div>
     <button v-if="account[editable.body] > 0" type="submit" class="btn btn-success"> Give Assist <br> +100
       valor</button>
-    <div v-else class="btn btn-dark">Not enough Items </div>
+    <div v-else class="btn btn-dark text-outline">Not enough Items </div>
   </form>
 </template>
 
@@ -57,4 +57,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.assistance-container {
+  background-color: var(--bs-body-bg);
+  border: solid 2px var(--bs-outline);
+  border-radius: 4px;
+}
+</style>

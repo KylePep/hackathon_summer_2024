@@ -1,30 +1,33 @@
 <template>
-  <div class="d-flex justify-content-center text-light">
-    <div class="character-card border border-1 border-light rounded ">
-      <img class="character-icon" :src="scoreProp?.creator.picture" alt="">
-      <div class="fs-1">
-        {{ index + 1 }} {{ scoreProp.creator.name }}
+  <!-- <section class="row mt-3 justify-content-center text-light"> -->
+  <section class="row character-card  mt-3 text-center text-V text-outline-bg border border-1 border-outline rounded ">
+    <div class="col-1 fs-1">{{ index + 1 }}</div>
+    <img class="col-12 col-md-3 d-none d-md-block character-icon" :src="scoreProp?.creator.picture" alt="">
+    <div class="col-10 col-md-4 d-flex flex-row flex-md-column justify-content-around align-items-center fs-1">
+      {{ scoreProp.creator.name }}
 
-        <div class="fs-4 d-flex">
-          <p class=" my-0 me-3 ">
-            Level: {{ Math.round(scoreProp.creator.level) }}
-          </p>
-          <p class="my-0">
-            Valor: {{ Math.round(scoreProp.creator.valor) }}
-          </p>
-        </div>
-
-      </div>
-      <div class="fs-2 d-flex flex-column justify-content-center">
+      <div class="fs-4 d-flex justify-content-center">
+        <p class=" my-0 me-3 ">
+          <span class="d-none d-md-inline ">Level:</span>
+          {{ Math.round(scoreProp.creator.level) }}
+        </p>
         <p class="my-0">
-          Damage
-        </p>
-        <p class="my-0 text-center">
-          {{ Math.round(scoreProp.dmg) }}
+          <span class="d-none d-md-inline ">Valor:</span>
+          {{ Math.round(scoreProp.creator.valor) }}
         </p>
       </div>
+
     </div>
-  </div>
+    <div class="col-12 col-md-4 fs-2 d-flex flex-row flex-md-column justify-content-center">
+      <p class="my-0 ">
+        Damage
+      </p>
+      <p class="my-0 ps-3">
+        {{ Math.round(scoreProp.dmg) }}
+      </p>
+    </div>
+  </section>
+  <!-- </section> -->
 
 </template>
 
@@ -45,18 +48,16 @@ export default {
 <style lang="scss" scoped>
 .character-card {
   width: 70vw;
-  height: 120px;
-  display: flex;
-  justify-content: space-between;
+  // height: 120px;
   padding: 8px;
   font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.478);
-
+  background-color: var(--bs-background);
 }
 
 .character-icon {
-  border-radius: 4px;
-  height: auto;
-  width: auto;
+  padding: 0;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
 }
 </style>
