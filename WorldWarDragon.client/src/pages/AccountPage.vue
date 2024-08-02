@@ -56,7 +56,7 @@
           </div>
         </div>
       </section>
-      <section v-if="availableValor >= levelUpRequirement" class="row text-outline mt-3">
+      <section v-if="availableValor >= levelUpRequirement - valorSpend" class="row text-outline mt-3">
         <div class="col-12 ">
           <div v-if="levelMode == false" class="row justify-content-center">
             <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
@@ -72,8 +72,8 @@
             }}
               Power</div>
             <div
-              class="col-md-2 bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info text-center">
-              Cost: {{ levelUpRequirement }}
+              class="col-md-3 bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info text-center">
+              Cost: {{ levelUpRequirement }} | {{ valorSpend }}
             </div>
             <div @click="handleLeveling()" class="col-md-2 btn btn-dark text-success border-1 border-light ">SUBMIT
             </div>

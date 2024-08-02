@@ -26,7 +26,7 @@
         </div>
       </section>
 
-      <section v-if="account.id"
+      <section v-if="account.id && route.name != 'Game'"
         class="d-none d-md-block row ps-2 d-flex disable-click fw-bold stats text-outline-bg text-2p">
         <div class="mdi mdi-circle-multiple " title="Gold">
           : {{ account.gold }}
@@ -250,7 +250,7 @@ li {
 }
 
 .navbar-nav .router-link-exact-active {
-  border-bottom: 2px solid var(--bs-success);
+  border-bottom: 2px solid var(--bs-secondary);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 

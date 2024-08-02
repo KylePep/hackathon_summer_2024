@@ -67,23 +67,27 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(0, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Left', 3)).on('pointerover', () => this.buttonOver(this.bottomLeftButton)).on('pointerout', () => this.buttonOut(this.bottomLeftButton));
 
-        this.positionButtons();
+        this.resize();
     }
 
     positionButtons() {
         const { width, height } = this.cameras.main;
-        const margin = 128;
+        const vMargin = 96;
+        const minHMargin = 32;
+        const maxHMargin = 96;
 
-        this.topLeftButton.setPosition(margin, margin);
-        this.topRightButton.setPosition(width - margin, margin);
+        // Calculate hMargin based on screen width, ensuring it stays within minHMargin and maxHMargin
+        const hMargin = Math.min(maxHMargin, Math.max(minHMargin, width * 0.1));
+
+        this.topLeftButton.setPosition(hMargin, vMargin);
+        this.topRightButton.setPosition(width - hMargin, vMargin);
         this.centerButton.setPosition(width / 2, height / 2);
-        this.bottomRightButton.setPosition(width - margin, height - margin);
-        this.bottomLeftButton.setPosition(margin, height - margin);
+        this.bottomRightButton.setPosition(width - hMargin, height - vMargin);
+        this.bottomLeftButton.setPosition(hMargin, height - vMargin);
     }
 
     resize(gameSize, baseSize, displaySize, resolution) {
-        const width = gameSize.width;
-        const height = gameSize.height;
+        const { width, height } = this.cameras.main;
 
         this.cameras.resize(width, height);
         this.background.setDisplaySize(width, height);
