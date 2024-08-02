@@ -21,7 +21,7 @@
         </label>
       </div>
     </div>
-    <button v-if="account[editable.body] > 0" type="submit" class="btn btn-success"> Give Assist <br> +100
+    <button v-if="account[editable.body] > 0" type="submit" class="btn btn-success"> Give Assist <br> +1000
       valor</button>
     <div v-else class="btn btn-dark text-outline">Not enough Items </div>
   </form>

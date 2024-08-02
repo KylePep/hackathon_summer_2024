@@ -200,7 +200,7 @@ export default {
       setBgImg()
     }
     return {
-      messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id)),
+      messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id).reverse()),
       assistancesUnclaimed: computed(() => AppState.assistances.filter((a) => a.claim == false)),
       assistancesClaimed: computed(() => AppState.assistances.filter((a) => a.claim == true)),
       activeRoom: computed(() => AppState.activeRoom),

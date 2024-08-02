@@ -41,8 +41,9 @@
       </div>
       <div class="col-12">
         <button v-if="gold > messageProp.cost" type="submit" class="btn btn-success"> Create Boon <br>
-          Gold: {{ messageProp.cost }} </button>
-        <div v-else class="btn btn-dark text-outline">Not enough Gold <br> Gold: {{ messageProp.cost }}</div>
+          Gold: {{ messageProp.cost }} <br> + {{ Math.abs(messageProp.cost / 2) }} Valor </button>
+        <div v-else class="btn btn-dark text-outline">Not enough Gold <br> Gold: {{ messageProp.cost }}
+        </div>
       </div>
     </form>
 

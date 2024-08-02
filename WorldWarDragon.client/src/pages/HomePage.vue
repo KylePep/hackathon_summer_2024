@@ -28,7 +28,7 @@
         <router-link :to="{ name: 'Game' }" class="btn fight-btn text-outline p-3 fs-3 w-100 fw-bold ">JOIN THE
           FIGHT!</router-link>
       </div>
-      <div v-else class="col-4 order-1 d-flex justify-content-center">
+      <div v-else class="col-12 col-md-4 order-1 order-md-2 d-flex justify-content-center">
 
         <div class="btn fight-btn text-outline p-3 fs-1 w-100 fw-bold" @click="login" v-if="!user.isAuthenticated">
 

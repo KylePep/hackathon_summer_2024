@@ -17,7 +17,9 @@ class AssistancesService {
       return 'not enough items'
     } else {
       AppState.account[assistData.body] -= 1
-      AppState.account.valor = AppState.account.valor + 100
+      logger.log(AppState.account.valor)
+      AppState.account.valor = AppState.account.valor += 1000
+      logger.log(AppState.account.valor)
       accountService.editAccount(AppState.account)
       const res = await api.post('api/assistances', assistData)
       const assistance = new Assistance(res.data)

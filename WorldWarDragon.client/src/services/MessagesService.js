@@ -38,7 +38,7 @@ class MessagesService {
       accountService.editAccount(AppState.account)
       const res = await api.post('api/messages', messageData)
       const message = new Message(res.data)
-      AppState.messages.push(message)
+      AppState.messages.unshift(message);
       if (message.boon == 'gold') {
         AppState.goldMod[`${message.roomId}`]++
       } else if (message.boon == 'health') {
