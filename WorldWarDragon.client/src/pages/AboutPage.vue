@@ -38,7 +38,7 @@
           <h3>It is your duty to defeat these dragons and drive back the Immense dragon.</h3>
           <p>You can not do this alone. You must rely and come to the aid of every warrior and citizen of centeria.
           </p>
-          <p>Through everyone's combined might, the dragon will be repelled</p>
+          <p>Through everyone's combined might, the dragon will be repelled!</p>
         </div>
 
         <div class="col-6 px-0">
