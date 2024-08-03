@@ -6,6 +6,7 @@ export class Dragon {
   constructor(scene, x, y) {
     this.scene = scene;
     this.dragonHP = this.getRandomDragonHP();
+    this.dragonHPMax = this.dragonHP
     this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
 
     this.activeRoomId = AppState.activeRoom.id
@@ -111,7 +112,8 @@ export class Dragon {
     sound.volume = 1;
 
     this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
-    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+    this.scene.bossUi.updateBossHp(this.dragonHP)
+    // this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     this.checkDeath()
 
@@ -144,7 +146,8 @@ export class Dragon {
     sound.volume = 0.2;
 
     this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
-    this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+    this.scene.bossUi.updateBossHp(this.dragonHP)
+    // this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     this.checkDeath()
 

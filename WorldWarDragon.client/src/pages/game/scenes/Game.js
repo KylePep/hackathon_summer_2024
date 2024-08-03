@@ -9,6 +9,8 @@ import { AppState } from "../../../AppState.js";
 import { Item } from "../objects/items.js";
 import { DragonAttack } from "../objects/dragonAttack.js";
 import { logger } from "../../../utils/Logger.js";
+import { BossUi } from "../objects/BossUi.js";
+import { PlayerUi } from "../objects/PlayerUI.js";
 
 export class Game extends Scene {
     constructor() {
@@ -61,6 +63,10 @@ export class Game extends Scene {
 
         this.dragon = new Dragon(this, centerX, centerY)
 
+        this.bossUi = new BossUi(this, randomName, randomTitle, this.dragon.dragonHP, this.dragon.dragonHPMax)
+
+        this.playerUi = new PlayerUi(this, AppState.account.name, this.playerHp, this.playerMaxHp)
+
         this.item = new Item(this, centerX, centerY);
 
         this.dragonAttack = new DragonAttack(this, this.dragon);
@@ -68,54 +74,54 @@ export class Game extends Scene {
 
         this.slash = new Slash(this, centerX, centerY)
 
-        const topLeftX = 128; // Offset from the left edge
-        const topLeftY = 16; // Offset from the bottom edge
+        // const topLeftX = 128; // Offset from the left edge
+        // const topLeftY = 16; // Offset from the bottom edge
 
-        this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name}\nHP: ${this.playerHp}`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'left'
-        }).setOrigin(0, 0)
+        // this.playerText = this.add.text(topLeftX, topLeftY, `${AppState.account.name}\nHP: ${this.playerHp}`, {
+        //     fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+        //     stroke: '#000000', strokeThickness: 8,
+        //     align: 'left'
+        // }).setOrigin(0, 0)
 
         // Adding the 'NAME' text at the top right
-        const topRightX = this.cameras.main.width - 32; // Offset from the left edge
-        const topRightY = 16; // Offset from the bottom edge
-        this.name = this.add.text(topRightX, topRightY, `${randomName}\n ${randomTitle}`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'right'
-        }).setDepth(100).setOrigin(1, 0)
+        // const topRightX = this.cameras.main.width - 32; // Offset from the left edge
+        // const topRightY = 16; // Offset from the bottom edge
+        // this.name = this.add.text(topRightX, topRightY, `${randomName}\n ${randomTitle}`, {
+        //     fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+        //     stroke: '#000000', strokeThickness: 8,
+        //     align: 'right'
+        // }).setDepth(100).setOrigin(1, 0)
 
-        this.clickText = this.add.text(topRightX, topRightY + 96, `HP: ${this.dragon.dragonHP}`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(1, 0)
+        // this.clickText = this.add.text(topRightX, topRightY + 96, `HP: ${this.dragon.dragonHP}`, {
+        //     fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+        //     stroke: '#000000', strokeThickness: 8,
+        //     align: 'center'
+        // }).setOrigin(1, 0)
 
         // Adding the 'RETREAT...' text at the bottom left
-        const bottomLeftX = 128; // Offset from the left edge
-        const bottomLeftY = this.cameras.main.height - 96; // Offset from the bottom edge
-        this.return = this.add.text(bottomLeftX, bottomLeftY, 'RETREAT...', {
-            fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
-            stroke: '#000000', strokeThickness: 8, align: 'left'
-        }).setDepth(100).setInteractive()
+        // const bottomLeftX = 128; // Offset from the left edge
+        // const bottomLeftY = this.cameras.main.height - 96; // Offset from the bottom edge
+        // this.return = this.add.text(bottomLeftX, bottomLeftY, 'RETREAT...', {
+        //     fontFamily: 'Arial Black', fontSize: 64, color: 'gray',
+        //     stroke: '#000000', strokeThickness: 8, align: 'left'
+        // }).setDepth(100).setInteractive()
 
-        this.return.on('pointerdown', () => {
-            EventBus.emit('navigate-home');
-        });
-        this.return.on('pointerover', () => {
-            this.return.setColor('white')
-            this.input.setDefaultCursor('pointer');
-        })
-        this.return.on('pointerout', () => {
-            this.return.setColor('gray')
-            this.input.setDefaultCursor('default');
-        })
+        // this.return.on('pointerdown', () => {
+        //     EventBus.emit('navigate-home');
+        // });
+        // this.return.on('pointerover', () => {
+        //     this.return.setColor('white')
+        //     this.input.setDefaultCursor('pointer');
+        // })
+        // this.return.on('pointerout', () => {
+        //     this.return.setColor('gray')
+        //     this.input.setDefaultCursor('default');
+        // })
 
         this.scale.on('resize', this.resize, this);
         this.resize({ width: this.scale.width, height: this.scale.height });
 
-        this.adjustTextSize()
+        // this.adjustTextSize()
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -136,24 +142,24 @@ export class Game extends Scene {
 
         this.background.setDisplaySize(width, height);
 
-        // Re-center the dragon sprite on resize
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
-        // this.dragon.setPosition(centerX, centerY);
-        this.dragonAttack.updatePosition();
-        this.dragonAttack.setProgressBarSize(width * 0.25, 10);
+        // // Re-center the dragon sprite on resize
+        // const centerX = this.cameras.main.centerX;
+        // const centerY = this.cameras.main.centerY;
+        // // this.dragon.setPosition(centerX, centerY);
+        // this.dragonAttack.updatePosition();
+        // this.dragonAttack.setProgressBarSize(width * 0.25, 10);
 
         // Reposition the 'RETREAT...' text at the bottom left on resize
-        const bottomLeftX = 128; // Offset from the left edge
-        const bottomLeftY = height - 96; // Offset from the bottom edge
-        this.return.setPosition(bottomLeftX, bottomLeftY);
+        // const bottomLeftX = 128; // Offset from the left edge
+        // const bottomLeftY = height - 96; // Offset from the bottom edge
+        // this.return.setPosition(bottomLeftX, bottomLeftY);
 
-        const topRightX = this.cameras.main.width; // Offset from the left edge
-        const topRightY = 16; // Offset from the bottom edge
-        this.name.setPosition(topRightX - 16, topRightY);
-        this.clickText.setPosition(topRightX - 16, topRightY + 128)
+        // const topRightX = this.cameras.main.width; // Offset from the left edge
+        // const topRightY = 16; // Offset from the bottom edge
+        // this.name.setPosition(topRightX - 16, topRightY);
+        // this.clickText.setPosition(topRightX - 16, topRightY + 128)
 
-        this.adjustTextSize();
+        // this.adjustTextSize();
     }
 
     leaveRoom() {
@@ -161,20 +167,20 @@ export class Game extends Scene {
         this.scene.start('GameResults')
     }
 
-    setFontToFitWindow() {
-        const { width, height } = this.cameras.main;
-        const baseFontSize = 64;
-        const scaleFactor = Math.min(width / 1600, height / 1200);
-        return baseFontSize * scaleFactor;
-    }
-    adjustTextSize() {
-        const newFontSize = `${this.setFontToFitWindow()}px`;
+    // setFontToFitWindow() {
+    //     const { width, height } = this.cameras.main;
+    //     const baseFontSize = 64;
+    //     const scaleFactor = Math.min(width / 1600, height / 1200);
+    //     return baseFontSize * scaleFactor;
+    // }
+    // adjustTextSize() {
+    //     const newFontSize = `${this.setFontToFitWindow()}px`;
 
-        this.clickText.setStyle({ fontSize: newFontSize });
-        this.name.setStyle({ fontSize: newFontSize });
-        this.return.setStyle({ fontSize: newFontSize });
-        this.playerText.setStyle({ fontSize: newFontSize });
-    }
+    //     this.clickText.setStyle({ fontSize: newFontSize });
+    //     this.name.setStyle({ fontSize: newFontSize });
+    //     this.return.setStyle({ fontSize: newFontSize });
+    //     // this.playerText.setStyle({ fontSize: newFontSize });
+    // }
 
     changeScene() {
         this.scene.start('GameOver');
