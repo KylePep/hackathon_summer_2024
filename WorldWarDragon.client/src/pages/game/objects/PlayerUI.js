@@ -1,9 +1,17 @@
+import { AppState } from "../../../AppState.js";
+
 export class PlayerUi {
-  constructor(scene, playerName, playerHp, maxHp) {
+  constructor(scene, account, playerHp, maxHp) {
     this.scene = scene;
-    this.playerName = playerName;
+    this.playerName = account.name;
     this.playerHp = playerHp;
     this.maxHp = maxHp;
+    this.attack = account.attack
+    this.attackAid = account.attackAid
+    this.shield = account.shield
+    this.shieldAid = account.shieldAid
+    this.heal = account.heal
+    this.healAid = account.healAid
 
     this.createUI();
     this.setScaleToFitWindow();
@@ -28,15 +36,15 @@ export class PlayerUi {
     this.uiContainer.add(this.playerNameText);
 
     // Add colored number slots
-    this.redNumberSlot = this.scene.add.text(200, 10, '0', {
+    this.redNumberSlot = this.scene.add.text(100, 10, `${this.attack} | ${this.attackAid}`, {
       fontSize: '20px',
       fill: '#ff0000',
     });
-    this.greenNumberSlot = this.scene.add.text(250, 10, '0', {
+    this.greenNumberSlot = this.scene.add.text(250, 10, `${this.heal} | ${this.healAid}`, {
       fontSize: '20px',
       fill: '#00ff00',
     });
-    this.blueNumberSlot = this.scene.add.text(300, 10, '0', {
+    this.blueNumberSlot = this.scene.add.text(400, 10, `${this.shield} | ${this.shieldAid}`, {
       fontSize: '20px',
       fill: '#0000ff',
     });
@@ -64,9 +72,9 @@ export class PlayerUi {
     // Reposition elements
     this.topBar.setPosition(width / 2, 0);
     this.playerNameText.setPosition(64, 10);
-    this.redNumberSlot.setPosition(width / 2 - 50, 10);
+    this.redNumberSlot.setPosition(width / 2 - 150, 10);
     this.greenNumberSlot.setPosition(width / 2, 10);
-    this.blueNumberSlot.setPosition(width / 2 + 50, 10);
+    this.blueNumberSlot.setPosition(width / 2 + 150, 10);
     this.healthBarBackground.setPosition(10, 40);
     this.healthBar.setPosition(10, 40);
   }
@@ -75,5 +83,11 @@ export class PlayerUi {
     this.playerHp = newHp;
     const { width } = this.scene.cameras.main;
     this.healthBar.width = (this.playerHp / this.maxHp) * (width - 20);
+
+  }
+  updateItem() {
+    this.redNumberSlot.setText(`${AppState.account.attack} | ${AppState.account.attackAid}`)
+    this.greenNumberSlot.setText(`${AppState.account.heal} | ${AppState.account.healAid}`)
+    this.blueNumberSlot.setText(`${AppState.account.shield} | ${AppState.account.shieldAid}`)
   }
 }

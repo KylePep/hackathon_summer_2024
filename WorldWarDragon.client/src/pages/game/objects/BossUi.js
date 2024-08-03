@@ -1,4 +1,5 @@
 // BossUi
+import { EventBus } from '../EventBus.js';
 
 export class BossUi {
   constructor(scene, bossName, bossTitle, bossHp, maxHp) {
@@ -24,20 +25,19 @@ export class BossUi {
     this.bossUiContainer.add(this.bottomBar);
 
     // Add retreat button
-    this.retreatButton = this.scene.add.text(10, - 40, 'retreat...', {
-      fontSize: '20px',
-      fill: '#ffffff',
-    }).setOrigin(0, 1).setInteractive();
+    this.retreatButton = this.scene.add.text(10, - 40, 'RETREAT...', {
+      fontSize: '20px', color: 'gray',
+    }).setOrigin(0, 1).setDepth(100).setInteractive();
     this.retreatButton.on('pointerdown', () => {
       EventBus.emit('navigate-home');
     });
     this.retreatButton.on('pointerover', () => {
       this.retreatButton.setColor('white')
-      this.input.setDefaultCursor('pointer');
+      this.scene.input.setDefaultCursor('pointer');
     })
     this.retreatButton.on('pointerout', () => {
       this.retreatButton.setColor('gray')
-      this.input.setDefaultCursor('default');
+      this.scene.input.setDefaultCursor('default');
     })
     this.bossUiContainer.add(this.retreatButton);
 

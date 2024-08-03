@@ -218,17 +218,19 @@ export class Item {
   useItem() {
 
     if (this.action == 'attack') {
-
       this.scene.events.emit('dragon:attackItem')
+      this.scene.playerUi.updateItem()
     } else if (this.action == 'shield') {
       this.scene.events.emit('dragon:shieldItem')
+      this.scene.playerUi.updateItem()
     } else if (this.action == 'heal') {
       const selectedSound = 'healItem'
       const sound = this.scene.sound.add(selectedSound)
       sound.play();
       sound.volume = 1;
       this.scene.playerHp = this.scene.playerMaxHp;
-      this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
+      this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
+      this.scene.playerUi.updateItem()
     } else {
     }
   }

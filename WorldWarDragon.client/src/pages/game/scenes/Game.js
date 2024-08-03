@@ -65,7 +65,7 @@ export class Game extends Scene {
 
         this.bossUi = new BossUi(this, randomName, randomTitle, this.dragon.dragonHP, this.dragon.dragonHPMax)
 
-        this.playerUi = new PlayerUi(this, AppState.account.name, this.playerHp, this.playerMaxHp)
+        this.playerUi = new PlayerUi(this, AppState.account, this.playerHp, this.playerMaxHp)
 
         this.item = new Item(this, centerX, centerY);
 
