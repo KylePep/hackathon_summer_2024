@@ -59,12 +59,12 @@
 
 
         <div class="offcanvas-header mb-1">
-          <router-link :to="{ name: 'Home' }" class=" game-title text-2p text-outline  selectable fw-semibold"
-            id="offcanvasNavbarLabel  ">World War
+          <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
+            class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
-          <button class="btn" @click="toggleTheme" :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
+          <!-- <button class="btn" @click="toggleTheme" :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
             <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-          </button>
+          </button> -->
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
@@ -105,32 +105,37 @@
             </li>
 
             <li class="nav-item">
-              <router-link class="btn lighten-30 selectable text-uppercase" :to="{ name: 'Home' }">
+              <router-link class="btn lighten-30 selectable text-uppercase" @click="closeNavbar()"
+                :to="{ name: 'Home' }">
                 HOME
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link :to="{ name: 'Map' }" class="btn lighten-30 selectable text-uppercase">
+              <router-link @click="closeNavbar()" :to="{ name: 'Map' }"
+                class="btn lighten-30 selectable text-uppercase">
                 Map
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link class="btn lighten-30 selectable text-uppercase" :to="{ name: 'Account' }">
+              <router-link class="btn lighten-30 selectable text-uppercase" @click="closeNavbar()"
+                :to="{ name: 'Account' }">
                 Character
               </router-link>
             </li>
 
 
             <li class="nav-item">
-              <router-link :to="{ name: 'Score' }" class="btn lighten-30 selectable text-uppercase">
+              <router-link @click="closeNavbar()" :to="{ name: 'Score' }"
+                class="btn lighten-30 selectable text-uppercase">
                 Hall of Valor
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link :to="{ name: 'About' }" class="btn lighten-30 selectable text-uppercase">
+              <router-link @click="closeNavbar()" :to="{ name: 'About' }"
+                class="btn lighten-30 selectable text-uppercase">
                 Lore
               </router-link>
             </li>
@@ -153,6 +158,7 @@ import Login from './Login.vue';
 import LoginSmall from './LoginSmall.vue';
 import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
+import { Offcanvas } from "bootstrap";
 
 const theme = ref(loadState('theme') || 'light')
 const route = useRoute()
@@ -166,6 +172,10 @@ function toggleTheme() {
   theme.value = theme.value == 'light' ? 'dark' : 'light'
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
+}
+
+function closeNavbar() {
+  Offcanvas.getOrCreateInstance('#offcanvasNavbar').hide()
 }
 
 const account = computed(() => AppState.account)
