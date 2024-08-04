@@ -32,19 +32,19 @@ export class GameOver extends Scene {
         const centerY = this.cameras.main.centerY;
 
         this.lostGold = this.add.text(centerX, centerY - 100, `${this.lostGoldAmount} Gold was lost`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
         this.gameOver = this.add.text(centerX, centerY, 'Game Over', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
         this.fight = this.add.text(centerX, centerY + 100, 'FIGHT!', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100).setInteractive();
@@ -65,7 +65,7 @@ export class GameOver extends Scene {
         });
 
         this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100).setInteractive();
@@ -75,12 +75,12 @@ export class GameOver extends Scene {
         });
 
         this.return.on('pointerover', () => {
-            this.return.setColor('white');
+            this.return.setColor('gray');
             this.input.setDefaultCursor('pointer');
         });
 
         this.return.on('pointerout', () => {
-            this.return.setColor('gray');
+            this.return.setColor('white');
             this.input.setDefaultCursor('default');
         });
 
@@ -119,7 +119,7 @@ export class GameOver extends Scene {
 
     setFontToFitWindow() {
         const { width, height } = this.cameras.main;
-        const baseFontSize = 64;
+        const baseFontSize = 32;
         const scaleFactor = Math.min(width / 1600, height / 1200);
         return baseFontSize * scaleFactor;
     }

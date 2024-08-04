@@ -26,32 +26,36 @@ export class BossUi {
 
     // Add retreat button
     this.retreatButton = this.scene.add.text(10, - 40, 'RETREAT...', {
-      fontSize: '20px', color: 'gray',
+      fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left'
     }).setOrigin(0, 1).setDepth(100).setInteractive();
     this.retreatButton.on('pointerdown', () => {
       EventBus.emit('navigate-home');
     });
     this.retreatButton.on('pointerover', () => {
-      this.retreatButton.setColor('white')
+      this.retreatButton.setColor('gray')
       this.scene.input.setDefaultCursor('pointer');
     })
     this.retreatButton.on('pointerout', () => {
-      this.retreatButton.setColor('gray')
+      this.retreatButton.setColor('white')
       this.scene.input.setDefaultCursor('default');
     })
     this.bossUiContainer.add(this.retreatButton);
 
     // Add boss name text
     this.bossNameText = this.scene.add.text(width / 2, - 40, this.bossName, {
-      fontSize: '20px',
-      fill: '#ffffff',
+      fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#ffffff',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left'
     }).setOrigin(0.5, 1);
     this.bossUiContainer.add(this.bossNameText);
 
     // Add boss title text
     this.bossTitleText = this.scene.add.text(width / 2, - 20, this.bossTitle, {
-      fontSize: '16px',
-      fill: '#ffffff',
+      fontFamily: '"Press Start 2P"', fontSize: '16px', color: '#ffffff',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left'
     }).setOrigin(0.5, 1);
     this.bossUiContainer.add(this.bossTitleText);
 

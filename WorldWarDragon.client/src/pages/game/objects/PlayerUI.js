@@ -30,22 +30,29 @@ export class PlayerUi {
 
     // Add player name text
     this.playerNameText = this.scene.add.text(64, 10, this.playerName, {
-      fontSize: '20px',
-      fill: '#ffffff',
+      fontFamily: '"Press Start 2P"', fontSize: '16px', color: '#ffffff',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left'
     });
     this.uiContainer.add(this.playerNameText);
 
     // Add colored number slots
     this.redNumberSlot = this.scene.add.text(100, 10, `${this.attack} | ${this.attackAid}`, {
-      fontSize: '20px',
+      fontFamily: '"Press Start 2P"', fontSize: '16px',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left',
       fill: '#ff0000',
     });
     this.greenNumberSlot = this.scene.add.text(250, 10, `${this.heal} | ${this.healAid}`, {
-      fontSize: '20px',
+      fontFamily: '"Press Start 2P"', fontSize: '16px',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left',
       fill: '#00ff00',
     });
     this.blueNumberSlot = this.scene.add.text(400, 10, `${this.shield} | ${this.shieldAid}`, {
-      fontSize: '20px',
+      fontFamily: '"Press Start 2P"', fontSize: '16px',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left',
       fill: '#0000ff',
     });
     this.uiContainer.add(this.redNumberSlot);

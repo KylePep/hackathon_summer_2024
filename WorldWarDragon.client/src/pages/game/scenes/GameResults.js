@@ -36,7 +36,7 @@ export class GameResults extends Scene {
         this.rewardItems = { attack: 0, shield: 0, heal: 0 };
 
         this.title = this.add.text(centerX, centerY - 200, `${AppState.bossDamage} Damage dealt to ${AppState.activeBoss.name}`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
@@ -44,19 +44,19 @@ export class GameResults extends Scene {
         const newBossHp = AppState.activeBoss.hp - AppState.activeBoss.damages - AppState.bossDamage;
 
         this.bossHp = this.add.text(centerX, centerY - 100, `${newBossHp} Hp remains`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
         this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
         this.fight = this.add.text(centerX, centerY + 100, `FIGHT! | ${AppState.winStreak} : Streak`, {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100).setInteractive();
@@ -85,7 +85,7 @@ export class GameResults extends Scene {
         });
 
         this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100).setInteractive();
@@ -95,12 +95,12 @@ export class GameResults extends Scene {
         });
 
         this.return.on('pointerover', () => {
-            this.return.setColor('white');
+            this.return.setColor('gray');
             this.input.setDefaultCursor('pointer');
         });
 
         this.return.on('pointerout', () => {
-            this.return.setColor('gray');
+            this.return.setColor('white');
             this.input.setDefaultCursor('default');
         });
 
@@ -130,7 +130,7 @@ export class GameResults extends Scene {
 
     setFontToFitWindow() {
         const { width, height } = this.cameras.main;
-        const baseFontSize = 64;
+        const baseFontSize = 32;
         const scaleFactor = Math.min(width / 1600, height / 1200);
         return baseFontSize * scaleFactor;
     }
