@@ -57,7 +57,7 @@ export default {
 }
 
 .login-icon {
-  width: auto;
-  height: 256px;
+  width: 100%;
+  height: auto;
 }
 </style>

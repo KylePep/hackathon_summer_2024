@@ -3,7 +3,7 @@
     <div class="container-fluid px-0 disable-click">
 
       <section class="can-click text-2p text-outline-bg row w-100 mt-0  mt-0">
-        <div class="col-4 d-flex  ps-3 py-1">
+        <div class="col-4 d-flex  ps-3 py-2">
           <LoginSmall />
           <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
