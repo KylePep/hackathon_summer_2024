@@ -69,6 +69,7 @@ export class Game extends Scene {
 
         this.item = new Item(this, centerX, centerY);
 
+
         this.dragonAttack = new DragonAttack(this, this.dragon);
         this.dragonAttack.startAttack();
 

@@ -21,7 +21,7 @@ export class BossUi {
     this.bossUiContainer = this.scene.add.container(0, height);
 
     // Create the bottom bar
-    this.bottomBar = this.scene.add.rectangle(width / 2, 0, width, 80, 0x000000).setOrigin(0.5, 1);
+    this.bottomBar = this.scene.add.rectangle(width / 2, 0, width, 80, 0x000000).setOrigin(0.5, 1).setDepth(300);
     this.bossUiContainer.add(this.bottomBar);
 
     // Add retreat button
@@ -29,7 +29,7 @@ export class BossUi {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
-    }).setOrigin(0, 1).setDepth(100).setInteractive();
+    }).setOrigin(0, 1).setDepth(400).setInteractive();
     this.retreatButton.on('pointerdown', () => {
       EventBus.emit('navigate-home');
     });
@@ -48,7 +48,7 @@ export class BossUi {
       fontFamily: '"Press Start 2P"', fontSize: '20px', color: '#ffffff',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
-    }).setOrigin(0.5, 1);
+    }).setOrigin(0.5, 1).setDepth(400);
     this.bossUiContainer.add(this.bossNameText);
 
     // Add boss title text
@@ -56,12 +56,12 @@ export class BossUi {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: '#ffffff',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
-    }).setOrigin(0.5, 1);
+    }).setOrigin(0.5, 1).setDepth(400);
     this.bossUiContainer.add(this.bossTitleText);
 
     // Add boss health bar
     this.healthBarBackground = this.scene.add.rectangle(10, - 10, width - 20, 10, 0x555555).setOrigin(0, 1);
-    this.healthBar = this.scene.add.rectangle(10, - 10, (this.bossHp / this.maxHp) * (width - 20), 10, 0xff0000).setOrigin(0, 1);
+    this.healthBar = this.scene.add.rectangle(10, - 10, (this.bossHp / this.maxHp) * (width - 20), 10, 0xff0000).setOrigin(0, 1).setDepth(400);
     this.bossUiContainer.add(this.healthBarBackground);
     this.bossUiContainer.add(this.healthBar);
   }

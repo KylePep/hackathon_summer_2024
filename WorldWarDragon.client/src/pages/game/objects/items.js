@@ -11,11 +11,11 @@ export class Item {
     this.items = ['attack', 'shield', 'heal'];
     this.patterns = {
       attack: [0, 3, 1, 2],
-      attackAlt: [2, 1, 3, 0],
+      // attackAlt: [2, 1, 3, 0],
       shield: [0, 3, 2, 1],
-      shieldAlt: [1, 2, 3, 0],
+      // shieldAlt: [1, 2, 3, 0],
       heal: [0, 2, 1, 3],
-      healAlt: [3, 1, 2, 0]
+      // healAlt: [3, 1, 2, 0]
     }
     this.inputCode = []
     this.action = 'input'
@@ -28,19 +28,20 @@ export class Item {
   }
 
   createInteractiveObjects() {
+    const { width, height } = this.scene.cameras.main;
     const items = (AppState.account.attack + AppState.account.attackAid + AppState.account.shield + AppState.account.shieldAid + AppState.account.heal + AppState.account.healAid)
     if (items > 0) {
       const positions = [
-        { x: this.x, y: this.y - 300, id: 0 },
-        { x: this.x, y: this.y + 300, id: 2 },
-        { x: this.x + 300, y: this.y, id: 1 },
-        { x: this.x - 300, y: this.y, id: 3 }
+        { x: width / 2, y: 128, id: 0 },
+        { x: width / 2, y: height - 128, id: 2 },
+        { x: width - 64, y: height / 2, id: 1 },
+        { x: 64, y: height / 2, id: 3 }
       ];
 
       positions.forEach((pos, index) => {
         const obj = this.scene.add.sprite(pos.x, pos.y, 'star')
           .setInteractive()
-          .setDepth(200);
+        // .setDepth(100);
         obj.id = pos.id; // Assign the ID to the object
 
         // Change color on hover
@@ -167,18 +168,20 @@ export class Item {
 
   checkInputCode() {
     if (this.action == 'input') {
-      const inputCodeString = this.inputCode.join(',');
+      const inputCodeString = this.inputCode.join('');
 
+      logger.log('Preparing Patterns');
       // Convert pattern arrays to strings for easy comparison
       const patterns = {
-        attack: this.patterns.attack.join(','),
-        attackAlt: this.patterns.attack.reverse().join(','),
-        shield: this.patterns.shield.join(','),
-        shieldAlt: this.patterns.shield.reverse().join(','),
-        heal: this.patterns.heal.join(','),
-        healAlt: this.patterns.heal.reverse().join(',')
+        attack: this.patterns.attack.join(''),
+        attackAlt: this.patterns.attack.reverse().join(''),
+        shield: this.patterns.shield.join(''),
+        shieldAlt: this.patterns.shield.reverse().join(''),
+        heal: this.patterns.heal.join(''),
+        healAlt: this.patterns.heal.reverse().join('')
       };
 
+      logger.log('Comparing Patterns to input code', 'Patterns:', patterns);
       // Check if inputCode matches any pattern
       if (inputCodeString === patterns.attack || inputCodeString === patterns.attackAlt) {
         this.action = 'attack';
@@ -187,9 +190,10 @@ export class Item {
       } else if (inputCodeString === patterns.heal || inputCodeString === patterns.healAlt) {
         this.action = 'heal';
       }
+      logger.log('inputCodeString', inputCodeString, 'RESULT', this.action);
     }
 
-    logger.log('ACTION', this.action);
+    logger.log('ACTION', this.action, 'CODE', this.inputCodeString, 'INPUT-CODE', this.inputCode);
 
     if (this.action != 'input') {
       if (AppState.account[this.action] > 0 || AppState.account[`${this.action}Aid`] > 0) {
