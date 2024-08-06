@@ -20,9 +20,23 @@ export class BossUi {
     // Create the UI container
     this.bossUiContainer = this.scene.add.container(0, height);
 
+    const barWidth = width;
+    const barHeight = 80;
+    const borderColor = 0xFFFFFF; // White color
+    const borderThickness = 16; // Thickness of the border
+
     // Create the bottom bar
-    this.bottomBar = this.scene.add.rectangle(width / 2, 0, width, 80, 0x000000).setOrigin(0.5, 1).setDepth(300);
+    this.bottomBar = this.scene.add.rectangle(width / 2, 0, barWidth, barHeight, 0x000000).setOrigin(0.5, 1)
     this.bossUiContainer.add(this.bottomBar);
+
+    // Create a Graphics object for the border
+    const bottomBarBorder = this.scene.add.graphics();
+    bottomBarBorder.lineStyle(borderThickness, borderColor);
+
+    // Draw the border around the top bar
+    bottomBarBorder.strokeRectShape(new Phaser.Geom.Rectangle(width / 2 - barWidth / 2, -barHeight, barWidth, barHeight));
+
+    this.bossUiContainer.addAt(bottomBarBorder, 0);
 
     // Add retreat button
     this.retreatButton = this.scene.add.text(10, - 40, 'RETREAT...', {

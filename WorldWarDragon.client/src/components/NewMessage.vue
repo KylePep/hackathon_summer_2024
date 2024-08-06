@@ -2,6 +2,7 @@
   <div class="container">
 
     <form @submit.prevent="createMessage()" class="row message-container text-outline-bg p-3 ">
+      <div>Gold: {{ gold }}</div>
       <div class="col-12 pe-3 d-flex flex-column flex-md-row justify-content-around align-items-center">
         <div class="form-check d-flex justify-content-center">
           <input v-model="editable.boon" value="gold" class="form-check-input" type="radio" name="boon" id="boon1"

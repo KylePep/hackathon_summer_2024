@@ -43,11 +43,10 @@ export class PlayerUi {
     // Create the UI container
     this.uiContainer = this.scene.add.container(0, 0);
 
-    // Define the width and height of the top bar
     const barWidth = width;
     const barHeight = 72;
     const borderColor = 0xFFFFFF; // White color
-    const borderThickness = 2; // Thickness of the border
+    const borderThickness = 16; // Thickness of the border
 
     // Create the top bar
     this.topBar = this.scene.add.rectangle(width / 2, 0, barWidth, barHeight, 0x000000).setOrigin(0.5, 0);
