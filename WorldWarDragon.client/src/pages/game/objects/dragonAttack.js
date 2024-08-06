@@ -3,14 +3,16 @@ import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
 import { GameObjects } from 'phaser';
 
-export class DragonAttack extends GameObjects.Container {
+export class DragonAttack {
   constructor(scene, dragon) {
-    super(scene, dragon.x, dragon.y + 50); // Initialize the container below the dragon
+    // super(scene, dragon.x, dragon.y + 50); // Initialize the container below the dragon
+    this.dragon = dragon
+    this.dragonX = dragon.originalX
+    this.dragonY = dragon.originalY
 
     this.scene = scene;
-    this.dragon = dragon;
     this.attackInterval = 5000; // Time between attacks in milliseconds
-    this.lastAttackTime = this.scene.time.now;
+
 
     this.dragonSounds = [
       `dragonAttack_1`,
@@ -20,16 +22,23 @@ export class DragonAttack extends GameObjects.Container {
       `dragonAttack_5`,
     ]
 
-    // Create a progress bar
-    this.progressBar = this.scene.add.graphics();
-    this.progressBarBackground = this.scene.add.graphics();
-    this.add(this.progressBarBackground);
-    this.add(this.progressBar);
+    this.createBar();
+  }
 
-    this.progressBarWidth = 100; // Initial width of the progress bar
-    this.progressBarHeight = 10; // Initial height of the progress bar
+  createBar() {
+    const { width, height } = this.scene.cameras.main;
+    const barWidth = width / 2
 
-    this.scene.add.existing(this);
+    logger.log('DRAGON', this.dragon)
+
+    this.attackContainer = this.scene.add.container(this.dragonX, this.dragonY + height * .22)
+
+    this.barBackground = this.scene.add.rectangle(0, 0, barWidth, 10, 0x000000).setOrigin(0.5, 1);
+
+    this.attackBar = this.scene.add.rectangle(0, -2.5, barWidth - 10, 5, 0x8e22cf).setOrigin(0.5, 1).setDepth(400);
+
+    this.attackContainer.add(this.barBackground);
+    this.attackContainer.add(this.attackBar);
   }
 
   startAttack() {
@@ -52,7 +61,6 @@ export class DragonAttack extends GameObjects.Container {
 
     logger.log('PLAYERHP', this.scene.playerHp)
     this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
-    // this.scene.playerText.setText(`${AppState.account.name}\nHP: ${this.scene.playerHp}`)
     this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
     if (this.scene.playerHp <= 0) {
       this.scene.sound.stopAll()
@@ -68,44 +76,20 @@ export class DragonAttack extends GameObjects.Container {
   }
 
   updateProgressBar() {
+    const { width, height } = this.scene.cameras.main;
+    const barWidth = width / 2
+    if (this.lastAttackTime == 0) {
+      this.lastAttackTime = this.scene.time.now
+    }
     const elapsed = this.scene.time.now - this.lastAttackTime;
     const progress = elapsed / this.attackInterval;
 
-    this.progressBar.clear();
-    this.progressBarBackground.clear();
+    this.attackBar.width = progress * (barWidth - 10);
 
-    // Draw the background
-    this.progressBarBackground.fillStyle(0x000000, 0.5);
-    this.progressBarBackground.fillRect(
-      -this.progressBarWidth / 2,
-      -this.progressBarHeight / 2,
-      this.progressBarWidth,
-      this.progressBarHeight
-    );
-
-    // Draw the progress
-    this.progressBar.fillStyle(0xff0000, 1);
-    this.progressBar.fillRect(
-      -this.progressBarWidth / 2,
-      -this.progressBarHeight / 2,
-      this.progressBarWidth * progress,
-      this.progressBarHeight
-    );
   }
 
   update() {
     this.updateProgressBar();
   }
 
-  setProgressBarSize(width, height) {
-    // logger.log('new size')
-    this.progressBarWidth = width;
-    this.progressBarHeight = height;
-    this.updateProgressBar();
-  }
-
-  updatePosition() {
-    // logger.log('new position')
-    this.setPosition(this.scene.dragon.x, this.scene.dragon.y + 50); // Update the container position relative to the dragon
-  }
 }

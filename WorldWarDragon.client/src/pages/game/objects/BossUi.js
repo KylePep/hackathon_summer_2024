@@ -75,7 +75,9 @@ export class BossUi {
 
     // Add boss health bar
     this.healthBarBackground = this.scene.add.rectangle(10, - 10, width - 20, 10, 0x555555).setOrigin(0, 1);
+
     this.healthBar = this.scene.add.rectangle(10, - 10, (this.bossHp / this.maxHp) * (width - 20), 10, 0xff0000).setOrigin(0, 1).setDepth(400);
+
     this.bossUiContainer.add(this.healthBarBackground);
     this.bossUiContainer.add(this.healthBar);
   }
