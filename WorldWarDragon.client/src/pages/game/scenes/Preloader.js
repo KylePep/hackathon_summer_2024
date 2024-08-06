@@ -50,6 +50,11 @@ export class Preloader extends Scene {
         this.load.audio('healItem', 'sound/spell.wav');
 
         this.load.image('star', 'star.png');
+        this.load.spritesheet('animatedCrystal', 'ui/crystal.png', {
+            frameWidth: 22,
+            frameHeight: 34,
+            endFrame: 5 - 1
+        });
 
         this.load.image('gameOverBG', 'gameOver1.jpeg');
         this.load.image('castleGroundBG', 'castleGrounds.jpeg');
@@ -62,7 +67,7 @@ export class Preloader extends Scene {
         this.load.image('islandBG', 'castleGrounds.jpeg');
         this.load.image('mountainBG', 'room/mountain.jpg');
 
-        this.load.image('dragon', 'dragon_2.png');
+        // this.load.image('dragon', 'dragon_2.png');
 
         this.load.image('dragon_1', 'dragon/dragon_1.gif');
         this.load.image('dragon_2', 'dragon/dragon_2.png');

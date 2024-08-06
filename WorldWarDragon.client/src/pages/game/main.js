@@ -25,7 +25,6 @@ const config = {
     scene: [
         Boot,
         Preloader,
-        MainMenu,
         Game,
         GameOver,
         GameResults,

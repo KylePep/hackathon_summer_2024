@@ -37,35 +37,59 @@ export class Map extends Scene {
     createButtons() {
         const fontSize = this.getFontSize();
 
-        this.topLeftButton = this.add.text(0, 0, 'Toleftios\nEasy', {
+        this.toleftios = this.add.text(0, 0, 'Toleftios\nEasy', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Left', 1)).on('pointerover', () => this.buttonOver(this.topLeftButton)).on('pointerout', () => this.buttonOut(this.topLeftButton));
+        }).setOrigin(0, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Left', 1)).on('pointerover', () => this.buttonOver(this.toleftios)).on('pointerout', () => this.buttonOut(this.toleftios));
 
-        this.topRightButton = this.add.text(0, 0, 'Rysto\nMedium', {
-            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+        this.toleftiosStats = this.add.text(0, 0, `${AppState.goldMod[1]} ${AppState.healthMod[1]} ${AppState.luckMod[1]} ${AppState.powerMod[1]}`, {
+            fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(1, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Right', 2)).on('pointerover', () => this.buttonOver(this.topRightButton)).on('pointerout', () => this.buttonOut(this.topRightButton));
+        }).setOrigin(0, 0)
 
-        this.centerButton = this.add.text(0, 0, 'Centeria\nSafe', {
+        this.rysto = this.add.text(0, 0, 'Rysto\nMedium', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.buttonAction('Center', 5)).on('pointerover', () => this.buttonOver(this.centerButton)).on('pointerout', () => this.buttonOut(this.centerButton));
+        }).setOrigin(1, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Right', 2)).on('pointerover', () => this.buttonOver(this.rysto)).on('pointerout', () => this.buttonOut(this.rysto));
 
-        this.bottomRightButton = this.add.text(0, 0, 'Boghir\nExtreme', {
-            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+        this.rystoStats = this.add.text(0, 0, `${AppState.goldMod[2]} ${AppState.healthMod[2]} ${AppState.luckMod[2]} ${AppState.powerMod[2]}`, {
+            fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(1, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Right', 4)).on('pointerover', () => this.buttonOver(this.bottomRightButton)).on('pointerout', () => this.buttonOut(this.bottomRightButton));
+        }).setOrigin(1, 0)
 
-        this.bottomLeftButton = this.add.text(0, 0, 'Lendbom\nHard', {
+        this.centeria = this.add.text(0, 0, 'Centeria\nSafe', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Left', 3)).on('pointerover', () => this.buttonOver(this.bottomLeftButton)).on('pointerout', () => this.buttonOut(this.bottomLeftButton));
+        }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.buttonAction('Center', 5)).on('pointerover', () => this.buttonOver(this.centeria)).on('pointerout', () => this.buttonOut(this.centeria));
+
+        this.boghir = this.add.text(0, 0, 'Boghir\nExtreme', {
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(1, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Right', 4)).on('pointerover', () => this.buttonOver(this.boghir)).on('pointerout', () => this.buttonOut(this.boghir));
+
+        this.boghirStats = this.add.text(0, 0, `${AppState.goldMod[3]} ${AppState.healthMod[3]} ${AppState.luckMod[3]} ${AppState.powerMod[3]}`, {
+            fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(1, 1)
+
+        this.lendbom = this.add.text(0, 0, 'Lendbom\nHard', {
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Left', 3)).on('pointerover', () => this.buttonOver(this.lendbom)).on('pointerout', () => this.buttonOut(this.lendbom));
+
+        this.lendbomStats = this.add.text(0, 0, `${AppState.goldMod[4]} ${AppState.healthMod[4]} ${AppState.luckMod[4]} ${AppState.powerMod[4]}`, {
+            fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0, 1)
 
         this.resize();
     }
@@ -79,11 +103,15 @@ export class Map extends Scene {
         // Calculate hMargin based on screen width, ensuring it stays within minHMargin and maxHMargin
         const hMargin = Math.min(maxHMargin, Math.max(minHMargin, width * 0.1));
 
-        this.topLeftButton.setPosition(hMargin, vMargin);
-        this.topRightButton.setPosition(width - hMargin, vMargin);
-        this.centerButton.setPosition(width / 2, height / 2);
-        this.bottomRightButton.setPosition(width - hMargin, height - vMargin);
-        this.bottomLeftButton.setPosition(hMargin, height - vMargin);
+        this.toleftios.setPosition(hMargin, vMargin);
+        this.toleftiosStats.setPosition(hMargin, vMargin + 128);
+        this.rysto.setPosition(width - hMargin, vMargin);
+        this.rystoStats.setPosition(width - hMargin, vMargin + 128);
+        this.centeria.setPosition(width / 2, height / 2);
+        this.boghir.setPosition(width - hMargin, height - vMargin);
+        this.boghirStats.setPosition(width - hMargin, height - vMargin - 128);
+        this.lendbom.setPosition(hMargin, height - vMargin);
+        this.lendbomStats.setPosition(hMargin, height - vMargin - 128);
     }
 
     resize(gameSize, baseSize, displaySize, resolution) {
@@ -94,11 +122,11 @@ export class Map extends Scene {
 
         // Adjust the font size of buttons based on new screen size
         const fontSize = this.getFontSize();
-        this.topLeftButton.setFontSize(fontSize);
-        this.topRightButton.setFontSize(fontSize);
-        this.centerButton.setFontSize(fontSize);
-        this.bottomRightButton.setFontSize(fontSize);
-        this.bottomLeftButton.setFontSize(fontSize);
+        this.toleftios.setFontSize(fontSize);
+        this.rysto.setFontSize(fontSize);
+        this.centeria.setFontSize(fontSize);
+        this.boghir.setFontSize(fontSize);
+        this.lendbom.setFontSize(fontSize);
 
         this.positionButtons();
     }

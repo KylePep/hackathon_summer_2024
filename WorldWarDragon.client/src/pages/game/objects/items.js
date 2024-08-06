@@ -38,8 +38,23 @@ export class Item {
         { x: 64, y: height / 2, id: 3 }
       ];
 
+      const FRAME_COUNT = 5;
+      const FRAME_RATE = 3;
+
+      this.scene.anims.create({
+        key: 'playGif',
+        frames: this.scene.anims.generateFrameNumbers('animatedCrystal', { start: 0, end: FRAME_COUNT - 1 }),
+        frameRate: FRAME_RATE,
+        repeat: -1 // Loop the animation
+      });
+
+      // Add the animated sprite to the scene
+      // const gifSprite = this.scene.add.sprite(500, 500, 'animatedCrystal');
+      // gifSprite.play('playGif');
+
       positions.forEach((pos, index) => {
-        const obj = this.scene.add.sprite(pos.x, pos.y, 'star')
+        const obj = this.scene.add.sprite(pos.x, pos.y, 'animatedCrystal')
+          .play('playGif')
           .setInteractive()
         // .setDepth(100);
         obj.id = pos.id; // Assign the ID to the object

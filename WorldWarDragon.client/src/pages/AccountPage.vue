@@ -10,17 +10,9 @@
     <div class="col-11 col-md-8 mx-auto p-4 character-container ">
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12 text-2p">EDIT MODE</div>
-        <div @click="selectPicture(1)" class="player-icon col-6" :class="[editable.picture == 1 ? 'selected' : '']"><img
-            src="/assets/player/player1.jpeg" alt="player1">
-        </div>
-        <div @click="selectPicture(2)" class="player-icon col-6" :class="[editable.picture == 2 ? 'selected' : '']"><img
-            src="/assets/player/player2.jpeg" alt="player2">
-        </div>
-        <div @click="selectPicture(3)" class="player-icon col-6" :class="[editable.picture == 3 ? 'selected' : '']"><img
-            src="/assets/player/player3.jpeg" alt="player3">
-        </div>
-        <div @click="selectPicture(4)" class="player-icon col-6" :class="[editable.picture == 4 ? 'selected' : '']"><img
-            src="/assets/player/player4.jpeg" alt="player4">
+        <div v-for="icon, index in characterIcons" :key="index" @click="selectPicture(index)" class="player-icon col-6"
+          :class="[editable.picture == index ? 'selected' : '']">
+          <img :src="icon" :alt="`player`">
         </div>
         <div class="col-12">
           <input v-model="editable.name" class="form-control" type="text" name="name" id="name" placeholder="Name..."
@@ -135,6 +127,7 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
+import { CHARACTER_ICONS_DATA } from '../../../shared/constants/index.js'
 import { computed, onMounted, ref, watchEffect } from "vue";
 import { accountService } from "../services/AccountService.js";
 import { logger } from "../utils/Logger.js";
@@ -174,6 +167,7 @@ export default {
       levelMode,
       levelNew,
       account: computed(() => AppState.account),
+      characterIcons: computed(() => CHARACTER_ICONS_DATA),
       availableValor: computed(() => AppState.account.valor - AppState.account.valorSpent),
       levelModifier: computed(() => (AppState.account.level + levelNew) * 2 + 1),
       levelBase: 100,

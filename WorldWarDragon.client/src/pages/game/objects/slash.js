@@ -12,7 +12,7 @@ export class Slash {
     ];
     // Interactive sprite for hover detection
     this.interactiveSlash = this.scene.add.sprite(x, y, 'star').setOrigin(0.5, 0.5);
-    this.interactiveSlash.setAlpha(0.1); // Initially semi-transparent
+    this.interactiveSlash.setAlpha(0.01); // Initially semi-transparent
     this.interactiveSlash.setInteractive();
     this.addInteractions();
 

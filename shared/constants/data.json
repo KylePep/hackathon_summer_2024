@@ -6,7 +6,11 @@
     "1": "/assets/player/player1.jpeg", 
     "2": "/assets/player/player2.jpeg", 
     "3": "/assets/player/player3.jpeg", 
-    "4": "/assets/player/player4.jpeg" 
+    "4": "/assets/player/player4.jpeg", 
+    "5": "/assets/player/player5.jpeg", 
+    "6": "/assets/player/player6.jpeg", 
+    "7": "/assets/player/player7.jpeg", 
+    "8": "/assets/player/player8.jpeg" 
   },
   "MAP_DATA": [
     {
