@@ -46,14 +46,16 @@ export class Item {
       });
 
       // Floating tween parameters
-      const FLOAT_DISTANCE = 2; // Distance in pixels for floating
+      const FLOAT_DISTANCE = 3; // Distance in pixels for floating
       const FLOAT_DURATION = 2000; // Duration of the float cycle in millisecond
 
       positions.forEach((pos, index) => {
         const obj = this.scene.add.sprite(pos.x, pos.y, 'animatedCrystal')
+          .setScale(1.5)
           .setInteractive()
           .setDepth(100);
         obj.id = pos.id; // Assign the ID to the object
+        // obj.texture.setFilter(Phaser.ScaleModes.NEAREST);
 
         // Floating tween animation
         this.scene.tweens.add({
