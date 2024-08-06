@@ -37,24 +37,24 @@ export class PlayerUi {
     this.uiContainer.add(this.playerNameText);
 
     // Add colored number slots
-    this.redNumberSlot = this.scene.add.text(100, 10, `${this.attack} | ${this.attackAid}`, {
+    this.redNumberSlot = this.scene.add.text(width / 2, 10, `${this.attack} | ${this.attackAid}`, {
       fontFamily: '"Press Start 2P"', fontSize: '16px',
       stroke: '#000000', strokeThickness: 8,
       align: 'left',
       fill: '#ff0000',
-    });
-    this.greenNumberSlot = this.scene.add.text(250, 10, `${this.heal} | ${this.healAid}`, {
+    }).setOrigin(0, 0);
+    this.greenNumberSlot = this.scene.add.text(width * .75, 10, `${this.heal} | ${this.healAid}`, {
       fontFamily: '"Press Start 2P"', fontSize: '16px',
       stroke: '#000000', strokeThickness: 8,
       align: 'left',
       fill: '#00ff00',
-    });
-    this.blueNumberSlot = this.scene.add.text(400, 10, `${this.shield} | ${this.shieldAid}`, {
+    }).setOrigin(0.5, 0);
+    this.blueNumberSlot = this.scene.add.text(width, 10, `${this.shield} | ${this.shieldAid}`, {
       fontFamily: '"Press Start 2P"', fontSize: '16px',
       stroke: '#000000', strokeThickness: 8,
       align: 'left',
       fill: '#0000ff',
-    });
+    }).setOrigin(1, 0);
     this.uiContainer.add(this.redNumberSlot);
     this.uiContainer.add(this.greenNumberSlot);
     this.uiContainer.add(this.blueNumberSlot);
@@ -69,6 +69,12 @@ export class PlayerUi {
   setScaleToFitWindow() {
     const { width, height } = this.scene.cameras.main;
 
+    const fontSize = width < 768 ? '12px' : '16px';
+
+    this.redNumberSlot.setFontSize(fontSize);
+    this.greenNumberSlot.setFontSize(fontSize);
+    this.blueNumberSlot.setFontSize(fontSize);
+
     // Update the top bar width
     this.topBar.width = width;
 
@@ -79,9 +85,9 @@ export class PlayerUi {
     // Reposition elements
     this.topBar.setPosition(width / 2, 0);
     this.playerNameText.setPosition(64, 10);
-    this.redNumberSlot.setPosition(width / 2 - 150, 10);
-    this.greenNumberSlot.setPosition(width / 2, 10);
-    this.blueNumberSlot.setPosition(width / 2 + 150, 10);
+    this.redNumberSlot.setPosition(width / 2, 10);
+    this.greenNumberSlot.setPosition(width * .75, 10);
+    this.blueNumberSlot.setPosition(width, 10);
     this.healthBarBackground.setPosition(10, 40);
     this.healthBar.setPosition(10, 40);
   }

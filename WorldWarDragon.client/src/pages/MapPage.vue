@@ -14,15 +14,51 @@
   <section v-if="!activeRoom.name || activeRoom.id == 0"
     class="row position-relative map text-2p text-outline mx-auto mx-3">
     <div @click="setActiveRoom(5)" class="position-absolute top-50 start-50 translate-middle map-section map-center">
-      Centeria</div>
-    <div @click="setActiveRoom(1)" class="col-6 map-section">Toleftios</div>
-    <div @click="setActiveRoom(2)" class="col-6 map-section">Rysto</div>
-    <div @click="setActiveRoom(3)" class="col-6 map-section">Lendbom</div>
-    <div @click="setActiveRoom(4)" class="col-6 map-section">Boghir</div>
+      Centeria
+      <br>
+      Assistance
+    </div>
+    <div @click="setActiveRoom(1)" class="col-6 map-section">
+      Toleftios
+      <section class="row ">
+        <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[1] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[1] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[1] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[1] }}</i>
+      </section>
+    </div>
+    <div @click="setActiveRoom(2)" class="col-6 map-section">
+      Rysto
+      <section class="row">
+        <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[2] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[2] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[2] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[2] }}</i>
+      </section>
+    </div>
+    <div @click="setActiveRoom(3)" class="col-6 map-section">
+      Lendbom
+      <section class="row">
+        <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[3] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[3] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[3] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[3] }}</i>
+      </section>
+    </div>
+    <div @click="setActiveRoom(4)" class="col-6 map-section">
+      Boghir
+      <section class="row">
+        <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[4] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[4] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[4] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[4] }}</i>
+      </section>
+    </div>
   </section>
+
   <section v-else class="row d-flex justify-content-center text-2p text-outline text-center">
     <div class="col-12">
-      <button @click="setActiveRoom(0)" class=" btn room-container text-2p text-outline-bg ">TO
+      <button @click="setActiveRoom(0)" class=" btn room-container text-outline-bg ">TO
         MAP</button>
     </div>
 
@@ -31,34 +67,45 @@
       <section class="row">
 
         <div class="col-10 mx-auto boons text-outline text-light">
-          <h2 class="">BOONS</h2>
-          <div class="">
-            <h4>
-              Gold: {{ AppState.goldMod[activeRoom.id] }} | Health: {{ AppState.healthMod[activeRoom.id] }} | Luck: {{
-                AppState.luckMod[activeRoom.id] }}
-              | Power: {{
-                AppState.powerMod[activeRoom.id] }}
-            </h4>
+          <h2 class="mb-4">BOONS</h2>
+          <div class="mb-3 fs-6">
+            <span>
+              Gold: {{ AppState.goldMod[activeRoom.id] }}
+            </span>
+            <span>
+              Health: {{ AppState.healthMod[activeRoom.id] }}
+            </span>
+            <span>
+              Luck: {{ AppState.luckMod[activeRoom.id] }}
+            </span>
+            <span>
+              Power: {{ AppState.powerMod[activeRoom.id] }}
+            </span>
+
+
+
           </div>
         </div>
 
 
-        <div class="col-11 mx-auto">
+        <div class="col-11 mx-auto ">
           <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
-          <div v-for="message in messages" :key="message.id"
-            class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center">
-            <div>
-              <i :class="message.boon == 'power' ? 'mdi mdi-weight-lifter' : 'd-none'"></i>
-              <i :class="message.boon == 'luck' ? 'mdi mdi-clover' : 'd-none'"></i>
-              <i :class="message.boon == 'health' ? 'mdi mdi-heart' : 'd-none'"></i>
-              <i :class="message.boon == 'gold' ? 'mdi mdi-circle-multiple' : 'd-none'"></i>
-              <div class="d-none d-md-inline ps-3">
-                {{ message.boon }}
+          <div class="message-container border border-2 border-light rounded">
+            <div v-for="message in messages" :key="message.id"
+              class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center">
+              <div>
+                <i :class="message.boon == 'power' ? 'mdi mdi-weight-lifter' : 'd-none'"></i>
+                <i :class="message.boon == 'luck' ? 'mdi mdi-clover' : 'd-none'"></i>
+                <i :class="message.boon == 'health' ? 'mdi mdi-heart' : 'd-none'"></i>
+                <i :class="message.boon == 'gold' ? 'mdi mdi-circle-multiple' : 'd-none'"></i>
+                <div class="d-none d-md-inline ps-3">
+                  {{ message.boon }}
+                </div>
               </div>
-            </div>
-            <div class="ps-2">{{ message.body }}</div>
-            <div class="ps-2">{{ message?.creator?.name }}</div>
+              <div class="ps-2">{{ message.body }}</div>
+              <div class="ps-2">{{ message?.creator?.name }}</div>
 
+            </div>
           </div>
 
         </div>
@@ -90,11 +137,11 @@
 
 
     <div v-else class="col-12 d-flex flex-column justify-content-center align-items-center">
-      <h2 class="text-light">Assistance</h2>
+      <h2 class="text-light my-4">Assistance</h2>
       <NewAssistance />
       <div class="d-flex">
         <div>
-          <div v-for="assistance in assistancesUnclaimed" :key="assistance.id"
+          <div v-for="assistance in uniqueUnclaimedAssistances" :key="assistance.id"
             class="room-container px-3 rounded border border-light"
             :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
             {{ assistance.body }}
@@ -106,7 +153,7 @@
           </div>
         </div>
         <div>
-          <div v-for="assistance in assistancesClaimed.slice(0, 5)" :key="assistance.id"
+          <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
             class="room-container px-3 rounded border border-light"
             :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
             {{ assistance.body }}
@@ -201,11 +248,36 @@ export default {
     }
     return {
       messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id).reverse()),
-      assistancesUnclaimed: computed(() => AppState.assistances.filter((a) => a.claim == false)),
-      assistancesClaimed: computed(() => AppState.assistances.filter((a) => a.claim == true)),
+
       activeRoom: computed(() => AppState.activeRoom),
       account: computed(() => AppState.account),
       AppState: computed(() => AppState),
+
+      uniqueUnclaimedAssistances: computed(() => {
+        const seen = new Set();
+        const assistancesClaimed = AppState.assistances.filter((a) => a.claim == false)
+        return assistancesClaimed.filter(assistance => {
+          const key = `${assistance.creator.name}-${assistance.body}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            return true;
+          }
+          return false;
+        });
+      }),
+
+      uniqueClaimedAssistances: computed(() => {
+        const seen = new Set();
+        const assistancesClaimed = AppState.assistances.filter((a) => a.claim == true)
+        return assistancesClaimed.filter(assistance => {
+          const key = `${assistance.creator.name}-${assistance.body}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            return true;
+          }
+          return false;
+        });
+      }),
 
       setActiveRoom,
 
@@ -278,6 +350,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  >section {
+    margin-top: 1rem;
+  }
 }
 
 .map-section:hover {
@@ -285,10 +361,19 @@ export default {
   background: radial-gradient(circle, rgba(250, 248, 233, 0.7008547008547008) 0%, rgba(248, 246, 225, 0.396011396011396) 17%, rgba(255, 255, 255, 0) 55%, rgba(58, 64, 73, 0) 100%, rgba(255, 255, 255, 0) 100%);
 }
 
+.room-size {
+  max-height: 100vh;
+}
+
 .room-container {
   background-color: var(--bs-body-bg);
   border: solid 1px var(--bs-outline);
   border-radius: 4px;
+}
+
+.message-container {
+  overflow-y: auto;
+  max-height: 33vh;
 }
 
 .boons {

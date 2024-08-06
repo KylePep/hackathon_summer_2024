@@ -170,7 +170,6 @@ export class Item {
     if (this.action == 'input') {
       const inputCodeString = this.inputCode.join('');
 
-      logger.log('Preparing Patterns');
       // Convert pattern arrays to strings for easy comparison
       const patterns = {
         attack: this.patterns.attack.join(''),
@@ -181,7 +180,6 @@ export class Item {
         healAlt: this.patterns.heal.reverse().join('')
       };
 
-      logger.log('Comparing Patterns to input code', 'Patterns:', patterns);
       // Check if inputCode matches any pattern
       if (inputCodeString === patterns.attack || inputCodeString === patterns.attackAlt) {
         this.action = 'attack';
@@ -190,7 +188,6 @@ export class Item {
       } else if (inputCodeString === patterns.heal || inputCodeString === patterns.healAlt) {
         this.action = 'heal';
       }
-      logger.log('inputCodeString', inputCodeString, 'RESULT', this.action);
     }
 
     logger.log('ACTION', this.action, 'CODE', this.inputCodeString, 'INPUT-CODE', this.inputCode);
