@@ -55,6 +55,11 @@ export class Preloader extends Scene {
             frameHeight: 34,
             endFrame: 5 - 1
         });
+        this.load.spritesheet('animatedBite', 'ui/bite-sheet.png', {
+            frameWidth: 32,
+            frameHeight: 64,
+            endFrame: 5 - 1
+        });
 
         this.load.image('gameOverBG', 'gameOver1.jpeg');
         this.load.image('castleGroundBG', 'castleGrounds.jpeg');

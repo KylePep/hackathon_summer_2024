@@ -13,6 +13,7 @@ export class DragonAttack {
     this.scene = scene;
     this.attackInterval = 5000; // Time between attacks in milliseconds
 
+    this.lastAttackTime = this.scene.time.now
 
     this.dragonSounds = [
       `dragonAttack_1`,
@@ -52,7 +53,10 @@ export class DragonAttack {
   }
 
   attack() {
-    // Logic for dragon attack
+    const { width, height } = this.scene.cameras.main;
+
+    const FRAME_COUNT = 5;
+    const FRAME_RATE = 30;
 
     const selectedSound = this.getRandomSound()
     const sound = this.scene.sound.add(selectedSound)
@@ -66,6 +70,39 @@ export class DragonAttack {
       this.scene.sound.stopAll()
       this.scene.scene.start('GameOver');
     }
+
+    const redFlash = this.scene.add.graphics();
+    redFlash.fillStyle(0xFF0000, 0.25); // Red color with 50% transparency
+    redFlash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
+
+    this.scene.anims.create({
+      key: 'animatedBite',
+      frames: this.scene.anims.generateFrameNumbers('animatedBite', { start: 0, end: FRAME_COUNT - 1 }),
+      frameRate: FRAME_RATE,
+      repeat: 0 // Loop the animation
+    });
+
+    const randomAngle = Phaser.Math.Between(-45, 45);
+    const biteSprite = this.scene.add.sprite(width / 2, height / 2, 'animatedBite')
+      .setScale(30) // Adjust the scale as needed
+      .setAngle(randomAngle)
+      .setDepth(9999); // Ensure it's on top
+
+    biteSprite.play('animatedBite');
+
+    this.scene.tweens.add({
+      targets: redFlash,
+      alpha: 0,
+      duration: 200,
+      ease: 'Cubic.easeOut',
+      onComplete: () => {
+        redFlash.destroy(); // Remove the red flash after fading out
+      }
+    });
+
+    biteSprite.on('animationcomplete', () => {
+      biteSprite.destroy(); // Remove the bite sprite after the animation is complete
+    });
 
     this.lastAttackTime = this.scene.time.now; // Reset the timer for the next attack
   }
@@ -83,6 +120,7 @@ export class DragonAttack {
     }
     const elapsed = this.scene.time.now - this.lastAttackTime;
     const progress = elapsed / this.attackInterval;
+    if (progress > 1) progress = 1
 
     this.attackBar.width = progress * (barWidth - 10);
 
