@@ -69,6 +69,13 @@ export class BossUi {
   setScaleToFitWindow() {
     const { width, height } = this.scene.cameras.main;
 
+    const fontSize = width < 768 ? '12px' : '16px';
+    const specialFontSize = width < 768 ? '16px' : '20px';
+
+    this.retreatButton.setFontSize(fontSize);
+    this.bossNameText.setFontSize(specialFontSize);
+    this.bossTitleText.setFontSize(fontSize);
+
     // Update the bottom bar width
     this.bottomBar.width = width;
 
