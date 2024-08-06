@@ -5,8 +5,18 @@
       :style="{ backgroundImage: `url(${scoreProp?.creator.picture})` }"
       style="background-position: center; background-size: cover;">{{ index + 1 }}</div>
     <!-- <img class="col-12 col-md-3 d-none d-md-block character-icon" :src="scoreProp?.creator.picture" alt=""> -->
-    <div class="col-4 col-md-4 d-flex flex-column flex-md-column justify-content-around align-items-center fs-1">
-      {{ scoreProp.creator.name }}
+    <div class="col-4 col-md-4 d-flex flex-column flex-md-column justify-content-around fs-1 overflow-x-hidden">
+      <div v-if="scoreProp.creator.name.length > 6" :title="scoreProp.creator.name">
+        <div class="marquee d-md-none">
+          {{ scoreProp.creator.name }}
+        </div>
+        <div class="d-none d-md-block">
+          {{ scoreProp.creator.name }}
+        </div>
+      </div>
+      <div v-else>
+        {{ scoreProp.creator.name }}
+      </div>
 
       <div class="fs-4 d-flex justify-content-center">
         <p class=" my-0 me-3 " title="Level">
@@ -61,9 +71,23 @@ export default {
   text-shadow: -2px -2px 16px black;
 }
 
-// .character-icon {
-//   padding: 0;
-//   border-radius: 8px;
-//   object-fit: cover;
-//   object-position: center;
-// }</style>
+.marquee {
+  white-space: nowrap;
+  position: relative;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  10% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-250%);
+  }
+}
+</style>

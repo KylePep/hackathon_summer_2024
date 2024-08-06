@@ -24,7 +24,7 @@
         </div>
         <div class="col-12">
           <input v-model="editable.name" class="form-control" type="text" name="name" id="name" placeholder="Name..."
-            minlength="3" maxlength="255" required>
+            minlength="3" maxlength="12" required>
         </div>
 
       </section>
