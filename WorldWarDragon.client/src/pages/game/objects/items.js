@@ -11,11 +11,8 @@ export class Item {
     this.items = ['attack', 'shield', 'heal'];
     this.patterns = {
       attack: [0, 3, 1, 2],
-      // attackAlt: [2, 1, 3, 0],
       shield: [0, 3, 2, 1],
-      // shieldAlt: [1, 2, 3, 0],
       heal: [0, 2, 1, 3],
-      // healAlt: [3, 1, 2, 0]
     }
     this.inputCode = []
     this.action = 'input'
@@ -48,16 +45,24 @@ export class Item {
         repeat: -1 // Loop the animation
       });
 
-      // Add the animated sprite to the scene
-      // const gifSprite = this.scene.add.sprite(500, 500, 'animatedCrystal');
-      // gifSprite.play('playGif');
+      // Floating tween parameters
+      const FLOAT_DISTANCE = 2; // Distance in pixels for floating
+      const FLOAT_DURATION = 2000; // Duration of the float cycle in millisecond
 
       positions.forEach((pos, index) => {
         const obj = this.scene.add.sprite(pos.x, pos.y, 'animatedCrystal')
-          .play('playGif')
           .setInteractive()
-        // .setDepth(100);
+          .setDepth(100);
         obj.id = pos.id; // Assign the ID to the object
+
+        // Floating tween animation
+        this.scene.tweens.add({
+          targets: obj,
+          y: obj.y - FLOAT_DISTANCE, // Move up by FLOAT_DISTANCE pixels
+          duration: FLOAT_DURATION / 2, // Half of the total duration
+          yoyo: true, // Make the tween return to the original position
+          repeat: -1 // Repeat indefinitely
+        });
 
         // Change color on hover
         obj.on('pointerover', () => {
@@ -65,7 +70,7 @@ export class Item {
             // obj.setTint(0x00ff00); // Hover color - green
           } else {
             this.setInputCode(obj.id)
-
+            obj.play('playGif')
             obj.setTint(0x00C1FF); // red
             this.addStaticLine(obj);
           }
@@ -83,8 +88,10 @@ export class Item {
             this.startDrawing(obj.x, obj.y, obj);
             obj.setTint(0x00C1FF); // Clicked color
             this.inputCode.push(obj.id)
+            obj.play('playGif')
           } else {
             this.stopDrawing(obj);
+            obj.stop('playGif')
             obj.setTint(0xffffff); // Reset to default color
           }
         });
@@ -255,7 +262,10 @@ export class Item {
     this.isDrawing = false;
     this.lines.forEach(line => line.destroy());
     this.lines = [];
-    this.interactiveObjects.forEach(obj => obj.setTint(0xffffff)); // Reset color
+    this.interactiveObjects.forEach(obj => {
+      obj.setTint(0xffffff)
+      obj.stop('playGif')
+    }); // Reset color
     this.inputCode = [];
   }
 }

@@ -15,7 +15,7 @@
             <BossDragon />
           </div>
         </div>
-        <div class="col-4 d-flex justify-content-end pe-0 py-1">
+        <div class="col-4 d-flex justify-content-end pe-0 py-2">
 
           <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Account' }"
             :class="[route.name == 'Account' ? 'nav-btn-off' : 'nav-btn']">Character</router-link>
