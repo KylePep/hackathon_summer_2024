@@ -1,7 +1,7 @@
 <template>
   <div class="boss-dragon text-outline-bg text-2p position-absolute text-center ms-4  pb-1 px-3 fs-3">
     <p class="m-0 p-0 text-outline">
-      🐲
+      <img class="dragon-icon" src="/assets/dragonIcon.png" alt="">
     </p>
     <div class=" px-3">
       <h1 class="fs-5">{{ activeBoss.name }}</h1>
@@ -39,6 +39,11 @@ export default {
 
 
 <style lang="scss" scoped>
+.dragon-icon {
+  max-height: 48px;
+  width: auto;
+}
+
 .boss-dragon {
   font-weight: 400;
   font-style: normal;

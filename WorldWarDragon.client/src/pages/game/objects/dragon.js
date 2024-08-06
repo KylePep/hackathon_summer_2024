@@ -51,7 +51,7 @@ export class Dragon {
   }
 
   getRandomDragonSprite() {
-    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5', 'dragon_6', 'dragon_7', 'dragon_8', 'dragon_9'];
+    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5', 'dragon_6', 'dragon_7', 'dragon_8', 'dragon_9', 'dragon_10'];
     return Phaser.Math.RND.pick(dragonImages);
   }
 
@@ -172,7 +172,7 @@ export class Dragon {
 
   onPointerOver() {
     // this.dragon.setTint(0xD62E0B);
-    this.setScaleToFitWindow(.2)
+    this.setScaleToFitWindow(.1)
     this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }

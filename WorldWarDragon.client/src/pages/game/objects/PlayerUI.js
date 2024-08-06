@@ -98,8 +98,8 @@ export class PlayerUi {
     this.uiContainer.add(this.healthBarBackground);
     this.uiContainer.add(this.healthBar);
 
-    this.stats = this.scene.add.text(0, 72, `HP: ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${this.powerMod
-      }) GLD: ${AppState.account.gold} (${this.goldMod}) VLR: ${AppState.account.valor} (${AppState.account.valor - AppState.account.valorSpent}) LCK: ${this.luckMod} `, {
+    this.stats = this.scene.add.text(0, 72, `HP: ${this.playerHp} | ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${this.powerMod
+      })`, {
       fontFamily: '"Press Start 2P"', fontSize: '10px',
       stroke: '#000000', strokeThickness: 8,
       align: 'left',
@@ -139,6 +139,8 @@ export class PlayerUi {
     this.playerHp = newHp;
     const { width } = this.scene.cameras.main;
     this.healthBar.width = (this.playerHp / this.maxHp) * (width - 20);
+    this.stats.setText(`HP: ${this.playerHp} | ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${this.powerMod
+      })`)
 
   }
   updateItem() {

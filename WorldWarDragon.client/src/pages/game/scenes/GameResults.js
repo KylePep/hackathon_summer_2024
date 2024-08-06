@@ -35,7 +35,7 @@ export class GameResults extends Scene {
 
         this.rewardItems = { attack: 0, shield: 0, heal: 0 };
 
-        this.title = this.add.text(centerX, centerY - 200, `${AppState.bossDamage} Damage dealt to ${AppState.activeBoss.name}`, {
+        this.title = this.add.text(centerX, centerY - 200, `${AppState.bossDamage} Damage dealt to \n ${AppState.activeBoss.name}`, {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -131,7 +131,7 @@ export class GameResults extends Scene {
     setFontToFitWindow() {
         const { width, height } = this.cameras.main;
         const baseFontSize = 32;
-        const scaleFactor = Math.min(width / 1600, height / 1200);
+        const scaleFactor = Math.min(width / 1200, height / 800);
         return baseFontSize * scaleFactor;
     }
 

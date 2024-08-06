@@ -120,12 +120,15 @@ export class GameOver extends Scene {
     setFontToFitWindow() {
         const { width, height } = this.cameras.main;
         const baseFontSize = 32;
-        const scaleFactor = Math.min(width / 1600, height / 1200);
+        const scaleFactor = Math.min(width / 800, height / 600);
         return baseFontSize * scaleFactor;
     }
     adjustTextSize() {
         const newFontSize = `${this.setFontToFitWindow()}px`;
 
+        this.lostGold.setStyle({ fontSize: newFontSize });
+        this.gameOver.setStyle({ fontSize: newFontSize });
+        this.fight.setStyle({ fontSize: newFontSize });
         this.return.setStyle({ fontSize: newFontSize });
     }
 
