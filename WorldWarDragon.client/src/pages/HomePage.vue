@@ -98,12 +98,11 @@ export default {
 
 
     return {
+      identity: computed(() => AppState.identity),
       account: computed(() => AppState.account),
       activeBoss: computed(() => AppState.activeBoss),
       bosses: computed(() => AppState.bosses),
 
-      user: computed(() => AppState.user),
-      account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },
