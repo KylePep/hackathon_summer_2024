@@ -20,7 +20,7 @@ class MessagesService {
       } else if (m.boon == 'health') {
         AppState.healthMod[`${m.roomId}`]++
       } else if (m.boon == 'power') {
-        AppState.powerMod[`${m.roomId}`]++
+        AppState.powerMod[`${m.roomId}`] += .1
       } else {
         AppState.luckMod[`${m.roomId}`]++
       }
@@ -43,7 +43,7 @@ class MessagesService {
       } else if (message.boon == 'health') {
         AppState.healthMod[`${message.roomId}`]++
       } else if (message.boon == 'power') {
-        AppState.powerMod[`${message.roomId}`]++
+        AppState.powerMod[`${message.roomId}`] += .1
       } else {
         AppState.luckMod[`${message.roomId}`]++
       }

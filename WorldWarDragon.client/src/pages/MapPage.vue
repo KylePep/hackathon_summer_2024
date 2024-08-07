@@ -145,7 +145,7 @@
             class="room-container px-3 d-flex align-items-center justify-content-between text-success py-1">
             {{ assistance.body }}
             {{ assistance?.creator?.name }}
-            <button v-if="assistance.creatorId != account?.id && assistance
+            <button v-if="account?.id && assistance.creatorId != account?.id && assistance
               .claim == false" class="selectable btn py-0" @click="
                 claimAssistance(assistance.id)">
               <i class="mdi mdi-download"></i>

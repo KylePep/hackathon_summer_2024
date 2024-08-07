@@ -84,7 +84,7 @@ export class GameResults extends Scene {
             this.input.setDefaultCursor('default');
         });
 
-        this.map = this.add.text(centerX, centerY + 150, 'Map', {
+        this.map = this.add.text(centerX, centerY + 200, 'Map', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -105,7 +105,7 @@ export class GameResults extends Scene {
             this.input.setDefaultCursor('default');
         });
 
-        this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
+        this.return = this.add.text(centerX, centerY + 300, 'RETREAT...', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -144,8 +144,8 @@ export class GameResults extends Scene {
         this.bossHp.setPosition(centerX, centerY - 100);
         this.rewards.setPosition(centerX, centerY);
         this.fight.setPosition(centerX, centerY + 100);
-        this.map.setPosition(centerX, centerY + 150);
-        this.return.setPosition(centerX, centerY + 200);
+        this.map.setPosition(centerX, centerY + 250);
+        this.return.setPosition(centerX, centerY + 400);
 
         this.adjustTextSize();
     }

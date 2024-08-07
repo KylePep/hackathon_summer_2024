@@ -70,6 +70,7 @@ export default {
 
     return {
       editable,
+      account: computed(() => AppState.account),
       gold: computed(() => AppState.account.gold),
       async createMessage() {
         try {
