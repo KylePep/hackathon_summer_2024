@@ -11,7 +11,7 @@ export const AuthService = initialize({
   clientId,
   authorizationParams: {
     audience,
-    redirect_uri: window.location.href,
+    redirect_uri: window.location.origin,
   }
 })
 
