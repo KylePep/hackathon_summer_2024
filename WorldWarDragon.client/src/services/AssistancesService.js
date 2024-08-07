@@ -8,7 +8,6 @@ class AssistancesService {
 
   async getAssistances() {
     const res = await api.get('api/assistances')
-    logger.log('[ASSISTANCES]', res.data)
     AppState.assistances = res.data.map(a => new Assistance(a))
   }
 
@@ -17,9 +16,7 @@ class AssistancesService {
       return 'not enough items'
     } else {
       AppState.account[assistData.body] -= 1
-      logger.log(AppState.account.valor)
       AppState.account.valor = AppState.account.valor += 1000
-      logger.log(AppState.account.valor)
       accountService.editAccount(AppState.account)
       const res = await api.post('api/assistances', assistData)
       const assistance = new Assistance(res.data)

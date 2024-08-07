@@ -1,7 +1,5 @@
-import { EventBus } from '../EventBus';
 import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
-import { GameObjects } from 'phaser';
 
 export class DragonAttack {
   constructor(scene, dragon) {
@@ -29,8 +27,6 @@ export class DragonAttack {
   createBar() {
     const { width, height } = this.scene.cameras.main;
     const barWidth = width / 2
-
-    logger.log('DRAGON', this.dragon)
 
     this.attackContainer = this.scene.add.container(this.dragonX, this.dragonY + height * .22)
 
@@ -63,11 +59,15 @@ export class DragonAttack {
     sound.play();
     sound.volume = 0.5;
 
-    logger.log('PLAYERHP', this.scene.playerHp)
     this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
     this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
     if (this.scene.playerHp <= 0) {
       this.scene.sound.stopAll()
+      this.scene.events.off('dragon:hit')
+      this.scene.events.off('dragon:over')
+      this.scene.events.off('dragon:out')
+      this.scene.events.off('dragon:attackItem')
+      this.scene.playerHp = this.scene.playerMaxHp
       this.scene.scene.start('GameOver');
     }
 

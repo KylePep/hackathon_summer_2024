@@ -1,6 +1,5 @@
 import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
-import { bossDamageService } from "../../../services/BossDamageService.js";
 import { AREA_DRAGONS } from '../../../../../shared/constants/index.js'
 
 export class Dragon {
@@ -46,7 +45,7 @@ export class Dragon {
   }
 
   getRandomDragonHP() {
-    const minHP = 10; // 100 / 10
+    const minHP = 45; // 100 / 10
     const maxHP = 100; // 1000 / 10
     return Phaser.Math.Between(minHP, maxHP) * (1 + (AppState.activeRoom.difficulty * AppState.activeRoom.difficulty));
   }
@@ -90,6 +89,7 @@ export class Dragon {
   }
 
   checkDeath() {
+    logger.log('DRAGON HP AFTER HIT', this.dragonHP)
     if (this.dragonHP <= 0) {
 
       AppState.bossDamage = this.bossDamage
@@ -150,8 +150,8 @@ export class Dragon {
     sound.volume = 0.2;
 
     this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
+
     this.scene.bossUi.updateBossHp(this.dragonHP)
-    // this.scene.clickText.setText(`HP: ${this.dragonHP}`)
 
     this.checkDeath()
 

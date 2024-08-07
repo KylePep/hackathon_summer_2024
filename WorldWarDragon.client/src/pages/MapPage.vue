@@ -236,7 +236,6 @@ export default {
       }
       else {
         AppState.activeRoom = { id: 0 }
-        logger.log('clicked', AppState.activeRoom)
       }
       setBg(roomId)
       setBgImg()

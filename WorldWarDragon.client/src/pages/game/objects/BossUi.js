@@ -106,13 +106,6 @@ export class BossUi {
     this.bossTitleText.setPosition(width / 2, - 20);
     this.healthBarBackground.setPosition(10, - 10);
     this.healthBar.setPosition(10, - 10);
-    console.log(width, height)
-    console.log('bossUiContainer', this.bossUiContainer)
-    console.log('bottomBar', this.bottomBar.x, this.bottomBar.y)
-    console.log('retreatButton', this.retreatButton.x, this.retreatButton.y)
-    console.log('bossNameText', this.bossNameText.x, this.bossNameText.y)
-    console.log('bossTitleText', this.bossTitleText.x, this.bossTitleText.y)
-    console.log('healthBar', this.healthBar.x, this.healthBar.y)
   }
 
   updateBossHp(newHp) {

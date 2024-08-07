@@ -154,10 +154,8 @@ export class Item {
       line.setLineWidth(this.lineWidth); // Ensure line width is set
 
       if (this.inputCode.length < 4) {
-        logger.log('inputCode', this.inputCode)
         this.startDrawing(obj.x, obj.y, obj);
       } else {
-        logger.log('inputCode', this.inputCode)
         this.stopDrawing(obj);
       }
     }

@@ -83,7 +83,6 @@ export default {
     async function getBossDamageByBossId() {
       try {
         if (AppState.activeBoss.id != null) {
-          logger.log('[ActiveBossId]', AppState.activeBoss.id)
           await bossDamageService.getBossDamageByBossId(AppState.activeBoss.id)
         }
       } catch (error) {

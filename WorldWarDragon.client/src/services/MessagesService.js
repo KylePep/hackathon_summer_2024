@@ -8,7 +8,6 @@ class MessagesService {
 
   async getMessages() {
     const res = await api.get('api/messages')
-    logger.log('[MESSAGES]', res.data)
     const messages = res.data.map(m => new Message(m))
     AppState.messages = messages
     AppState.goldMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
