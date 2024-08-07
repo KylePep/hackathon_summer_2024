@@ -244,7 +244,12 @@ export class Item {
       this.scene.events.emit('dragon:attackItem')
       this.scene.playerUi.updateItem()
     } else if (this.action == 'shield') {
-      this.scene.events.emit('dragon:shieldItem')
+      this.scene.shield += 1;
+      const selectedSound = 'shield_set'
+      const sound = this.scene.sound.add(selectedSound)
+      sound.play();
+      sound.volume = 1;
+      this.scene.dragonAttack.updateProgressBar();
       this.scene.playerUi.updateItem()
     } else if (this.action == 'heal') {
       const selectedSound = 'healItem'

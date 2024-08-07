@@ -24,8 +24,6 @@ export class Game extends Scene {
 
     create() {
 
-
-
         this.timerEvent = this.time.addEvent({
             delay: this.timerInterval,
             callback: this.onTimerEvent,
@@ -40,6 +38,8 @@ export class Game extends Scene {
             this.playerMaxHp = AppState.account.health
         }
         this.playerHp = this.playerMaxHp
+
+        this.shield = 0;
 
         const dragonNames = DRAGON_NAMES.find((data) => data.id === this.activeRoomId);
         const dragonTitles = DRAGON_TITLES.find((data) => data.id === this.activeRoomId);

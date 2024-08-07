@@ -174,7 +174,7 @@ export class Dragon {
 
   onPointerOver() {
     // this.dragon.setTint(0xD62E0B);
-    this.setScaleToFitWindow(.1)
+    this.setScaleToFitWindow(.01)
     this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }

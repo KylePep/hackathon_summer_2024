@@ -1,5 +1,4 @@
 import { logger } from "../../../utils/Logger.js";
-import { AppState } from "../../../AppState.js";
 
 export class Slash {
   constructor(scene, x, y) {

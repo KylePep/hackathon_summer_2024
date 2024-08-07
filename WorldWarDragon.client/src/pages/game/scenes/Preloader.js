@@ -36,6 +36,9 @@ export class Preloader extends Scene {
         this.load.audio('gameOverBGM', 'bgm/gameOverBGM.ogg');
         this.load.audio('victoryBGM', 'bgm/victoryBGM.wav');
 
+        this.load.audio('shield_set', 'sound/shieldSet.ogg');
+        this.load.audio('shield_use', 'sound/shieldUse.ogg');
+
         this.load.audio('dragonAttack_1', 'sound/mnstr5.wav');
         this.load.audio('dragonAttack_2', 'sound/mnstr6.wav');
         this.load.audio('dragonAttack_3', 'sound/mnstr8.wav');
