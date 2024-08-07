@@ -33,11 +33,6 @@ export class Game extends Scene {
             loop: true
         });
 
-        const dragonNames = DRAGON_NAMES
-        const dragonTitles = DRAGON_TITLES
-        const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
-
-
         this.activeRoomId = AppState.activeRoom.id
         if (this.activeRoomId && this.activeRoomId != 5) {
             this.playerMaxHp = AppState.account.health + AppState.healthMod[this.activeRoomId]
@@ -46,9 +41,15 @@ export class Game extends Scene {
         }
         this.playerHp = this.playerMaxHp
 
+        const dragonNames = DRAGON_NAMES.find((data) => data.id === this.activeRoomId);
+        const dragonTitles = DRAGON_TITLES.find((data) => data.id === this.activeRoomId);
+        const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
+
+
+
         // Randomly select a name and title
-        const randomName = Phaser.Math.RND.pick(dragonNames);
-        const randomTitle = Phaser.Math.RND.pick(dragonTitles);
+        const randomName = Phaser.Math.RND.pick(dragonNames.names);
+        const randomTitle = Phaser.Math.RND.pick(dragonTitles.titles);
 
         this.cameras.main.setBackgroundColor(0xFFA500);
 

@@ -1,6 +1,7 @@
 import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
 import { bossDamageService } from "../../../services/BossDamageService.js";
+import { AREA_DRAGONS } from '../../../../../shared/constants/index.js'
 
 export class Dragon {
   constructor(scene, x, y) {
@@ -51,8 +52,11 @@ export class Dragon {
   }
 
   getRandomDragonSprite() {
-    const dragonImages = ['dragon_1', 'dragon_3', 'dragon_4', 'dragon_5', 'dragon_6', 'dragon_7', 'dragon_8', 'dragon_9', 'dragon_10'];
-    return Phaser.Math.RND.pick(dragonImages);
+    const activeRoom = this.activeRoomId
+    const areaDragons = AREA_DRAGONS.find((data) => data.id = activeRoom)
+    const quantityMax = areaDragons.number
+    const randomIndex = Phaser.Math.Between(1, quantityMax);
+    return `${activeRoom}_dragon_${randomIndex}`
   }
 
   getRandomDragonSound() {

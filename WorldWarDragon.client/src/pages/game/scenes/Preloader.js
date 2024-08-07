@@ -49,7 +49,6 @@ export class Preloader extends Scene {
         this.load.audio('attackItem', 'sound/magic1.wav');
         this.load.audio('healItem', 'sound/spell.wav');
 
-        this.load.image('star', 'star.png');
         this.load.spritesheet('animatedCrystal', 'ui/crystal.png', {
             frameWidth: 22,
             frameHeight: 34,
@@ -72,18 +71,61 @@ export class Preloader extends Scene {
         this.load.image('islandBG', 'castleGrounds.jpeg');
         this.load.image('mountainBG', 'room/mountain.jpg');
 
-        // this.load.image('dragon', 'dragon_2.png');
+        //Room 1
+        this.load.image('1_dragon_1', 'dragon/1/youngDragon1.png');
+        this.load.image('1_dragon_2', 'dragon/1/youngDragon2.png');
+        this.load.image('1_dragon_3', 'dragon/1/youngDragon3.png');
+        this.load.image('1_dragon_4', 'dragon/1/youngDragon4.png');
+        this.load.image('1_dragon_5', 'dragon/1/youngDragon5.png');
+        this.load.image('1_dragon_6', 'dragon/1/youngDragon6.png');
+        this.load.image('1_dragon_7', 'dragon/1/youngDragon7.png');
+        this.load.image('1_dragon_8', 'dragon/1/youngDragon8.png');
 
-        this.load.image('dragon_1', 'dragon/dragon_1.gif');
-        this.load.image('dragon_2', 'dragon/dragon_2.png');
-        this.load.image('dragon_3', 'dragon/dragon_3.png');
-        this.load.image('dragon_4', 'dragon/dragon_4.png');
-        this.load.image('dragon_5', 'dragon/dragon_5.png');
-        this.load.image('dragon_6', 'dragon/dragon_6.png');
-        this.load.image('dragon_7', 'dragon/dragon_7.png');
-        this.load.image('dragon_8', 'dragon/dragon_8.png');
-        this.load.image('dragon_9', 'dragon/dragon_9.png');
-        this.load.image('dragon_10', 'dragon/dragon_10.png');
+        //Room 2
+        this.load.image('2_dragon_1', 'dragon/2/dragon_3.png');
+        this.load.image('2_dragon_2', 'dragon/2/dragon_5.png');
+        this.load.image('2_dragon_3', 'dragon/2/dragon_10.png');
+        this.load.image('2_dragon_4', 'dragon/2/dragonLeader1.png');
+        this.load.image('2_dragon_5', 'dragon/2/dragonLeader2.png');
+        this.load.image('2_dragon_6', 'dragon/2/dragonLeader3.png');
+        this.load.image('2_dragon_7', 'dragon/2/dragonLeader4.png');
+        this.load.image('2_dragon_8', 'dragon/2/dragonLeader5.png');
+
+        //Room 3
+        this.load.image('3_dragon_1', 'dragon/3/dragonKnight1.png');
+        this.load.image('3_dragon_2', 'dragon/3/dragonKnight2.png');
+        this.load.image('3_dragon_3', 'dragon/3/dragonKnight3.png');
+        this.load.image('3_dragon_4', 'dragon/3/dragonKnight4.png');
+        this.load.image('3_dragon_5', 'dragon/3/dragonKnight5.png');
+        this.load.image('3_dragon_6', 'dragon/3/dragonKnight6.png');
+        this.load.image('3_dragon_7', 'dragon/3/dragonKnight7.png');
+        this.load.image('3_dragon_8', 'dragon/3/dragonKnight8.png');
+        this.load.image('3_dragon_9', 'dragon/3/dragonKnight9.png');
+        this.load.image('3_dragon_10', 'dragon/3/dragonKnight10.png');
+        this.load.image('3_dragon_11', 'dragon/3/dragonKnight11.png');
+        this.load.image('3_dragon_12', 'dragon/3/dragonKnight12.png');
+
+        //Room 4
+        this.load.image('4_dragon_1', 'dragon/4/dragonLord.png');
+        this.load.image('4_dragon_2', 'dragon/4/dragonLord2.png');
+        this.load.image('4_dragon_3', 'dragon/4/dragonLord3.png');
+        this.load.image('4_dragon_4', 'dragon/4/dragonLord4.png');
+        this.load.image('4_dragon_5', 'dragon/4/dragonLord5.png');
+        this.load.image('4_dragon_6', 'dragon/4/dragonLord6.png');
+        this.load.image('4_dragon_7', 'dragon/4/dragonLord7.png');
+        this.load.image('4_dragon_8', 'dragon/4/dragonLord8.png');
+        this.load.image('4_dragon_9', 'dragon/4/dragonLord9.png');
+
+        //Room 5
+        this.load.image('5_dragon_1', 'dragon/5/dragonling1.png');
+        this.load.image('5_dragon_2', 'dragon/5/dragonling2.png');
+        this.load.image('5_dragon_3', 'dragon/5/dragonling3.png');
+        this.load.image('5_dragon_4', 'dragon/5/dragonling4.png');
+        this.load.image('5_dragon_5', 'dragon/5/dragonling5.png');
+        this.load.image('5_dragon_6', 'dragon/5/dragonling6.png');
+        this.load.image('5_dragon_7', 'dragon/5/dragonling7.png');
+        this.load.image('5_dragon_8', 'dragon/5/dragonling8.png');
+        this.load.image('5_dragon_9', 'dragon/5/dragonling9.png');
 
         this.load.image('small_0001', 'battle/small_0001.png');
         this.load.image('small_0004', 'battle/small_0004.png');

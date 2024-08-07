@@ -4,5 +4,6 @@ export const {
   MAP_DATA,
   DRAGON_NAMES,
   DRAGON_TITLES,
+  AREA_DRAGONS,
   CHARACTER_ICONS_DATA
 } = data

@@ -44,67 +44,70 @@
       "difficulty": 1
     }
   ],
+  "AREA_DRAGONS":[
+    {
+      "id": 1,
+      "number": 8
+    },
+    {
+      "id": 2,
+      "number": 8
+    },
+    {
+      "id": 3,
+      "number": 12
+    },
+    {
+      "id": 4,
+      "number": 9
+    },
+    {
+      "id": 5,
+      "number": 9
+    }
+  ],
   "DRAGON_NAMES": [
-    "Smaug",
-  "Toothless",
-  "Firnen",
-  "Saphira",
-  "Falkor",
-  "Alduin",
-  "Norbert",
-  "Draco",
-  "Charizard",
-  "Mushu",
-  "Puff",
-  "Fafnir",
-  "Tiamat",
-  "Spyro",
-  "Thorn",
-  "Ember",
-  "Ancalagon",
-  "Glaurung",
-  "Hydra",
-  "Nidhogg",
-  "Ysera",
-  "Azar",
-  "Ignis",
-  "Blaze",
-  "Ashwing",
-  "Firebreath",
-  "Clawser",
-  "Roary",
-  "Fluffy",
-  "Snappy"
-  ], "DRAGON_TITLES":[
-"the Destroyer",
-  "the Mighty",
-  "the Ancient",
-  "the Terrible",
-  "the Benevolent",
-  "the Ferocious",
-  "the Guardian",
-  "the Merciless",
-  "the Brave",
-  "the Cruel",
-  "the Wise",
-  "the Fierce",
-  "the Kind",
-  "the Bold",
-  "the Enigmatic",
-  "the Savage",
-  "the Invincible",
-  "the Vengeful",
-  "the Cunning",
-  "the Eternal",
-  "the Furious",
-  "the Mysterious",
-  "the Thunderous",
-  "the Majestic",
-  "the Fearless",
-  "the Noble",
-  "the Shadow",
-  "the Radiant",
-  "the Grim",
-  "the Protector"
+    {
+      "id": 1,
+      "names": ["Ignis", "Blaze", "Pyros", "Ember", "Scorch"]
+    },
+    {
+      "id": 2,
+      "names": ["Zephyrus", "Gale", "Tempest", "Sirocco", "Cyclone"]
+    },
+    {
+      "id": 3,
+      "names": ["Tecton", "Quake", "Rumble", "Granite", "Boulder"]
+    },
+    {
+      "id": 4,
+      "names": ["Draconis", "Inferno", "Vortex", "Maelstrom", "Eclipse"]
+    },
+    {
+      "id": 5,
+      "names": ["Flitter", "Cinder", "Spark", "Smokey", "Whisper"]
+    }
+  ],
+  "DRAGON_TITLES": [
+    {
+      "id": 1,
+      "titles": ["the Flame Bringer", "the Blazing One", "the Inferno", "the Ember King", "the Scorcher"]
+    },
+    {
+      "id": 2,
+      "titles": ["the Wind Waker", "the Gale Force", "the Tempest", "the Whirlwind", "the Cyclone"]
+    },
+    {
+      "id": 3,
+      "titles": ["the Earthshaker", "the Quaker", "the Tremor", "the Granite Guardian", "the Boulder"]
+    },
+    {
+      "id": 4,
+      "titles": ["the Dragon King", "the Infernal", "the Vortex", "the Maelstrom", "the Eclipse"]
+    },
+    {
+      "id": 5,
+      "titles": ["the Tiny Terror", "the Spark", "the Little Flame", "the Smoke", "the Whisper"]
+    }
   ]
-  }
+}

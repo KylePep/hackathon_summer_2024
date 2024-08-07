@@ -6,8 +6,8 @@
     <div v-else>
       <div class=" my-2 my-lg-0 d-flex flex-column justify-content-center align-items-center">
         <router-link :to="{ name: 'Account' }" class=" border-0 selectable no-select">
-          <div v-if="account?.picture || user.picture">
-            <img :src="account?.picture || user.picture" alt="account photo" height="40"
+          <div v-if="account?.picture || identity?.picture">
+            <img :src="account?.picture || identity?.picture" alt="account photo" height="40"
               class="login-icon rounded selectable no-select" />
           </div>
         </router-link>
