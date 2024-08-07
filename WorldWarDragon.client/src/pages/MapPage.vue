@@ -142,26 +142,21 @@
       <div class="d-flex">
         <div>
           <div v-for="assistance in uniqueUnclaimedAssistances" :key="assistance.id"
-            class="room-container px-3 rounded border border-light"
-            :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
+            class="room-container px-3 d-flex align-items-center justify-content-between text-success py-1">
             {{ assistance.body }}
-            <!-- {{ assistance.roomId }} -->
             {{ assistance?.creator?.name }}
-            <button v-if="assistance.creatorId != account.id && assistance
-              .claim == false" class="selectable mdi mdi-sword btn text-success" @click="
-                claimAssistance(assistance.id)"> Claim</button>
+            <button v-if="assistance.creatorId != account?.id && assistance
+              .claim == false" class="selectable btn py-0" @click="
+                claimAssistance(assistance.id)">
+              <i class="mdi mdi-download"></i>
+              Claim</button>
           </div>
         </div>
-        <div>
+        <div class="ms-3">
           <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
-            class="room-container px-3 rounded border border-light"
-            :class="[assistance.claim == false ? 'text-success' : 'text-danger']">
+            class="room-container px-3 text-danger d-flex justify-content-between align-items-center">
             {{ assistance.body }}
-            <!-- {{ assistance.roomId }} -->
             {{ assistance?.creator?.name }}
-            <button v-if="assistance.creatorId == account.id && assistance
-              .claim == false" class="selectable mdi mdi-download btn text-success" @click="
-                claimAssistance(assistance.id)"> Claim</button>
           </div>
 
         </div>

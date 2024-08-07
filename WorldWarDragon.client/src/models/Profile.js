@@ -1,6 +1,6 @@
 export class Profile {
   constructor(data) {
-    this.id = data._id
+    this.id = data.id
     this.name = data.name
     this.picture = data.picture
     this.level = data.level

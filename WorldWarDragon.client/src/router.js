@@ -36,6 +36,7 @@ const routes = [
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/game',

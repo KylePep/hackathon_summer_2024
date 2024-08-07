@@ -119,7 +119,7 @@ export class DragonAttack {
       this.lastAttackTime = this.scene.time.now
     }
     const elapsed = this.scene.time.now - this.lastAttackTime;
-    const progress = elapsed / this.attackInterval;
+    let progress = elapsed / this.attackInterval;
     if (progress > 1) progress = 1
 
     this.attackBar.width = progress * (barWidth - 10);

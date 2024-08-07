@@ -15,7 +15,7 @@ export class GameResults extends Scene {
     create() {
         // Create and play the background music
         this.backgroundMusic = this.sound.add('victoryBGM', {
-            volume: 0.5, // Adjust the volume
+            volume: 0.1, // Adjust the volume
             loop: false   // Loop the music
         });
 
@@ -84,6 +84,27 @@ export class GameResults extends Scene {
             this.input.setDefaultCursor('default');
         });
 
+        this.map = this.add.text(centerX, centerY + 150, 'Map', {
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100).setInteractive();
+
+        this.map.on('pointerdown', () => {
+            this.sound.stopAll()
+            this.scene.start('Map');
+        });
+
+        this.map.on('pointerover', () => {
+            this.map.setColor('blue');
+            this.input.setDefaultCursor('pointer');
+        });
+
+        this.map.on('pointerout', () => {
+            this.map.setColor('#ffffff');
+            this.input.setDefaultCursor('default');
+        });
+
         this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
@@ -123,6 +144,7 @@ export class GameResults extends Scene {
         this.bossHp.setPosition(centerX, centerY - 100);
         this.rewards.setPosition(centerX, centerY);
         this.fight.setPosition(centerX, centerY + 100);
+        this.map.setPosition(centerX, centerY + 150);
         this.return.setPosition(centerX, centerY + 200);
 
         this.adjustTextSize();
@@ -142,6 +164,7 @@ export class GameResults extends Scene {
         this.bossHp.setStyle({ fontSize: newFontSize });
         this.rewards.setStyle({ fontSize: newFontSize });
         this.fight.setStyle({ fontSize: newFontSize });
+        this.map.setStyle({ fontSize: newFontSize });
         this.return.setStyle({ fontSize: newFontSize });
     }
 

@@ -23,31 +23,35 @@
             :class="[route.name == 'Score' ? 'nav-btn-off' : 'nav-btn']">Hall</router-link>
           <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'About' }"
             :class="[route.name == 'About' ? 'nav-btn-off' : 'nav-btn']">Lore</router-link>
+          <router-link class="d-block d-md-none" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
+            :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
         </div>
       </section>
 
-      <section v-if="account.id && route.name != 'Game'"
+      <section v-if="account?.id && route.name != 'Game'"
         class="d-none d-md-block row ps-2 d-flex disable-click fw-bold stats text-outline-bg text-2p">
         <div class="mdi mdi-circle-multiple " title="Gold">
-          : {{ account.gold }}
+          : {{ account?.gold }}
         </div>
         <div class="mdi mdi-medal" title="Valor">
-          : {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
+          : {{ account?.valor }} ( {{ account?.valor - appState.account?.valorSpent }} )
         </div>
         <div class="mdi mdi-heart" title="Health">
-          : {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
+          : {{ account?.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
         </div>
         <div class="mdi mdi-weight-lifter" title="Power">
-          : {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+          : {{ account?.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
         </div>
-        <div v-if="account.attack > 0 || account.attackAid > 0" class="mdi mdi-sword-cross text-danger" title="Attack">
-          : {{ account.attack }} ( {{ account.attackAid }} )
+        <div v-if="account?.attack > 0 || account?.attackAid > 0" class="mdi mdi-sword-cross text-danger"
+          title="Attack">
+          : {{ account?.attack }} ( {{ account?.attackAid }} )
         </div>
-        <div v-if="account.shield > 0 || account.shieldAid > 0" class="mdi mdi-shield-sun text-info" title="Shield">
-          : {{ account.shield }} ( {{ account.shieldAid }} )
+        <div v-if="account?.shield > 0 || account?.shieldAid > 0" class="mdi mdi-shield-sun text-info" title="Shield">
+          : {{ account?.shield }} ( {{ account?.shieldAid }} )
         </div>
-        <div v-if="account.heal > 0 || account.healAid > 0" class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
-          : {{ account.heal }} ( {{ account.healAid }} )
+        <div v-if="account?.heal > 0 || account?.healAid > 0" class="mdi mdi-bottle-tonic-plus text-success"
+          title="Heal">
+          : {{ account?.heal }} ( {{ account?.healAid }} )
         </div>
 
       </section>
@@ -73,27 +77,27 @@
           <div class="container mb-3 stat-block">
             <div class="row ">
               <div class="col-6 mdi mdi-circle-multiple " title="Gold">
-                : {{ account.gold }}
+                : {{ account?.gold }}
               </div>
               <div class="col-6 mdi mdi-medal" title="Valor">
-                : {{ account.valor }} ( {{ account.valor - appState.account.valorSpent }} )
+                : {{ account?.valor }} ( {{ account?.valor - appState.account?.valorSpent }} )
               </div>
               <div class="col-6 mdi mdi-heart" title="Health">
-                : {{ account.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
+                : {{ account?.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
               </div>
               <div class="col-6 mdi mdi-weight-lifter" title="Power">
-                : {{ account.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+                : {{ account?.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
               </div>
             </div>
             <div class="row ">
               <div class="col-6 mdi mdi-sword-cross text-danger" title="Attack">
-                : {{ account.attack }} ( {{ account.attackAid }} )
+                : {{ account?.attack }} ( {{ account?.attackAid }} )
               </div>
               <div class="col-6 mdi mdi-shield-sun text-info" title="Shield">
-                : {{ account.shield }} ( {{ account.shieldAid }} )
+                : {{ account?.shield }} ( {{ account?.shieldAid }} )
               </div>
               <div class="col-6 mdi mdi-bottle-tonic-plus text-success" title="Heal">
-                : {{ account.heal }} ( {{ account.healAid }} )
+                : {{ account?.heal }} ( {{ account?.healAid }} )
               </div>
 
             </div>

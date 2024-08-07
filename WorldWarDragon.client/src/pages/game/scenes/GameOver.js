@@ -16,7 +16,7 @@ export class GameOver extends Scene {
 
         // Create and play the background music
         this.backgroundMusic = this.sound.add('gameOverBGM', {
-            volume: 0.5, // Adjust the volume
+            volume: 0.1, // Adjust the volume
             loop: true   // Loop the music
         });
 

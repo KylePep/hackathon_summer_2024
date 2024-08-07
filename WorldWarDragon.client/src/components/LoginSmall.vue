@@ -1,6 +1,5 @@
 <template>
-  <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
-    v-if="!user.isAuthenticated">
+  <button class="login btn selectable text-2p text-outline" @click="login" v-if="!identity">
     Login
   </button>
   <div v-else>
@@ -24,17 +23,29 @@ import { AuthService } from '../services/AuthService'
 export default {
   setup() {
     return {
-      user: computed(() => AppState.user),
+      identity: computed(() => AppState.identity),
       account: computed(() => AppState.account),
+      // user: computed(() => AppState.user),
+      // account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithPopup()
       },
       async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
+        AuthService.logout()
       }
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login {
+  background-color: var(--bs-body-bg);
+  border: 2px solid white;
+  font-family: "Press Start 2P", system-ui;
+  color: #ff7300; //ff7300
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -26,7 +26,7 @@
         "build": "vite build --config vite/config.prod.mjs"
     },
     "dependencies": {
-        "@bcwdev/auth0provider-client": "0.0.13",
+        "@bcwdev/auth0provider-client": "0.1.10",
         "@mdi/font": "7.2.96",
         "@popperjs/core": "2.11.8",
         "axios": "1.4.0",
