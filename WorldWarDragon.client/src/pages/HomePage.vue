@@ -104,7 +104,7 @@ export default {
       bosses: computed(() => AppState.bosses),
 
       async login() {
-        AuthService.loginWithPopup()
+        AuthService.loginWithRedirect()
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })

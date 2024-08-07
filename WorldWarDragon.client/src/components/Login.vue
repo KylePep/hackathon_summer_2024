@@ -42,7 +42,7 @@ export default {
       // user: computed(() => AppState.user),
       // account: computed(() => AppState.account),
       async login() {
-        AuthService.loginWithPopup()
+        AuthService.loginWithRedirect()
       },
       async logout() {
         AuthService.logout()
