@@ -37,10 +37,11 @@ export class Dragon {
     const dragonWidth = this.dragon.width
     const dragonHeight = this.dragon.height
 
-    const scaleX = width / dragonWidth
+    // const scaleX = width / dragonWidth
     const scaleY = height / dragonHeight
 
-    const scale = Math.min(scaleX, scaleY) * 0.5 + modifier;
+    const scale = scaleY * 0.5 + modifier;
+    // const scale = Math.min(scaleX, scaleY) * 0.5 + modifier;
     this.dragon.setScale(scale)
   }
 
@@ -65,8 +66,6 @@ export class Dragon {
 
   addInteractions() {
 
-
-
     this.dragon.on('pointerdown', () => {
       this.onDragonHit()
 
@@ -89,7 +88,6 @@ export class Dragon {
   }
 
   checkDeath() {
-    logger.log('DRAGON HP AFTER HIT', this.dragonHP)
     if (this.dragonHP <= 0) {
 
       AppState.bossDamage = this.bossDamage
