@@ -259,6 +259,21 @@ export class Item {
       this.scene.playerHp = this.scene.playerMaxHp;
       this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
       this.scene.playerUi.updateItem()
+
+      const greenFlash = this.scene.add.graphics();
+      greenFlash.fillStyle(0x00ff3a, 0.25);
+      greenFlash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
+
+      this.scene.tweens.add({
+        targets: greenFlash,
+        alpha: 0,
+        duration: 200,
+        ease: 'Cubic.easeOut',
+        onComplete: () => {
+          greenFlash.destroy();
+        }
+      });
+
     } else {
     }
   }
