@@ -47,6 +47,7 @@ export default {
       async logout() {
         AuthService.logout()
       }
+
     }
   }
 }
