@@ -66,10 +66,10 @@ export class Dragon {
 
   addInteractions() {
 
-    this.dragon.on('pointerdown', () => {
-      this.onDragonHit()
+    // this.dragon.on('pointerdown', () => {
+    //   this.onDragonHit()
 
-    });
+    // });
 
     this.dragon.on('pointerover', () => {
       this.onPointerOver()
@@ -173,14 +173,12 @@ export class Dragon {
   }
 
   onPointerOver() {
-    // this.dragon.setTint(0xD62E0B);
     this.setScaleToFitWindow(.01)
     this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }
 
   onPointerOut() {
-    // this.dragon.clearTint();
     this.setScaleToFitWindow(0)
     this.dragon.y = this.originalY;
     this.scene.input.setDefaultCursor('default');
