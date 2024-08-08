@@ -11,7 +11,7 @@ export class DragonAttack {
     this.scene = scene;
     this.attackInterval = 5000; // Time between attacks in milliseconds
 
-    this.lastAttackTime = this.scene.time.now
+    this.lastAttackTime = 0;
 
     this.dragonSounds = [
       `dragonAttack_1`,
@@ -25,6 +25,7 @@ export class DragonAttack {
   }
 
   createBar() {
+
     const { width, height } = this.scene.cameras.main;
     const barWidth = width / 2
     this.barColor = 0x8e22cf
@@ -40,7 +41,6 @@ export class DragonAttack {
   }
 
   startAttack() {
-    this.lastAttackTime = this.scene.time.now;
     this.scene.time.addEvent({
       delay: this.attackInterval,
       callback: this.attack,
