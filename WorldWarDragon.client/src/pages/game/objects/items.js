@@ -28,11 +28,16 @@ export class Item {
     const { width, height } = this.scene.cameras.main;
     const items = (AppState.account.attack + AppState.account.attackAid + AppState.account.shield + AppState.account.shieldAid + AppState.account.heal + AppState.account.healAid)
     if (items > 0) {
+      // Define margins based on screen size
+      const smallScreenMargin = width * 0.125;
+      const largeScreenMargin = width * 0.25;
+      const leftRightMargin = width > 800 ? largeScreenMargin : smallScreenMargin;
+
       const positions = [
-        { x: width / 2, y: 128, id: 0 },
-        { x: width / 2, y: height - 128, id: 2 },
-        { x: width - 64, y: height / 2, id: 1 },
-        { x: 64, y: height / 2, id: 3 }
+        { x: width / 2, y: 128, id: 0 }, // Top
+        { x: width / 2, y: height - 128, id: 2 }, // Bottom
+        { x: width - leftRightMargin, y: height / 2, id: 1 }, // Right
+        { x: leftRightMargin, y: height / 2, id: 3 } // Left
       ];
 
       const FRAME_COUNT = 5;
@@ -255,7 +260,7 @@ export class Item {
       const selectedSound = 'healItem'
       const sound = this.scene.sound.add(selectedSound)
       sound.play();
-      sound.volume = 1;
+      sound.volume = .5;
       this.scene.playerHp = this.scene.playerMaxHp;
       this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
       this.scene.playerUi.updateItem()

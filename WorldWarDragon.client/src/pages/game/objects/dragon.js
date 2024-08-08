@@ -66,10 +66,6 @@ export class Dragon {
 
   addInteractions() {
 
-    // this.dragon.on('pointerdown', () => {
-    //   this.onDragonHit()
-
-    // });
 
     this.dragon.on('pointerover', () => {
       this.onPointerOver()
@@ -111,7 +107,7 @@ export class Dragon {
     const selectedSound = 'attackItem'
     const sound = this.scene.sound.add(selectedSound)
     sound.play();
-    sound.volume = 1;
+    sound.volume = .25;
 
     this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
     this.scene.bossUi.updateBossHp(this.dragonHP)
