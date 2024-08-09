@@ -151,6 +151,13 @@
               </router-link>
             </li>
 
+            <li class="nav-item">
+              <router-link @click="closeNavbar()" :to="{ name: 'RoadMap' }"
+                class="btn lighten-30 selectable text-uppercase">
+                Changes
+              </router-link>
+            </li>
+
 
 
           </ul>

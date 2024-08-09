@@ -8,61 +8,69 @@
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
         <div class="col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
+          <!-- <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt=""> -->
         </div>
-        <div class="col-12 col-md-6 lore-content p-3 pb-0">
-          <h3>Welcome to World War Dragon!</h3>
-          <p>An idle slasher with some community components.
-          </p>
+        <div class="col-12 col-md-12 lore-content p-3 pb-0">
+          <h3>Road Map</h3>
           <p>
-            In World War Dragon you'll be fighting dragons, investing in boons for the areas of the map, offering
-            assistance to other players with items and leveling up all while defeating a variety of dragons.
+            At present World War Dragon is mostly done, that being said enough is never enough.
           </p>
 
+          <ul>
+            <li>
+              Code Clean up
+            </li>
+            <li>
+              Unlocks and rewards
+            </li>
+            <li>
+              Weapon system
+            </li>
+            <li>
+              Class system
+            </li>
+          </ul>
+
+          <p>
+            Listed in no particular order as they are not set in stone at this moment.
+          </p>
         </div>
       </section>
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="order-2 order-md-1 col-12 col-md-6 lore-content p-3">
-          <h3>Combat</h3>
-          <p>After you have joined the fight and selected an area of the map ( Start with the safe zone). You can begin
-            slashing at the dragon! Just move your cursor through the center of the dragon. Slash! that's all it takes.
+        <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
+          <h3>Change log</h3>
+          <p>
+            8/9/24 - New account system, When a new account is made the recruit name and image are automatically
+            assigned.<br>
+            Created Road Map and change log page <br>
+            Created Tutorial Page, new players are automatically directed to after sign up.
           </p>
-          <p>After combat you can be rewarded with gold and occasionally items.</p>
-          <p>Items are the key to victory against strong foes.</p>
-          <p>4 Crystals show up around the enemy when you have an item, click, drag, and draw symbols to use the three
-            different items!</p>
         </div>
 
         <div class="order-1 order-md-2 col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt="">
+          <!-- <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt=""> -->
         </div>
       </section>
     </div>
 
-    <div class="col-12 d-flex flex-column align-items-center">
+    <!-- <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 px-0">
+        <div class="col-12 col-md-12 px-0">
           <img class="img-fluid rounded-4" src="/assets/princess3.jpeg" alt="">
         </div>
 
         <div class="col-12 col-md-6 lore-content p-3">
-          <h3>Community!</h3>
-          <p>In world war dragon players interact in two main ways, boons and assistance.</p>
-          <p>Participating in the community will reward you with Valor, the experience used to level up in World War
-            Dragon.</p>
-          <p>Boons: A boon will effect every one fighting dragons in that area, for example purchasing a boon of health
-            in Toleftios will give everyone fighting there an additional health point to face the dragon threat in that
-            area!</p>
-          <p>Assistance: Have an item you aren't using or want to help someone else out, In Centeria you can offer up
-            your items. Other players can accept those items if they are needing a leg up. - Maybe you could farm up a
-            bunch on lower levels to help the entire community on higher levels? </p>
+          <h3>Credits etc</h3>
+          <p>
+
+          </p>
         </div>
 
       </section>
-    </div>
+    </div> -->
   </section>
 </template>
 
