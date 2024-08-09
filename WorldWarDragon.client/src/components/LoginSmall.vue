@@ -7,8 +7,9 @@
     <div type="button" class=" border-0 selectable no-select" data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 
-      <div v-if="account?.picture || identity?.picture">
-        <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded" />
+      <div v-if="account?.picture || identity?.picture" class="position-relative">
+        <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded " />
+        <LevelUpAvailable />
       </div>
 
     </div>
@@ -19,6 +20,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
+import LevelUpAvailable from './LevelUpAvailable.vue'
 import { AuthService } from '../services/AuthService'
 export default {
   setup() {

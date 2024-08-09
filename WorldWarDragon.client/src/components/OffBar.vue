@@ -123,6 +123,7 @@
               <router-link class="btn lighten-30 selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Account' }">
                 Character
+                <LevelUpAvailable />
               </router-link>
             </li>
 
@@ -171,6 +172,7 @@ import { computed, onMounted, ref, watchEffect } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import LoginSmall from './LoginSmall.vue';
+import LevelUpAvailable from './LevelUpAvailable.vue'
 import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
 import { Offcanvas } from "bootstrap";
