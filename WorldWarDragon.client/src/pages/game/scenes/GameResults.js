@@ -200,7 +200,8 @@ export class GameResults extends Scene {
                 valor: AppState.account.valor + AppState.valor,
                 attack: AppState.account.attack + this.rewardItems.attack,
                 shield: AppState.account.shield + this.rewardItems.shield,
-                heal: AppState.account.heal + this.rewardItems.heal
+                heal: AppState.account.heal + this.rewardItems.heal,
+                dragons: AppState.account.dragons + 1
             };
             await accountService.editAccount(accountData);
         } catch (error) {

@@ -66,9 +66,6 @@
           <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
             class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
-          <!-- <button class="btn" @click="toggleTheme" :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-            <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-          </button> -->
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 

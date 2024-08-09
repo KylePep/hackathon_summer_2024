@@ -21,9 +21,9 @@
           <span class="d-none d-md-inline ">Level:</span>
           {{ Math.round(scoreProp.creator.level) }}
         </p>
-        <p class="my-0" title="Valor">
-          <span class="d-none d-md-inline ">Valor:</span>
-          {{ Math.round(scoreProp.creator.valor) }}
+        <p class="my-0" title="Dragons">
+          <span class="d-none d-md-inline ">Dragons:</span>
+          {{ Math.round(scoreProp.creator.dragons) }}
         </p>
       </div>
 

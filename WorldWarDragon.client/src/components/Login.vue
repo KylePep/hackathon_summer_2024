@@ -5,6 +5,14 @@
     </button>
     <div v-else>
       <div class=" my-2 my-lg-0 d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-column">
+          <div class="py-2 pe-3 text text-uppercase fw-semibold">
+            {{ account?.name }} Level: {{ account?.level }}
+          </div>
+          <div class="text">
+            Dragons Defeated: {{ account?.dragons }}
+          </div>
+        </div>
         <router-link :to="{ name: 'Account' }" class=" border-0 selectable no-select">
           <div v-if="account?.picture || identity?.picture">
             <img :src="account?.picture || identity?.picture" alt="account photo" height="40"
@@ -13,9 +21,6 @@
         </router-link>
 
         <div class="d-flex flex-column">
-          <div class="py-2 pe-3 text text-uppercase fw-semibold">
-            {{ account?.name }} | Level : {{ account?.level }}
-          </div>
           <div class="text-danger btn lighten-30 selectable text-uppercase" @click="logout">
             <i class="mdi mdi-logout "></i>
             logout

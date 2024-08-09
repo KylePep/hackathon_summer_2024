@@ -25,8 +25,6 @@ export default {
     return {
       identity: computed(() => AppState.identity),
       account: computed(() => AppState.account),
-      // user: computed(() => AppState.user),
-      // account: computed(() => AppState.account),
       async login() {
         AuthService.loginWithRedirect()
       },
