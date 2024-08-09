@@ -87,6 +87,9 @@
           <div class="fs-4 text-2p fw-bold">
             STATS
           </div>
+          <div class="mdi mdi-crown">
+            Dragons Defeated: {{ account.dragons || 0 }}
+          </div>
           <div class="mdi mdi-circle-multiple">
             Gold: {{ account.gold || 0 }}
           </div>
