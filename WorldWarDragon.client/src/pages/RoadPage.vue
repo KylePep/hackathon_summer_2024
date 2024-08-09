@@ -2,7 +2,7 @@
   <section class="row g-3 mx-5 text-V text-outline-bg">
 
     <div class="col-12 text-2p text-outline fs-1 fw-bold text-center ">
-      Tutorial
+      World War Dragon - Road Map
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
