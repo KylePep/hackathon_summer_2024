@@ -1,10 +1,8 @@
 <template>
   <!-- <section class="row mt-3 justify-content-center text-light"> -->
   <section class="row character-card  mt-3 text-center text-V text-outline-bg border border-1 border-outline rounded ">
-    <div class="col-4 col-md-3 fs-1 text-outline text-start rounded"
-      :style="{ backgroundImage: `url(${scoreProp?.creator.picture})` }"
+    <div class="col-4 col-md-3 fs-1 text-outline text-start rounded" :style="{ backgroundImage: `url(${bgIcon})` }"
       style="background-position: center; background-size: cover;">{{ index + 1 }}</div>
-    <!-- <img class="col-12 col-md-3 d-none d-md-block character-icon" :src="scoreProp?.creator.picture" alt=""> -->
     <div class="col-4 col-md-4 d-flex flex-column flex-md-column justify-content-around fs-1 overflow-x-hidden">
       <div v-if="scoreProp.creator.name.length > 6" :title="scoreProp.creator.name">
         <div class="marquee d-md-none">
@@ -45,13 +43,31 @@
 
 
 <script>
+import { AppState } from "../AppState.js";
+import { computed } from 'vue'
+
 export default {
   props: {
     scoreProp: { type: Object, required: true },
     index: { type: Number }
   },
   setup(props) {
-    return {}
+    const accountIcon = computed(() => props.scoreProp.creator.picture);
+
+    const bgIcon = computed(() => {
+      const icon = accountIcon.value;
+      if (!icon.includes('assets/player/player') && icon.length > 2) {
+        return 'assets/player/player0.jpeg';
+      } else {
+        return icon;
+      }
+    });
+
+    return {
+      accountIcon,
+      bgIcon
+
+    }
   }
 }
 </script>
