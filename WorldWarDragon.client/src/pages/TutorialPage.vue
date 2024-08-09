@@ -7,10 +7,10 @@
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
+        <div class="col-12 px-0">
+          <img class="img-fluid rounded-4" src="/assets/tutorial.jpeg" alt="">
         </div>
-        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+        <div class="col-12 lore-content p-3 pb-0">
           <h3>Welcome to World War Dragon!</h3>
           <p>An idle slasher with some community components.
           </p>
@@ -25,7 +25,7 @@
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="order-2 order-md-1 col-12 col-md-6 lore-content p-3">
+        <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
           <h3>Combat</h3>
           <p>After you have joined the fight and selected an area of the map ( Start with the safe zone). You can begin
             slashing at the dragon! Just move your cursor through the center of the dragon. Slash! that's all it takes.
@@ -37,18 +37,18 @@
         </div>
 
         <div class="order-1 order-md-2 col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt="">
+          <!-- <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt=""> -->
         </div>
       </section>
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/princess3.jpeg" alt="">
+        <div class="col-12 col-md-12 px-0">
+          <!-- <img class="img-fluid rounded-4" src="/assets/princess3.jpeg" alt=""> -->
         </div>
 
-        <div class="col-12 col-md-6 lore-content p-3">
+        <div class="col-12 col-md-12 lore-content p-3">
           <h3>Community!</h3>
           <p>In world war dragon players interact in two main ways, boons and assistance.</p>
           <p>Participating in the community will reward you with Valor, the experience used to level up in World War
