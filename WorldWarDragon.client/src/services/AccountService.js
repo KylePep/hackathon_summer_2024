@@ -22,6 +22,8 @@ class AccountService {
 
       AppState.account.name = 'Recruit'
 
+      AppState.account.healAid += 1;
+
       AppState.account.picture = `/assets/player/player0.jpeg`
 
       AppState.account.newAccount = 'false'

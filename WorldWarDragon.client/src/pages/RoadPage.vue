@@ -24,6 +24,9 @@
               Unlocks and rewards
             </li>
             <li>
+              Settings
+            </li>
+            <li>
               Weapon system
             </li>
             <li>
