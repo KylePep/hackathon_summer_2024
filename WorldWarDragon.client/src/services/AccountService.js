@@ -1,3 +1,4 @@
+import { router } from "../router.js"
 import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
@@ -15,6 +16,22 @@ class AccountService {
     if (AppState.account.picture.length < 2) {
       AppState.account.picture = `/assets/player/player${AppState.account.picture}.jpeg`
     }
+
+
+    if (AppState.account.newAccount == 'true') {
+
+      AppState.account.name = 'Recruit'
+
+      AppState.account.picture = `/assets/player/player0.jpeg`
+
+      AppState.account.newAccount = 'false'
+
+      router.push({ name: "Tutorial" })
+
+      this.editAccount(AppState.account)
+
+    }
+
   }
 
   async editAccount(accountData) {

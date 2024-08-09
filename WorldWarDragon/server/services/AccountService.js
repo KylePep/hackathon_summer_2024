@@ -41,6 +41,7 @@ function sanitizeBody(body) {
   const writable = {
     name: body.name,
     picture: body.picture,
+    newAccount: body.newAccount,
     level: body.level,
     valor: body.valor,
     valorSpent: body.valorSpent,

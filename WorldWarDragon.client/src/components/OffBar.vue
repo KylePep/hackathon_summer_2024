@@ -129,6 +129,13 @@
               </router-link>
             </li>
 
+            <li class="nav-item">
+              <router-link @click="closeNavbar()" :to="{ name: 'Tutorial' }"
+                class="btn lighten-30 selectable text-uppercase">
+                Tutorial
+              </router-link>
+            </li>
+
 
             <li class="nav-item">
               <router-link @click="closeNavbar()" :to="{ name: 'Score' }"
