@@ -49,7 +49,9 @@
             8/9/24 - New account system, When a new account is made the recruit name and image are automatically
             assigned.<br>
             Created Road Map and change log page <br>
-            Created Tutorial Page, new players are automatically directed to after sign up.
+            Created Tutorial Page, new players are automatically directed to after sign up. <br>
+            Dragons defeated is tracked <br>
+            Level up indicator added
           </p>
         </div>
 
